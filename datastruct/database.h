@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "table.h"
+
 using namespace std;
 
 class Database
