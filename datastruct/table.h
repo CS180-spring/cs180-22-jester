@@ -37,8 +37,13 @@ class Table{
 
     int g_num_of_rows();
     int g_num_of_cols(); 
-    
 
+    
+    vector<string> g_name_of_cols();
+    vector<vector<string> > g_allData();
+
+    void print_col_names();
+    void print_all_data();
 
     private:
     string name_of_table;
