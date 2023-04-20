@@ -26,8 +26,12 @@ class Table{
         for(int i = 0; i < num_of_cols;++i){
             string s; 
             cin >> s;
-            name_of_rows.push_back(s);  
+            name_of_colums.push_back(s);  
         }
+    }
+
+    Table(string table_name, int num_of_cols, vector<string> &columnNames){
+        name_of_colums = columnNames;
     }
 
     void add_row_to_table();
