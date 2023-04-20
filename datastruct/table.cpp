@@ -17,15 +17,23 @@ void Table::print_col_names(){
 }
 
 void Table::print_all_data(){
-    for(int j = 0 ; j < name_of_colums.size(); ++j){
+    cout<<"### Data for "<<name_of_table<<"##"<<endl;
+    int i = 0;
+    int j = 0;
+    for(j = 0 ; j < name_of_colums.size()-1; ++j){
         cout << name_of_colums.at(j) <<", ";
     }
+    cout << name_of_colums.at(j) <<endl;
 
+     i = 0;
+     j = 0;
 
-    for(int i =0 ; i < table.size(); ++i){
-        for(int j = 0 ; i < table.at(0).size(); ++j){
-        cout << table.at(i).at(j);
+    for(i = 0; i < table.size(); ++i){
+        for(j = 0 ; j < table.at(i).size()-1; ++j){
+            cout << table.at(i).at(j) <<", ";
         }
+        cout << name_of_colums.at(j) <<endl;
+
     }
 
 
