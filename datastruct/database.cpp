@@ -1,7 +1,10 @@
 #include "database.h"
 using namespace std;
 
-void database::createTable(string tableName, int colNums, &vector<vector<string>> columnNames)
+
+void Database::createTable(string tableName, int colNums, &vector<vector<string>> columnNames)
 {
-}//will create new datatable
+    table* t = new table(tableName, colNums, columnNames);
+
+}//will create new datatable (end of createTable)
         

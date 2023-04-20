@@ -16,8 +16,8 @@ class Database
         map<string, table*> db_map;
 
     public:
-        database(string db_name) : db_name(db_name) {}
-        ~database()
+        Database(string db_name) : db_name(db_name) {}
+        ~Database()
         {
             for(map<string, table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)
             {
