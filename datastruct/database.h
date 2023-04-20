@@ -25,8 +25,8 @@ class Database
             }
             textureMap.clear();
         }
-        void createTable();//will create new datatable
-        void deleteTable();//will delete table from database
+        void createTable(string, int, &vector<vector<string>>);//will create new datatable
+        void deleteTable(string);//will delete table from database
         vector<vector<string>> printRAW();//will print raw of all tables in database
         vector<vector<string>> printRAW(string);//will print raw of a single table
         vector<vector<string>> createQuery(/*Some way to read queries*/);
