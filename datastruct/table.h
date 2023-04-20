@@ -38,7 +38,7 @@ class Table{
     int g_num_of_rows();
     int g_num_of_cols(); 
     
-
+    vector<string> g_name_of_cols();
 
     private:
     string name_of_table;
