@@ -8,4 +8,10 @@ void Database::createTable(string tableName, int colNums, vector<string> &column
     db_map.insert({tableName, t});
 
 }//will create new datatable (end of createTable)
+
+void Database::createTable(string tableName, int colNums)
+{
+    Table* t = new Table(tableName, colNums);
+    db_map.insert({tableName, t});
+}//will create new datatable (end of createTable)
         
