@@ -16,11 +16,7 @@ class Table{
     }
 
     Table(string table_name, int num_of_cols){
-        cout << "what do you want the table to be named?";
-        cin >> name_of_table; 
-
-        cout << "what is the num of cols";
-        cin >> num_of_cols;
+        name_of_table = table_name;
 
         cout << "enter the labels for the table" ; 
         for(int i = 0; i < num_of_cols;++i){
