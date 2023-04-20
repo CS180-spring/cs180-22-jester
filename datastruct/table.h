@@ -39,7 +39,7 @@ class Table{
     void modify_row();
     void printTableRAW();
 
-    int num_of_rows();
+    int g_num_of_rows();
     int g_num_of_cols(); 
     
 
