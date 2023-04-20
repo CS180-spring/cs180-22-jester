@@ -43,7 +43,7 @@ class Table{
     private:
     string name_of_table;
     vector<vector<string> > table; 
-    vector<string> name_of_rows; 
+    vector<string> name_of_colums; 
     int num_of_rows;
     int num_of_cols;
 
