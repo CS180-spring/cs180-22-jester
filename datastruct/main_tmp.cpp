@@ -1,4 +1,5 @@
 #include "database.h"
+#include "table.h"
 #include <vector>
 using namespace std;
     
@@ -23,5 +24,5 @@ int main()
     db->getTable("Teammate")->add_row(test5);
     db->getTable("Teammate")->add_row(test6);
 
-    db->getTable("Teamate")->printTableRAW();
+    db->getTable("Teammate")->print_all_data();
 }

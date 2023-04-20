@@ -17,6 +17,10 @@ void Table::print_col_names(){
 }
 
 void Table::print_all_data(){
+    for(int j = 0 ; j < name_of_colums.size(); ++j){
+        cout << name_of_colums.at(j) <<", ";
+    }
+
 
     for(int i =0 ; i < table.size(); ++i){
         for(int j = 0 ; i < table.at(0).size(); ++j){
@@ -33,7 +37,8 @@ void Table::add_row(vector<string>& newRow)
     {
         if(newRow.size() != num_of_cols)
         {
-            throw invalid_argument("Size of new row does not match existing");
+            string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ") ";
+            throw invalid_argument(temp);
         }//end of if to make sure size of new column matches
         else
         {

@@ -17,6 +17,7 @@ class Table{
 
     Table(string table_name, int num_of_cols){
         name_of_table = table_name;
+        this->num_of_cols = num_of_cols;
 
         cout << "enter the labels for the table" ; 
         for(int i = 0; i < num_of_cols;++i){
@@ -27,6 +28,8 @@ class Table{
     }
 
     Table(string table_name, int num_of_cols, vector<string> &columnNames){
+        name_of_colums = columnNames;
+        this->num_of_cols = num_of_cols;
         name_of_colums = columnNames;
     }
 
