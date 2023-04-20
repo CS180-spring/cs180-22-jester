@@ -30,7 +30,7 @@ class Table{
         name_of_colums = columnNames;
     }
 
-    void add_row_to_table();
+    void add_row(vector<string>&);
     void delete_row();
     void modify_row();
     void printTableRAW();

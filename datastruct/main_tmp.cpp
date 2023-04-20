@@ -5,4 +5,6 @@ int main()
 {
     Database* db = new Database("mydb");
     db->createTable("Teammate", 3);
+
+    db->getTable("Teammate")->;
 }
