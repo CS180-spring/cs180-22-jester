@@ -1,4 +1,4 @@
-#include <server.h>
+#include "server.h"
 #include <iostream>
 #include <netinet/in.h> // For sockaddr_in
 #include <cstdlib> // For exit() and EXIT_FAILURE
@@ -42,34 +42,30 @@ int Server::setup_server() {
     */
 
 
-    // 1. Create and IPv4, TCP socket 
-    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    // 1. Create an IPv4, TCP socket 
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
         std::cerr << "Failed to create socket, errno: " << errno << std::endl;
-        //exit(EXIT_FAILURE);
         return -1;
     }
 
     // 2. Assign address and port to socket 
-    //sockaddr_in sockaddr;
-    const int portNum = 9999;
     sockaddr.sin_family = AF_INET;          // IPv4 internet protocols
     sockaddr.sin_addr.s_addr = INADDR_ANY;  // On any address
-    sockaddr.sin_port = htons(portNum);        // Listen to port 9999
+    sockaddr.sin_port = htons(PORT);        // Listen to port 9999
 
     // 3. Bind socket
     int bind_result = bind(sockfd, (struct sockaddr*) &sockaddr, sizeof(sockaddr));
     if (bind_result == -1) {
-        std::cerr << "Failure to bind to port " << portNum << ". errno: " << errno << std::endl;
-        //exit(EXIT_FAILURE);
+        std::cerr << "Failure to bind to port " << PORT << ". errno: " << errno << std::endl;
         return -1;
     }
+    cout << "Server bound to port: " << PORT << endl;
 
     // 4. Start listening to socket
     int listen_result = listen(sockfd, 10);
     if (listen_result == -1) {
         std::cerr << "Failure to listen to socket. errno: " << errno << std::endl;
-        //exit(EXIT_FAILURE);
         return -1;
     }
 
@@ -81,10 +77,11 @@ int Server::accept_connection() {
     Reads one connection in queue. A user must establish/request this connection before it can
         start querying Jester
     
-    Returns: connection file descriptor on success, -1 on failure
+    Returns: connectionfd[] index of accepted connection file descriptor on success, -1 on failure
     */
 
-    auto addrlen = sizeof(sockaddr);
+    // auto addrlen = sizeof(sockaddr);
+    std::size_t addrlen = sizeof(sockaddr);
     int connection = accept(sockfd, (struct sockaddr*)&sockaddr, (socklen_t*)&addrlen);
     if (connection == -1) {
         std::cerr << "Failed to grab connection. errno: " << errno << std::endl;
@@ -93,24 +90,24 @@ int Server::accept_connection() {
     }
 
     connectionfd.push_back(connection);
-    return connection;
+    return connectionfd.size()-1;
 }
 
-char* Server::read_from(int c) {
+std::size_t Server::read_from(int c, char* buffer) {
     /*
     Reads up to BUFFER_LEN characters sent from connectionfd[c]
 
     Parameters:
         c: index of the file descriptor of the connection you want to read from
+        buffer: c-string to load the message into (recommend string size of BUFFER_LEN)
 
-    Returns: message from connection
+    Returns: # of bytes read from connection
     */
 
    int connection = connectionfd[c];
-   char buffer[BUFFER_LEN];
-   auto bytesRead = read(connection, buffer, BUFFER_LEN);
+   std::size_t bytesRead = read(connection, buffer, BUFFER_LEN);
 
-   return buffer;
+   return bytesRead;
 }
 
 void Server::send_to(int c, std::string m) {
@@ -125,8 +122,14 @@ void Server::close_connection(int c)  {
     /*
     Closes connection with connectionfd[c]
     */
+
+   close(connectionfd[c]); 
 }
 
-int main() {
-    return 0;
+void Server::close_server() {
+    /*
+    Closes server socket
+    */
+
+   close(sockfd);
 }
