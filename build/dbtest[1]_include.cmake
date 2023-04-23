@@ -1,0 +1,5 @@
+if(EXISTS "/Users/nuharahman/desktop/cs180-22-jester/build/dbtest[1]_tests.cmake")
+  include("/Users/nuharahman/desktop/cs180-22-jester/build/dbtest[1]_tests.cmake")
+else()
+  add_test(dbtest_NOT_BUILT dbtest_NOT_BUILT)
+endif()
