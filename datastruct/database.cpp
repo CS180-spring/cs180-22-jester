@@ -2,6 +2,7 @@
 using namespace std;
 
 
+
 void Database::createTable(string tableName, int colNums, vector<string> &columnNames)
 {
     try
