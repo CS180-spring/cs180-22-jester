@@ -33,11 +33,23 @@ class Table{
         name_of_colums = columnNames;
     }
 
-    void add_row(vector<string>&);
-    void delete_row();
-    void modify_row();
-    void printTableRAW();
 
+    // CRUD
+    // CREATE
+    void add_row(vector<string>&);
+
+    // READ
+    void printTableRAW();
+    void print_col_names();
+    void print_all_data();
+
+    // UPDATE
+    void modify_row();
+
+    // DELETE
+    void delete_row();
+
+    // HELPERS
     int g_num_of_rows();
     int g_num_of_cols(); 
 
@@ -45,8 +57,6 @@ class Table{
     vector<string> g_name_of_cols();
     vector<vector<string> > g_allData();
 
-    void print_col_names();
-    void print_all_data();
 
     private:
     string name_of_table;
