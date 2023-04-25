@@ -39,7 +39,7 @@ class Table{
     void add_row(vector<string>&);//
 
     // READ
-    void printTableRAW();
+    void print_table_raw();
     void print_col_names();//
     void print_all_data();//
 
