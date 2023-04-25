@@ -5,7 +5,7 @@ vector<string> Table::g_name_of_cols(){
     return name_of_colums;
 }
 
-vector<vector<string> > Table::g_allData(){
+vector<vector<string> > Table::g_all_data(){
     return table;
 }
 
@@ -46,7 +46,7 @@ void Table::add_row(vector<string>& newRow)
         if(newRow.size() != num_of_cols)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ") ";
-            throw invalid_argument(temp);
+            throw invalid_argument("this is not working");//bug 
         }//end of if to make sure size of new column matches
         else
         {
