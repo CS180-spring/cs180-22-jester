@@ -36,26 +36,24 @@ class Table{
 
     // CRUD
     // CREATE
-    void add_row(vector<string>&);
+    void add_row(vector<string>&);//
 
     // READ
     void printTableRAW();
-    void print_col_names();
-    void print_all_data();
+    void print_col_names();//
+    void print_all_data();//
 
     // UPDATE
-    void modify_row();
+    void modify_table_value(string, string);
 
     // DELETE
-    void delete_row();
+    void delete_row(int);
 
     // HELPERS
     int g_num_of_rows();
     int g_num_of_cols(); 
-
-    
-    vector<string> g_name_of_cols();
-    vector<vector<string> > g_allData();
+    vector<string> g_name_of_cols();//
+    vector<vector<string> > g_allData();//
 
 
     private:
