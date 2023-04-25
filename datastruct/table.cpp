@@ -9,6 +9,14 @@ vector<vector<string> > Table::g_all_data(){
     return table;
 }
 
+int Table::g_num_of_cols(){
+    return table.at(0).size();
+}
+
+int Table::g_num_of_rows(){
+    return table.size();
+}
+
 
 void Table::print_col_names(){
     for(int i = 0; i < name_of_colums.size(); ++i){
