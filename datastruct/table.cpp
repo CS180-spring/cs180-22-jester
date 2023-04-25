@@ -83,19 +83,24 @@ void Table::delete_row(int i){
 
 }
 
-void Table::modify_table_value(string s, string t){
+void Table::modify_table_value(int row_number, string column_name, string new_val){
+    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
 
-    for(int i=0; i < table.size(); ++i){ // rows of vector 
-        for(int j=0; j < table[0].size(); ++j){ // cols of vector 
-            if( table.at(i).at(j)==(s)){ //check if the curr cell is the same as the one coming in 
-                table.at(i).at(j) = t;
-                return;//if it is found ,stop
-            }
+    try{
+       
+        //check for invalud row or col name
+    if(row_number > table.size() /*valis row num*/ ||row_number < 0 ||it == name_of_colums.end() /* valid column name*/){
+            throw runtime_error("invalid modification");
         }
     }
+    catch(runtime_error &e){
+        cerr << e.what() << endl; 
+        return;
+    }
 
-    //if reached the end, string not found. 
-    cout << "the " << "string" /* for future cell data types */ << "was not found in the vector"<<endl;
+
+    //if you got to here, its valid. 
+    table.at(row_number).at(it - name_of_colums.begin()) = new_val;
 
 
 }

@@ -2,9 +2,10 @@
 #define TABLE_H
 
 #include <string>
-#include <vector> 
-#include <iostream> 
-#include <stdexcept>
+#include <vector>  
+#include <iostream>  
+#include <stdexcept> //try catch
+#include <algorithm> //find in vec function
 
 using namespace std;
 
@@ -45,7 +46,7 @@ class Table{
     void print_all_data();//DONE
 
     // UPDATE
-    void modify_table_value(string, string);
+    void modify_table_value(int, string, string);
 
     // DELETE
     void delete_row(int);//DONE
