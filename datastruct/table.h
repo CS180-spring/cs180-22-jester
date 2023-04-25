@@ -4,6 +4,7 @@
 #include <string>
 #include <vector> 
 #include <iostream> 
+#include <stdexcept>
 
 using namespace std;
 
@@ -36,12 +37,12 @@ class Table{
 
     // CRUD
     // CREATE
-    void add_row(vector<string>&);//
+    void add_row(vector<string>&);//DONE 
 
     // READ
     void print_table_raw();
-    void print_col_names();//
-    void print_all_data();//
+    void print_col_names();//DONE 
+    void print_all_data();//DONE
 
     // UPDATE
     void modify_table_value(string, string);

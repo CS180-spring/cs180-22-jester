@@ -35,8 +35,6 @@ void Table::print_all_data(){
         cout << name_of_colums.at(j) <<endl;
 
     }
-
-
 }
     
 void Table::add_row(vector<string>& newRow)
@@ -46,7 +44,7 @@ void Table::add_row(vector<string>& newRow)
         if(newRow.size() != num_of_cols)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ") ";
-            throw invalid_argument("this is not working");//bug 
+            throw invalid_argument(temp);
         }//end of if to make sure size of new column matches
         else
         {
@@ -58,4 +56,21 @@ void Table::add_row(vector<string>& newRow)
         cerr << e.what() << '\n';
     }
     
+}
+
+
+void Table::delete_row(int i){
+    //deleting row is zero-indexed. 
+
+    try{
+        if(i > table[0].size() || i < 0){
+            throw runtime_error("invalid row attempted to delete ");
+        }
+    }
+    catch(runtime_error &e){
+        cerr << e.what() << endl; 
+    }
+
+    table.erase(table.begin()+i);
+
 }
