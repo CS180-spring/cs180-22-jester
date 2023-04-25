@@ -48,13 +48,13 @@ class Table{
     void modify_table_value(string, string);
 
     // DELETE
-    void delete_row(int);
+    void delete_row(int);//DONE
 
     // HELPERS
-    int g_num_of_rows();
-    int g_num_of_cols(); 
-    vector<string> g_name_of_cols();//
-    vector<vector<string> > g_all_data();//
+    int g_num_of_rows();//DONE
+    int g_num_of_cols(); //DONE
+    vector<string> g_name_of_cols();//DONE
+    vector<vector<string> > g_all_data();//DONE
 
 
     private:
