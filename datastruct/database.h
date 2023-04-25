@@ -6,6 +6,10 @@
 #include <vector>
 #include <iostream>
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 #include "table.h"
 
 using namespace std;
@@ -27,12 +31,12 @@ class Database
             db_map.clear();
         }
 
-        void createTableFromCSVFile(/**HOwever we read in a file*/); // *
 
         // CRUD
         // CREATE
         void createTable(string, int, vector<string>&);//will create new datatable 
         void createTable(string, int);//will create new datatable
+        void createTableFromCSVFile(string, string); 
 
         // READ
         Table* getTable(string);//will return table;

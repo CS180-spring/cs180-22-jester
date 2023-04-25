@@ -45,7 +45,12 @@ void Table::add_row(vector<string>& newRow)
     {
         if(newRow.size() != num_of_cols)
         {
-            string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ") ";
+            string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
+            temp += ("\n\t");
+            for(int i = 0; i < newRow.size(); i++)
+            {
+                temp += (newRow.at(i) + ", ");
+            }
             throw invalid_argument(temp);
         }//end of if to make sure size of new column matches
         else
