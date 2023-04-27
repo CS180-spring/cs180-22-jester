@@ -1,3 +1,4 @@
+#include <gtest/gtest.h> 
 #include <vector> 
 #include <string> 
 #include <cstdlib> 
@@ -38,7 +39,6 @@ TEST(tabletest, addrow){
     vector<string>columnNames{"col1", "col2"}; 
     Table* secondary = new Table("test", 2, columnNames);
     vector<string>testRow{"r1", "r2"};  
-    Table* secondary = 
     EXPECT_NO_THROW({
         secondary->add_row(testRow); 
     }); 
@@ -49,7 +49,7 @@ TEST(tabletest, addRowErr){
     Table* secondary = new Table("test", 2, columnNames);
     vector<string>testRow{"r1", "r2", "r3"};  
     EXPECT_ANY_THROW({
-        secondary->add_row(errTestRow); 
+        secondary->add_row(testRow); 
     }); 
 }
 
