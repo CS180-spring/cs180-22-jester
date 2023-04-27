@@ -1,6 +1,5 @@
 #include<iostream>
 #include "./server.h"
-#include <regex>
 using namespace std;
 
 
@@ -15,7 +14,6 @@ using namespace std;
 int main() {
     Server myServer;
     char buffer[100];
-    
 
     // Setup server, accept connection from client, and read first message 
     myServer.setup_server();
@@ -32,7 +30,6 @@ int main() {
         
         messageSize = myServer.read_from(connection, buffer);
     }
-
 
     // Clean up
     myServer.close_connection(connection);
