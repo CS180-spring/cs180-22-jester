@@ -4,8 +4,8 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-src"
-  "/Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-build"
+  "/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src"
+  "/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-build"
   "/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-subbuild/googletest-populate-prefix"
   "/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
   "/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"

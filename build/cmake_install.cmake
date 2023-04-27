@@ -1,4 +1,4 @@
-# Install script for directory: /Users/nuharahman/desktop/cs180-22-jester
+# Install script for directory: /Users/nuharahman/Desktop/cs180-22-jester
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-build/cmake_install.cmake")
+  include("/Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-build/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/nuharahman/desktop/cs180-22-jester/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/nuharahman/Desktop/cs180-22-jester/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

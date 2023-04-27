@@ -27,7 +27,7 @@ class Database
             db_map.clear();
         }
 
-        void createTable(string, int, vector<string>&);//will create new datatable 
+        void createTableWithCols(string, int, vector<string>&);//will create new datatable 
         void createTable(string, int);//will create new datatable
 
         Table* getTable(string);//will return table;

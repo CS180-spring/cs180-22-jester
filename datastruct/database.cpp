@@ -1,9 +1,10 @@
 #include "database.h"
+#include "table.h"
 using namespace std;
 
 
 
-void Database::createTable(string tableName, int colNums, vector<string> &columnNames)
+void Database::createTableWithCols(string tableName, int colNums, vector<string> &columnNames)
 {
     try
     {

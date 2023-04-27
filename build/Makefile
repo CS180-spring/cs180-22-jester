@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.26.3/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/nuharahman/desktop/cs180-22-jester
+CMAKE_SOURCE_DIR = /Users/nuharahman/Desktop/cs180-22-jester
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/nuharahman/desktop/cs180-22-jester/build
+CMAKE_BINARY_DIR = /Users/nuharahman/Desktop/cs180-22-jester/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/desktop/cs180-22-jester/build/CMakeFiles /Users/nuharahman/desktop/cs180-22-jester/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/Desktop/cs180-22-jester/build/CMakeFiles /Users/nuharahman/Desktop/cs180-22-jester/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/desktop/cs180-22-jester/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/Desktop/cs180-22-jester/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -172,17 +172,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named dbtest
+# Target rules for targets named tabletest
 
 # Build rule for target.
-dbtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dbtest
-.PHONY : dbtest
+tabletest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tabletest
+.PHONY : tabletest
 
 # fast build rule for target.
-dbtest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/build
-.PHONY : dbtest/fast
+tabletest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/build
+.PHONY : tabletest/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -236,29 +236,29 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-tests/db_test.o: tests/db_test.cc.o
-.PHONY : tests/db_test.o
+tests/table_test.o: tests/table_test.cc.o
+.PHONY : tests/table_test.o
 
 # target to build an object file
-tests/db_test.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.o
-.PHONY : tests/db_test.cc.o
+tests/table_test.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.o
+.PHONY : tests/table_test.cc.o
 
-tests/db_test.i: tests/db_test.cc.i
-.PHONY : tests/db_test.i
+tests/table_test.i: tests/table_test.cc.i
+.PHONY : tests/table_test.i
 
 # target to preprocess a source file
-tests/db_test.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.i
-.PHONY : tests/db_test.cc.i
+tests/table_test.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.i
+.PHONY : tests/table_test.cc.i
 
-tests/db_test.s: tests/db_test.cc.s
-.PHONY : tests/db_test.s
+tests/table_test.s: tests/table_test.cc.s
+.PHONY : tests/table_test.s
 
 # target to generate assembly for a file
-tests/db_test.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.s
-.PHONY : tests/db_test.cc.s
+tests/table_test.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.s
+.PHONY : tests/table_test.cc.s
 
 # Help Target
 help:
@@ -273,14 +273,14 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... dbtest"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... tests/db_test.o"
-	@echo "... tests/db_test.i"
-	@echo "... tests/db_test.s"
+	@echo "... tabletest"
+	@echo "... tests/table_test.o"
+	@echo "... tests/table_test.i"
+	@echo "... tests/table_test.s"
 .PHONY : help
 
 

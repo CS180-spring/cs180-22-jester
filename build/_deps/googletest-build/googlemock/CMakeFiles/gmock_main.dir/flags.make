@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-src/googlemock/include -isystem /Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-src/googlemock -isystem /Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-src/googletest/include -isystem /Users/nuharahman/desktop/cs180-22-jester/build/_deps/googletest-src/googletest
+CXX_INCLUDES = -isystem /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googlemock/include -isystem /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googlemock -isystem /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googletest/include -isystem /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googletest
 
 CXX_FLAGSarm64 = -std=c++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2  -DGTEST_HAS_PTHREAD=1  
 
