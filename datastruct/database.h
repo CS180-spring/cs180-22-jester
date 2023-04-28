@@ -6,6 +6,10 @@
 #include <vector>
 #include <iostream>
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 #include "table.h"
 
 using namespace std;
@@ -28,7 +32,7 @@ class Database
         }
 
 
-        void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
+    //    void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
 
         void createTableFromCSVFile(/**HOwever we read in a file*/); // *
 
@@ -36,6 +40,7 @@ class Database
         // CREATE
         void createTable(string, int, vector<string>&);//will create new datatable 
         void createTable(string, int);//will create new datatable
+        void createTableFromCSVFile(string, string); 
 
         // READ
         Table* getTable(string);//will return table;

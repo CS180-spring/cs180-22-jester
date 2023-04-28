@@ -25,4 +25,9 @@ int main()
     db->getTable("Teammate")->add_row(test6);
 
     db->getTable("Teammate")->print_all_data();
+
+    cout<<"test test test"<<endl;
+    db->createTableFromCSVFile("preMadeData/people.csv", "people");
+
+    db->getTable("people")->print_all_data();
 }
