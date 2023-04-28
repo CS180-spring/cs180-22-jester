@@ -32,6 +32,10 @@ class Database
         }
 
 
+    //    void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
+
+        void createTableFromCSVFile(/**HOwever we read in a file*/); // *
+
         // CRUD
         // CREATE
         void createTable(string, int, vector<string>&);//will create new datatable 
