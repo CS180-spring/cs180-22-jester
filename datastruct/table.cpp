@@ -51,8 +51,8 @@ void Table::print_all_data(){
     
 void Table::add_row(vector<string>& newRow)
 {
-    // try
-    // {
+    try
+    {
         if(newRow.size() != num_of_cols)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
@@ -67,11 +67,11 @@ void Table::add_row(vector<string>& newRow)
         {
             table.push_back(newRow);
         }
-      // catch(const exception& e)
-    // {
-    //     cerr << e.what() << '\n';
-    // // }
-    //   }
+    }
+    catch(const exception& e)
+    {
+        cerr << e.what() << '\n';
+    }
 
 }
 

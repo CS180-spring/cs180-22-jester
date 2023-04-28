@@ -40,7 +40,7 @@ class Database
         // CRUD
         // CREATE
         void createTable(string, int, vector<string>&);//will create new datatable 
-        void createTable(string, int);//will create new datatable
+        // void createTable(string, int);//will create new datatable
         void createTableFromCSVFile(string, string); 
 
         // READ

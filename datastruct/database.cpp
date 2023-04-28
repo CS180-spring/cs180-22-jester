@@ -26,9 +26,10 @@ void Database::createTableWithCols(string tableName, int colNums, vector<string>
 
 }//will create new datatable (end of createTable)
 
-void Database::createTable(string tb_name, int colNums)
+void Database::createTable(string tb_name, int colNums, vector<string> & s)
 {
-    Table* t = new Table(tb_name, colNums);
+
+    Table* t = new Table(tb_name, colNums, s);
     db_map.insert({tb_name, t});
 }//will create new datatable (end of createTable)
 
