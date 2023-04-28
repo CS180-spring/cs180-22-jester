@@ -27,23 +27,25 @@ class Database
             db_map.clear();
         }
 
-        void createTableWithCols(string, int, vector<string>&);//will create new datatable 
+
+        void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
+
+        void createTableFromCSVFile(/**HOwever we read in a file*/); // *
+
+        // CRUD
+        // CREATE
+        void createTable(string, int, vector<string>&);//will create new datatable 
         void createTable(string, int);//will create new datatable
 
+        // READ
         Table* getTable(string);//will return table;
-
-        void deleteTable(string);//will delete table from database *
-
         vector<vector<string>> printRAW(string);//will return csv a single table *
 
-        vector<vector<string>> createQuery(/*Some way to read queries*/); // *
-        void createTableFromCSVFile(/**HOwever we read in a file*/); // *
+        // UPDATE
+
+        // DELETE
+        void deleteTable(string);//will delete table from database *
         
-
-    
-
-
-
 };//end of Database obejct
 
 #endif
