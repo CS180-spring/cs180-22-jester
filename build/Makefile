@@ -185,6 +185,19 @@ tabletest/fast:
 .PHONY : tabletest/fast
 
 #=============================================================================
+# Target rules for targets named dbtest
+
+# Build rule for target.
+dbtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dbtest
+.PHONY : dbtest
+
+# fast build rule for target.
+dbtest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/build
+.PHONY : dbtest/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -236,6 +249,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+tests/db_test.o: tests/db_test.cc.o
+.PHONY : tests/db_test.o
+
+# target to build an object file
+tests/db_test.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.o
+.PHONY : tests/db_test.cc.o
+
+tests/db_test.i: tests/db_test.cc.i
+.PHONY : tests/db_test.i
+
+# target to preprocess a source file
+tests/db_test.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.i
+.PHONY : tests/db_test.cc.i
+
+tests/db_test.s: tests/db_test.cc.s
+.PHONY : tests/db_test.s
+
+# target to generate assembly for a file
+tests/db_test.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.s
+.PHONY : tests/db_test.cc.s
+
 tests/table_test.o: tests/table_test.cc.o
 .PHONY : tests/table_test.o
 
@@ -273,11 +310,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... dbtest"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... tabletest"
+	@echo "... tests/db_test.o"
+	@echo "... tests/db_test.i"
+	@echo "... tests/db_test.s"
 	@echo "... tests/table_test.o"
 	@echo "... tests/table_test.i"
 	@echo "... tests/table_test.s"

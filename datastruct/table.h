@@ -44,7 +44,9 @@ class Table{
 
     
     vector<string> g_name_of_cols();
-    vector<vector<string> > g_allData();
+    vector<vector<string> > g_allData(){
+        return table; 
+    }
 
     void print_col_names();
     void print_all_data();

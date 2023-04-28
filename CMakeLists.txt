@@ -19,11 +19,21 @@ add_executable(
   tabletest
   ./tests/table_test.cc
 )
+
+add_executable(
+  dbtest
+  ./tests/db_test.cc
+)
+
 target_link_libraries(
   tabletest
-  
+  GTest::gtest_main
+)
+target_link_libraries(
+  dbtest
   GTest::gtest_main
 )
 
 include(GoogleTest)
 gtest_discover_tests(tabletest)
+gtest_discover_tests(dbtest)

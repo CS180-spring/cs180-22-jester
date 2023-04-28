@@ -470,4 +470,6 @@ CMakeFiles/dbtest.dir/tests/db_test.cc.o: \
   /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
   /Users/nuharahman/Desktop/cs180-22-jester/build/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
   /Users/nuharahman/Desktop/cs180-22-jester/tests/../datastruct/database.h \
-  /Users/nuharahman/Desktop/cs180-22-jester/tests/../datastruct/table.h
+  /Users/nuharahman/Desktop/cs180-22-jester/tests/../datastruct/table.h \
+  /Users/nuharahman/Desktop/cs180-22-jester/tests/../datastruct/table.cpp \
+  /Users/nuharahman/Desktop/cs180-22-jester/tests/../datastruct/database.cpp

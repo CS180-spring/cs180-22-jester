@@ -3,6 +3,8 @@
 #include <gtest/gtest.h> 
 #include "../datastruct/database.h"
 #include "../datastruct/table.h"
+#include "../datastruct/table.cpp"
+#include "../datastruct/database.cpp"
 #include <cstdlib> 
 #include <string> 
 #include <vector>
@@ -44,8 +46,9 @@ TEST(dbtest, createTablev2){
     });
 }
 
-TEST(dbtest, getTable){
+TEST(dbtest, getTable){ //int testing: built on the assumption that table is fully functional, at least for instantiation 
     Database *db = new Database("test");
+    Table *test = new Table(); 
     EXPECT_NO_THROW({
         Table* testing = db->getTable("testtable3"); 
         //come back to later - check for equality with instantiated table - int testing for llater

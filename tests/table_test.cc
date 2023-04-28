@@ -3,6 +3,7 @@
 #include <string> 
 #include <cstdlib> 
 #include "../datastruct/table.h"
+#include "../datastruct/table.cpp"
 using namespace std; 
 
 
