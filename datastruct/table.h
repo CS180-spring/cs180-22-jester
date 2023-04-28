@@ -1,3 +1,4 @@
+
 #ifndef TABLE_H
 #define TABLE_H
 
@@ -39,6 +40,7 @@ class Table{
     // CRUD
     // CREATE
     void add_row(vector<string>&);//DONE 
+
 
     // READ
     void print_table_raw();
