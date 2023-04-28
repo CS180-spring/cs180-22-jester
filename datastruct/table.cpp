@@ -11,7 +11,7 @@ vector<string> Table::g_name_of_cols(){
 
 vector<vector<string> > Table::g_all_data(){
     return table;
-
+}
 
 int Table::g_num_of_cols(){
     return table.at(0).size();

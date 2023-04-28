@@ -30,9 +30,10 @@ class Database
             }
             db_map.clear();
         }
+        // void createTableWithCols(string, int, vector<string> &);
 
 
-    //    void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
+       void createTableWithCols(string, int, vector<string>&);//will create new datatable (new function added by nuha)
 
         void createTableFromCSVFile(/**HOwever we read in a file*/); // *
 
