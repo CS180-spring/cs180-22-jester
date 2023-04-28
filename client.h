@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 #include <string>
 
-const int PORT = 9998;
+const int PORT = 8080;
 const int BUFFER_LEN = 100;
 class Client {
     private:

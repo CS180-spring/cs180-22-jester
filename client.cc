@@ -19,19 +19,19 @@ void Client::setup_client()
 void Client::connect_to_server()
 {
      ipOfServer.sin_family = AF_INET;
-    ipOfServer.sin_port = htons(9998); // Current Port used is 9998
+    ipOfServer.sin_port = htons(PORT); // Current Port used is 8080
     // The ip obtained using the command ip addr on terminal
     ipOfServer.sin_addr.s_addr = inet_addr("169.235.30.120"); 
  
     if(connect(CreateSocket, (struct sockaddr *)&ipOfServer, sizeof(ipOfServer))<0)
     {
         printf("Connection failed due to port and ip problems\n");
-        // return 1;
+        return; // Exit from function
         // exit 2;
     }
 }
 
-void Client::send_message(char* input)
+void Client::send_message(char input[])
 {
     write(CreateSocket, input, sizeof(input));
 }

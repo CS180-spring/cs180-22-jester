@@ -16,15 +16,15 @@ int main()
     c.connect_to_server();
 
     // Setting up the variables for input
-    char test[10] = "hello!!!!";
-    string input;
+    
+    const int BUFFER_SIZE = 1024;
+    char buffer[BUFFER_SIZE];
 
-    cin >> input;
-
-    cout << "Echoing: " << input << "and the test " << *test << "\n";
+    std::cout << "Enter message to send: ";
+    std::cin.getline(buffer, BUFFER_SIZE);
 
     // Sending the custom message to the server
-    c.send_message(test);
+    c.send_message(buffer);
 
     c.close_connection();
 
