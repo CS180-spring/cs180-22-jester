@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-const int PORT = 9998;
+const int PORT = 9991;
 const int BUFFER_LEN = 100;
 class Server {
     private:
@@ -13,6 +13,7 @@ class Server {
 
     public:
         int setup_server();
+        // ~Server();
         int accept_connection();
         std::size_t read_from(int, char*);
         void send_to(int, std::string);

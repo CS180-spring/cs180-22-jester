@@ -133,3 +133,11 @@ void Server::close_server() {
 
    close(sockfd);
 }
+
+// Server::~Server() {
+//     for (int i : connectionfd) {
+//         this->close_connection(i);
+//     }
+
+//     this->close_server();
+// }

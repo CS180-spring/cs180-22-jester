@@ -1,0 +1,22 @@
+Requirements for testing: 
+Verify It can receive / send / read messages 
+—> theoretically it can send any string 
+Dynamically send messages (?) comes with send 
+
+
+Tests: 
+1. Sending messages - default response 
+2. Send message - read messages and then echo response
+
+
+For the time being, tests will unfortunately have to be run by hand.
+The following is a template for the 'by hand' test:
+
+enter: ./a.out &
+enter: telnet localhost 9991
+enter: *string to send*
+expect: The message was: *string to send*
+expect: This is a response
+enter: QUIT
+expect: Connection closed by foreign host.
+expect: [1]+  Done                    ./a.out
