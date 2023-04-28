@@ -19,12 +19,25 @@ int main()
     
     const int BUFFER_SIZE = 1024;
     char buffer[BUFFER_SIZE];
-
-    std::cout << "Enter message to send: ";
+    
+    // Wait for the first input from the terminal
+    std::cout << "Enter the first message: ";
     std::cin.getline(buffer, BUFFER_SIZE);
 
+    while(strcmp(buffer, "QUIT") != 0)
+    {
+        // Sending the custom message to the server
+        c.send_message(buffer);
+
+        // Resetting the buffer array
+        char buffer[BUFFER_SIZE];
+        
+        std::cout << "Please enter more messges or type QUIT to exit: ";
+        std::cin.getline(buffer, BUFFER_SIZE);
+    }
+
     // Sending the custom message to the server
-    c.send_message(buffer);
+    // c.send_message(buffer);
 
     c.close_connection();
 
