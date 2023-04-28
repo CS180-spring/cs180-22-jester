@@ -2,8 +2,10 @@
 #define TABLE_H
 
 #include <string>
-#include <vector> 
-#include <iostream> 
+#include <vector>  
+#include <iostream>  
+#include <stdexcept> //try catch
+#include <algorithm> //find in vec function
 
 using namespace std;
 
@@ -33,20 +35,28 @@ class Table{
         name_of_colums = columnNames;
     }
 
-    void add_row(vector<string>&);
-    void delete_row();
-    void modify_row();
-    void printTableRAW();
 
-    int g_num_of_rows();
-    int g_num_of_cols(); 
+    // CRUD
+    // CREATE
+    void add_row(vector<string>&);//DONE 
 
-    
-    vector<string> g_name_of_cols();
-    vector<vector<string> > g_allData();
+    // READ
+    void print_table_raw();
+    void print_col_names();//DONE 
+    void print_all_data();//DONE
 
-    void print_col_names();
-    void print_all_data();
+    // UPDATE
+    void modify_table_value(int, string, string);
+
+    // DELETE
+    void delete_row(int);//DONE
+
+    // HELPERS
+    int g_num_of_rows();//DONE
+    int g_num_of_cols(); //DONE
+    vector<string> g_name_of_cols();//DONE
+    vector<vector<string> > g_all_data();//DONE
+
 
     private:
     string name_of_table;
