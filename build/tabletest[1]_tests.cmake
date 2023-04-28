@@ -12,4 +12,6 @@ add_test([=[tabletest.addRowErr]=]  /Users/nuharahman/Desktop/cs180-22-jester/bu
 set_tests_properties([=[tabletest.addRowErr]=]  PROPERTIES WORKING_DIRECTORY /Users/nuharahman/Desktop/cs180-22-jester/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
 add_test([=[tabletest.gettable]=]  /Users/nuharahman/Desktop/cs180-22-jester/build/tabletest [==[--gtest_filter=tabletest.gettable]==] --gtest_also_run_disabled_tests)
 set_tests_properties([=[tabletest.gettable]=]  PROPERTIES WORKING_DIRECTORY /Users/nuharahman/Desktop/cs180-22-jester/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  tabletest_TESTS tabletest.tableInstantiation tabletest.tableInstantiationWithCols tabletest.getnameofcols tabletest.incorrectInstantiation tabletest.addrow tabletest.addRowErr tabletest.gettable)
+add_test([=[tabletest.printalldata]=]  /Users/nuharahman/Desktop/cs180-22-jester/build/tabletest [==[--gtest_filter=tabletest.printalldata]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[tabletest.printalldata]=]  PROPERTIES WORKING_DIRECTORY /Users/nuharahman/Desktop/cs180-22-jester/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  tabletest_TESTS tabletest.tableInstantiation tabletest.tableInstantiationWithCols tabletest.getnameofcols tabletest.incorrectInstantiation tabletest.addrow tabletest.addRowErr tabletest.gettable tabletest.printalldata)

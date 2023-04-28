@@ -57,11 +57,23 @@ TEST(tabletest, addRowErr){
 TEST(tabletest, gettable){
     vector<string>columnNames{"col1", "col2"}; 
     Table* secondary = new Table("test", 2, columnNames);
-    vector<string>testRow{"r1", "r2", "r3"};
+    vector<string>testRow{"r1", "r2"};
+    secondary->add_row(testRow); 
+
     vector<vector<string> > testTable; 
     testTable.push_back(testRow); 
+
     vector<vector<string> >testResTable = secondary->g_allData(); 
     EXPECT_EQ(testResTable, testTable); 
+}
+
+TEST(tabletest, printalldata){
+    vector<string>columnNames{"col1", "col2"}; 
+    Table* secondary = new Table("test", 2, columnNames);
+    vector<string>testRow{"r1", "r2"};
+    secondary->add_row(testRow); 
+    secondary->print_all_data(); 
+
 }
 
 //not sure how to test print functions yet

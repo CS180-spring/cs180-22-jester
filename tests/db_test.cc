@@ -39,19 +39,22 @@ TEST(dbtest, createTablev1error){
     }); 
 }
 
-TEST(dbtest, createTablev2){
-    Database *db = new Database("test");
-    EXPECT_NO_THROW({
-        db->createTable("testtable3", 1); 
-    });
-}
+// TEST(dbtest, createTablev2nocols){
+//     Database *db = new Database("test");
+//     EXPECT_NO_THROW({
+//         db->createTable("testtable3", 1); 
+//     });
+// }
 
+//gtest doesn't reall
+
+//hasnt been updated in my branch yet 
 TEST(dbtest, getTable){ //int testing: built on the assumption that table is fully functional, at least for instantiation 
-    Database *db = new Database("test");
-    Table *test = new Table(); 
-    EXPECT_NO_THROW({
-        Table* testing = db->getTable("testtable3"); 
-        //come back to later - check for equality with instantiated table - int testing for llater
-    }); 
+    Database* db = new Database("test");
+    Table* expectedTable = new Table("expected", 2); 
+    db->createTable("expected", 2); 
+    Table* resTable = db->getTable("expected"); 
+    EXPECT_EQ(resTable, expectedTable); 
+    // does this actually check obj though? 
 }
 

@@ -16,7 +16,7 @@ void Table::print_col_names(){
 }
 
 void Table::print_all_data(){
-    cout<<"### Data for "<<name_of_table<<"##"<<endl;
+    cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
     int i = 0;
     int j = 0;
     for(j = 0 ; j < name_of_colums.size()-1; ++j){
@@ -40,8 +40,8 @@ void Table::print_all_data(){
     
 void Table::add_row(vector<string>& newRow)
 {
-    try
-    {
+    // try
+    // {
         if(newRow.size() != num_of_cols)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ") ";
@@ -51,10 +51,10 @@ void Table::add_row(vector<string>& newRow)
         {
             table.push_back(newRow);
         }
-    }
-    catch(const exception& e)
-    {
-        cerr << e.what() << '\n';
-    }
-    
+      // catch(const exception& e)
+    // {
+    //     cerr << e.what() << '\n';
+    // // }
+    //   }
+
 }
