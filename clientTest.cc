@@ -29,9 +29,14 @@ int main()
         // Sending the custom message to the server
         c.send_message(buffer);
 
-        // Resetting the buffer array
-        char buffer[BUFFER_SIZE];
-        
+        // cout << "Current message: ";
+        // for(auto c : buffer)
+        // {
+        //     cout << c;
+        // }
+        // cout << "\n";
+
+
         std::cout << "Please enter more messges or type QUIT to exit: ";
         std::cin.getline(buffer, BUFFER_SIZE);
     }
