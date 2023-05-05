@@ -1,53 +1,5 @@
 #include "table.h"
 
-vector<string> Table::g_name_of_cols(){
-    return name_of_colums;
-}
-
-// renamed for consistency 
-// vector<vector<string> > Table::g_allData(){ 
-//     return table;
-// }
-
-vector<vector<string> > Table::g_all_data(){
-    return table;
-}
-
-int Table::g_num_of_cols(){
-    return table.at(0).size();
-}
-
-int Table::g_num_of_rows(){
-    return table.size();
-}
-
-
-void Table::print_col_names(){
-    for(int i = 0; i < name_of_colums.size(); ++i){
-        cout << name_of_colums.at(i);
-    }
-}
-
-void Table::print_all_data(){
-    cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
-    int i = 0;
-    int j = 0;
-    for(j = 0 ; j < name_of_colums.size()-1; ++j){
-        cout << name_of_colums.at(j) <<", ";
-    }
-    cout << name_of_colums.at(j) <<endl;
-
-     i = 0;
-     j = 0;
-
-    for(i = 0; i < table.size(); ++i){
-        for(j = 0 ; j < table.at(i).size()-1; ++j){
-            cout << table.at(i).at(j) <<", ";
-        }
-        cout << name_of_colums.at(j) <<endl;
-
-    }
-}
     
 void Table::add_row(vector<string>& newRow)
 {
@@ -75,23 +27,6 @@ void Table::add_row(vector<string>& newRow)
 
 }
 
-
-void Table::delete_row(int i){
-    //deleting row is zero-indexed. 
-
-    try{
-        if(i > table[0].size() || i < 0){
-            throw runtime_error("invalid row attempted to delete ");
-        }
-    }
-    catch(runtime_error &e){
-        cerr << e.what() << endl; 
-    }
-
-    table.erase(table.begin()+i);
-
-}
-
 void Table::modify_table_value(int row_number, string column_name, string new_val){
     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
 
@@ -110,6 +45,5 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
 
     //if you got to here, its valid. 
     table.at(row_number).at(it - name_of_colums.begin()) = new_val;
-
 
 }
