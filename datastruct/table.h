@@ -8,6 +8,7 @@
 #include <stdexcept> //try catch
 #include <algorithm> //find in vec function
 #include "schema.h"
+#include "DataView.h"
 
 using namespace std;
 
@@ -28,12 +29,18 @@ class Table: public Schema {
     }
 
 
+
+
     // CRUD
+    string g_table_name() {return name_of_table; }
     // CREATE
     void add_row(vector<string>&);//DONE 
 
     // UPDATE
     void modify_table_value(int, string, string);
+
+    //createView in order to Query
+    
 
     private:
     string name_of_table;

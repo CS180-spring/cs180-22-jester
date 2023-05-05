@@ -19,7 +19,7 @@ int Schema::g_num_of_rows(){
 
 void Schema::print_col_names(){
     for(int i = 0; i < name_of_colums.size(); ++i){
-        cout << name_of_colums.at(i);
+        cout << name_of_colums.at(i)<<"\t";
     }
 }
 
@@ -86,6 +86,26 @@ void Schema::delete_row(int i){
     table.erase(table.begin()+i-1);
 
 }
+
+// void Schema::delete_column(string s){
+
+//     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
+
+//         try{
+//             if ( std::find(vec.begin(), vec.end(), item) == vec.end() )
+//                 throw runtime_error("invalid column attempted to delete ");
+//             }
+//         catch(runtime_error &e){
+//             cerr << e.what() << endl; 
+//         }
+
+//     int i = distance( table.begin(), it); 
+
+//     for(int i = 0 ; i < vector.size();++i){
+//         table.erase(table.at(i).begin() + i-1);
+//     }
+
+// }
 
 // void Table::modify_table_value(int row_number, string column_name, string new_val){
 //     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
