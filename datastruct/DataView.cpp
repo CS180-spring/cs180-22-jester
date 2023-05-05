@@ -1,13 +1,20 @@
 #include "DataView.h"
 #include <string>
+// #include <iostream>
+// using namespace std;
 
 void DataView::filter(string c_name, string compareWith, bool invert)
 {
+    
+    // this->print_col_names();
+    // cout<<endl;
     bool found = false;
     int firstCol;
-    for(int i = 0; i < num_of_cols; i++)
+    cout<<"sd: "<<name_of_colums.size()<<endl;
+    for(int i = 0; i < name_of_colums.size(); i++)
     {
-        if(c_name == ("." + name_of_colums.at(i)))
+            cout<<"|"<<name_of_colums.at(i)<<"|"<<endl;
+        if(c_name.compare(name_of_colums.at(i)) == 0)
         {
             firstCol = i;
             found = true;
@@ -15,17 +22,17 @@ void DataView::filter(string c_name, string compareWith, bool invert)
     }
     if(!found)
     {
-        cout<<"column "<< c_name <<" name was not found"<<endl;
+        cout<<"column1 "<< c_name <<"  was not found"<<endl;
         return;
     }
 
-    if(compareWith.find('.'))//if it contains a . then it is a column anme
+    if(compareWith.find('.')!=string::npos)//if it contains a . then it is a column anme
     {
         found = false;
         int SecondCol;
         for(int i = 0; i < num_of_cols; i++)
         {
-            if(compareWith == ("." + name_of_colums.at(i)))
+            if(compareWith.find("." + name_of_colums.at(i)) != string::npos)
             {
                 found = true;
                 SecondCol = i;
@@ -33,12 +40,12 @@ void DataView::filter(string c_name, string compareWith, bool invert)
         }
         if(!found)
         {
-            cout<<"column "<< compareWith <<" name was not found"<<endl;
+            cout<<"column2 "<< compareWith <<" name was not found"<<endl;
             return;
         }
         else
         {
-            if(!invert)
+            if(invert)
             {
                 int i = 0;
                 while(i < table.size())
@@ -72,7 +79,7 @@ void DataView::filter(string c_name, string compareWith, bool invert)
     }
     else// comparing values in column
     {
-        if(!invert)
+        if(invert)
         {
             int i = 0;
             while(i < table.size())

@@ -19,7 +19,7 @@ int Schema::g_num_of_rows(){
 
 void Schema::print_col_names(){
     for(int i = 0; i < name_of_colums.size(); ++i){
-        cout << name_of_colums.at(i);
+        cout << name_of_colums.at(i)<<"\t";
     }
 }
 

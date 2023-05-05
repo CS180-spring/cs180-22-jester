@@ -48,7 +48,11 @@ class Database
         vector<vector<string>> printRAW(string);//will return csv a single table *
 
         // UPDATE
-
+        DataView* createView(Table * t) 
+        {
+            DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
+            return temp; 
+        }
         // DELETE
         void deleteTable(string);//will delete table from database *
         
