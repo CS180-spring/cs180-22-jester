@@ -20,7 +20,7 @@ class DataView:public Schema{
             vector<string> curNames = t->g_name_of_cols();
             for(string curColumnName : curNames)
             {
-                string s = t->g_name_of_cols() + "." +curColumnName;
+                string s = t->g_table_name()  + "." + curColumnName;
                 temp.push_back( s );
             }
         }

@@ -29,6 +29,7 @@ class Table: public Schema {
 
 
     // CRUD
+    string g_table_name() {return name_of_table; }
     // CREATE
     void add_row(vector<string>&);//DONE 
 

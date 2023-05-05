@@ -1,4 +1,5 @@
 #include "database.h"
+#include "schema.h"
 #include "table.h"
 #include <vector>
 using namespace std;
@@ -27,9 +28,11 @@ int main()
     db->getTable("Teammate")->print_all_data();
 
     cout<<"test test test"<<endl;
-    db->createTableFromCSVFile("preMadeData/people.csv", "people");
+    // db->createTableFromCSVFile("preMadeData/people.csv", "people");
     db->getTable("people")->delete_row(998);
     db->getTable("people")->delete_row(1);
     db->getTable("people")->print_all_data();
-    db->getTable("Teammate")->print_all_data();
+    // db->getTable("Teammate")->print_all_data();
+
+    // db->create
 }

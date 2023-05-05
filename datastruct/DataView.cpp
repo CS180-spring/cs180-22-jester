@@ -7,7 +7,7 @@ void DataView::filter(string c_name, string compareWith, bool invert)
     int firstCol;
     for(int i = 0; i < num_of_cols; i++)
     {
-        if(c_name == ('.' + name_of_colums.at(i)))
+        if(c_name == ("." + name_of_colums.at(i)))
         {
             firstCol = i;
             found = true;
@@ -25,7 +25,7 @@ void DataView::filter(string c_name, string compareWith, bool invert)
         int SecondCol;
         for(int i = 0; i < num_of_cols; i++)
         {
-            if(compareWith == ('.' + name_of_colums.at(i)))
+            if(compareWith == ("." + name_of_colums.at(i)))
             {
                 found = true;
                 SecondCol = i;
