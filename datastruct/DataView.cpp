@@ -58,6 +58,40 @@ void DataView::filter(string c_name, string compareWith, bool invert)
 
 }
 
+void DataView::range(string c_name, string lower, string upper, bool invert)
+{
+    string l = lower;
+    string u = upper;
+    int pos = columnExisits(c_name);
+    if(pos < 0)
+    {
+        cout<<"(3)could not find columns"<<endl;
+        return;
+    }
+    if(l.compare(u) > 0)
+    {
+        swap(l, u);
+    }
+    int i = 0;
+    while(i < table.size())
+    {
+        transform(l.begin(), l.end(), l.begin(), ::toupper);
+        transform(u.begin(), u.end(), u.begin(), ::toupper);
+        // cout<<table.at(i).at(pos)<<" is " << ((table.at(i).at(pos)).compare(l) >= 0) << " to "<< l <<endl;
+        // cout<<table.at(i).at(pos)<<" is " << (table.at(i).at(pos).compare(l) < 0) << " to "<< u <<endl;
+        string temp1 = table.at(i).at(pos);
+        transform(temp1.begin(), temp1.end(), temp1.begin(), ::toupper);
+        if( ( temp1.compare(l) >= 0 && temp1.compare(u) < 0 ) ^ !invert)//xor
+        {
+            table.erase(table.begin()+i);
+        }
+        else
+        {
+            i++;
+        }
+    }
+}
+
 
 
 
