@@ -28,10 +28,8 @@ class Table: public Schema {
         name_of_table = table_name;
     }
 
-
-
-
     // CRUD
+    string g_table_name() {return name_of_table; }
     // CREATE
     void add_row(vector<string>&);//DONE 
 
@@ -42,9 +40,6 @@ class Table: public Schema {
     DataView* createView(){
         DataView* temp = new DataView( this->table,this->name_of_colums, this->num_of_rows, this->num_of_cols);
 
-        
-
-
         return temp; 
     }
 
@@ -52,6 +47,5 @@ class Table: public Schema {
     string name_of_table;
 
 }; 
-
 
 #endif

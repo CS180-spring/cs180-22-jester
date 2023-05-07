@@ -1,3 +1,4 @@
+
 myprog.exe : main_tmp.o schema.o table.o DataView.o database.o
 	g++ main_tmp.o schema.o table.o DataView.o database.o -o myprog.exe
 
