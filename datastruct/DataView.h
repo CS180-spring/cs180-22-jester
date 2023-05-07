@@ -32,6 +32,10 @@ class DataView : public Schema {
 
     void filter(string, string, bool);
     void range(string, string, string, bool);
+
+    private:
+        void filterByColumnEquality(int, int, bool);
+        void filterByValue(int, string, bool);
     
 
 

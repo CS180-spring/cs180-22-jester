@@ -52,6 +52,7 @@ class Schema{
     // void print_table_raw();
     void print_col_names();//DONE 
     void print_all_data();//DONE
+    int columnExisits(string);//Done
 
     // DELETE
     void delete_row(int);//DONE
