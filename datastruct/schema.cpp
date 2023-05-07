@@ -87,6 +87,7 @@ void Schema::delete_row(int i){
 
 }
 
+
 // void Schema::delete_column(string s){
 
 //     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
