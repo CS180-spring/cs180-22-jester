@@ -3,7 +3,7 @@
 #include <string>
 
 const int PORT = 8080;
-const int BUFFER_LEN = 100;
+const int BUFFER_LEN = 1024;
 class Server {
     private:
         int sockfd;

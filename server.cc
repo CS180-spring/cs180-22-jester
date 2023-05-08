@@ -95,7 +95,7 @@ int Server::accept_connection() {
 
 std::size_t Server::read_from(int c, char* buffer) {
     /*
-    Reads up to BUFFER_LEN characters sent from connectionfd[c]
+    Reads up to BUFFER_LEN characters recieved from the file descriptor referenced by connectionfd[c]
 
     Parameters:
         c: index of the file descriptor of the connection you want to read from

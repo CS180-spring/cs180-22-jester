@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
     Server myServer;
-    char buffer[100];
+    char buffer[BUFFER_LEN];
 
     // Setup server, accept connection from client, and read first message 
     myServer.setup_server();
@@ -26,9 +26,10 @@ int main() {
         cout << "The message was: " << string(buffer) << endl;
 
         response = "This is a response\n";
-        myServer.send_to(connection, response);
+        myServer.send_to(connection, response.c_str());
         
         messageSize = myServer.read_from(connection, buffer);
+        // std::cout << buffer << std::endl;
     }
 
     // Clean up

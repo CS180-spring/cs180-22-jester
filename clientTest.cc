@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main()
 {
 
@@ -19,75 +20,27 @@ int main()
     
     const int BUFFER_SIZE = 1024;
     char buffer[BUFFER_SIZE];
+    char * response;
     
     // Wait for the first input from the terminal
     std::cout << "Enter the first message: ";
     std::cin.getline(buffer, BUFFER_SIZE);
 
-    while(strcmp(buffer, "QUIT") != 0)
+    while(strcmp(buffer, "Q") != 0)
     {
         // Sending the custom message to the server
-        c.send_message(buffer);
+        c.send_message(buffer, 0);
 
-        // cout << "Current message: ";
-        // for(auto c : buffer)
-        // {
-        //     cout << c;
-        // }
-        // cout << "\n";
+        // Get message back from the server
+        response = c.read_from_server();
+        c.recieved_to_string(response);
+        // std::cout << "Got the val\n";
+        // std::cout << "Recieved from server: " << c.recieved_to_string(response) << std::endl;
 
-
-        std::cout << "Please enter more messges or type QUIT to exit: ";
+        std::cout << "Please enter more messges or type Q to exit: ";
         std::cin.getline(buffer, BUFFER_SIZE);
     }
 
-    // Sending the custom message to the server
-    // c.send_message(buffer);
-
     c.close_connection();
 
-    // serverInput = input;
-    
-    // int CreateSocket = 0,n = 0;
-    // char dataReceived[1024];
-    // struct sockaddr_in ipOfServer;
- 
-    // memset(dataReceived, '0' ,sizeof(dataReceived));
- 
-    // if((CreateSocket = socket(AF_INET, SOCK_STREAM, 0))< 0)
-    // {
-    //     printf("Socket not created \n");
-    //     return 1;
-    // }
- 
-    // ipOfServer.sin_family = AF_INET;
-    // ipOfServer.sin_port = htons(9998); // Current Port used is 9998
-    // // The ip obtained using the command ip addr on terminal
-    // ipOfServer.sin_addr.s_addr = inet_addr("169.235.30.120"); 
- 
-    // if(connect(CreateSocket, (struct sockaddr *)&ipOfServer, sizeof(ipOfServer))<0)
-    // {
-    //     printf("Connection failed due to port and ip problems\n");
-    //     return 1;
-    // }
-    // write(CreateSocket, "This is a test", sizeof("This is a test"));
- 
-    
-    // while((n = read(CreateSocket, dataReceived, sizeof(dataReceived)-1)) > 0)
-    // {
-    //     dataReceived[n] = 0;
-    //     if(fputs(dataReceived, stdout) == EOF)
-    //     {
-    //         printf("\nStandard output error");
-    //     }
- 
-    //     printf("\n");
-    // }
- 
-    // if( n < 0)
-    // {
-    //     printf("Standard input error \n");
-    // }
- 
-    // return 0;
 }
