@@ -31,6 +31,8 @@ class DataView : public Schema {
     // }
 
     void filter(string, string, bool);
+    void rangeNumerical(string, double, double, bool);
+    void rangeString(string, string, string, bool);
     void range(string, string, string, bool);
 
     private:

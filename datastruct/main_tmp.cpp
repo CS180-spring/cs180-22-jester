@@ -44,7 +44,7 @@ int main()
     // dv->filter(".Sex", "Female", true);
     // dv->filter(".First Name", "Eddie", true);
     // dv->filter(".First Namdfe", "Eddie", false);
-    dv->range(".First Name", "a", "x", true);
+    dv->range(".Index", "1", "100", false);
     dv->print_all_data();
     // dv->range();
     // cout<<"sdfs";

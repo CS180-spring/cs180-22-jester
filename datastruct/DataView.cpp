@@ -58,7 +58,7 @@ void DataView::filter(string c_name, string compareWith, bool invert)
 
 }
 
-void DataView::range(string c_name, string lower, string upper, bool invert)
+void DataView::rangeString(string c_name, string lower, string upper, bool invert)
 {
     string l = lower;
     string u = upper;
@@ -89,6 +89,59 @@ void DataView::range(string c_name, string lower, string upper, bool invert)
         {
             i++;
         }
+    }
+}
+void DataView::range(string c_name, string lower, string upper, bool invert)
+{
+    double l_double;
+    double u_double;
+    try
+    {
+        l_double = stod(lower);
+        u_double = stod(upper);
+
+        rangeNumerical(c_name, l_double, u_double, invert);//do numerical comperison
+    }
+    catch(const std::exception& e)
+    {
+        rangeString(c_name, lower, upper, invert);//do string comparison
+    }
+}
+
+void DataView::rangeNumerical(string c_name, double lower, double upper, bool invert)
+{
+    int pos = columnExisits(c_name);
+    if(pos < 0)
+    {
+        cout<<"(4)could not find columns"<<endl;
+        return;
+    }
+    if(lower > upper)
+    {
+        swap(lower, upper);
+    }
+    int i = 0;
+    while(i < table.size())
+    {
+        try
+        {
+            double temp1 = std::stod(table.at(i).at(pos));
+            if( ( temp1 >= lower && temp1 < upper ) ^ !invert)//xor
+            {
+                table.erase(table.begin()+i);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            std::cerr << "Values were not all numerical" << '\n';
+        }
+        
+        
     }
 }
 
