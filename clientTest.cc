@@ -33,7 +33,7 @@ int main()
 
         // Get message back from the server
         response = c.read_from_server();
-        c.recieved_to_string(response);
+        // c.recieved_to_string(response);
         // std::cout << "Got the val\n";
         // std::cout << "Recieved from server: " << c.recieved_to_string(response) << std::endl;
 
