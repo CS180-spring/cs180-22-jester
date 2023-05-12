@@ -49,12 +49,13 @@ int Schema::columnExisits(string column)
     if(column.at(0)=='.')//remove dot for column's name
     {
         column = column.substr(1, column.size());
+        // cout<<"||"<<column<<endl;
     }
     for(int i = 0; i < name_of_colums.size(); i++)
     {
-        // cout<<"|"<<name_of_colums.at(i)<<"|"<<"=="<<"|"<<column<<"|"<<endl;
         if(column.compare(name_of_colums.at(i)) == 0)
         {
+            // cout<<"|"<<column<<"|"<<"=="<<"|"<<name_of_colums.at(i)<<"|"<<column.compare(name_of_colums.at(i))<<endl;
             // cout<<"sdfs"<<endl;
             return i;
         }
@@ -109,20 +110,25 @@ void Schema::delete_row(int i){
 void Schema::delete_column(string s){
     // cout<<"enter delete"<<endl<<endl;
 
-    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
+    int loc = columnExisits(s);
+    vector<string>::iterator it = name_of_colums.begin()+loc;
         try{
-            if ( !columnExisits(s) )
-                throw runtime_error("invalid column attempted to delete ");
+                if ( loc < 0 )
+                {
+                    string error = "invalid column attempted to delete " + s;
+                    throw runtime_error(error);
+                }
             }
         catch(runtime_error &e){
             cerr << e.what() << endl; 
+            return;
         }
-    int loc = distance( name_of_colums.begin(), it); 
-    cout<<"ente"<<endl;
+    
+    // cout<<s<<" ente: "<<loc<<endl;
     name_of_colums.erase(it);
     num_of_cols = name_of_colums.size();
-    cout<<table.size()<<endl;
-    for(int i = 0 ; i < table.size()-1;++i){
+    // cout<<table.size()<<endl;
+    for(int i = 0 ; i < table.size();++i){
         // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }

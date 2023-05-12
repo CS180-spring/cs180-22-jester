@@ -123,22 +123,25 @@ void DataView::rangeNumerical(string c_name, double lower, double upper, bool in
     int i = 0;
     while(i < table.size())
     {
+        double temp1;
         try
         {
-            double temp1 = std::stod(table.at(i).at(pos));
-            if( ( temp1 >= lower && temp1 < upper ) ^ !invert)//xor
-            {
-                table.erase(table.begin()+i);
-            }
-            else
-            {
-                i++;
-            }
+             temp1 = std::stod(table.at(i).at(pos));
         }
         catch(const std::exception& e)
         {
             std::cerr << e.what() << '\n';
-            std::cerr << "Values were not all numerical" << '\n';
+            std::cerr << "Values were not all numerical: "<< '\n';
+            return;
+        }
+        
+        if( ( temp1 >= lower && temp1 < upper ) ^ !invert)//xor
+        {
+            table.erase(table.begin()+i);
+        }
+        else
+        {
+            i++;
         }
         
         
