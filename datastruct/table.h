@@ -9,6 +9,7 @@
 #include <algorithm> //find in vec function
 #include "schema.h"
 #include "DataView.h"
+#include <fstream>
 
 using namespace std;
 

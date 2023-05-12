@@ -49,3 +49,10 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
     table.at(row_number).at(it - name_of_colums.begin()) = new_val;
 
 }
+
+void Table::outputTableToDisk(){
+  //ofstream myfile;
+  //myfile.open ("example.txt");
+  //myfile << "Writing this to a file.\n";
+  //myfile.close();
+}
