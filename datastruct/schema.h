@@ -62,6 +62,8 @@ class Schema{
     int g_num_of_cols(); //DONE
     vector<string> g_name_of_cols();//DONE
     vector<vector<string> > g_all_data();//DONE
+    void updateNumOfRowsAndCols();
+
 
 
     protected:

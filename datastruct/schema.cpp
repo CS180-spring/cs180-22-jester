@@ -16,6 +16,12 @@ int Schema::g_num_of_rows(){
     return table.size();
 }
 
+void Schema::updateNumOfRowsAndCols(){
+    num_of_cols=table.at(0).size();
+    num_of_rows=table.size();
+}
+
+
 
 void Schema::print_col_names(){
     for(int i = 0; i < name_of_colums.size(); ++i){
@@ -84,6 +90,7 @@ void Schema::delete_row(int i){
     }
 
     table.erase(table.begin()+i-1);
+    updateNumOfRowsAndCols();
 
 }
 
