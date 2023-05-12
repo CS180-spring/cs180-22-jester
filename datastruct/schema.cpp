@@ -107,44 +107,25 @@ void Schema::delete_row(int i){
 
 }
 
-// void Schema::delete_column(string s){
+void Schema::delete_column(string s){
+    // cout<<"enter delete"<<endl<<endl;
 
-//     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
-
-//         try{
-//             if ( std::find(vec.begin(), vec.end(), item) == vec.end() )
-//                 throw runtime_error("invalid column attempted to delete ");
-//             }
-//         catch(runtime_error &e){
-//             cerr << e.what() << endl; 
-//         }
-
-//     int i = distance( table.begin(), it); 
-
-//     for(int i = 0 ; i < vector.size();++i){
-//         table.erase(table.at(i).begin() + i-1);
-//     }
-
-// }
-
-// void Table::modify_table_value(int row_number, string column_name, string new_val){
-//     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
-
-//     try{
-       
-//         //check for invalud row or col name
-//     if(row_number > table.size() /*valis row num*/ ||row_number < 0 ||it == name_of_colums.end() /* valid column name*/){
-//             throw runtime_error("invalid modification");
-//         }
-//     }
-//     catch(runtime_error &e){
-//         cerr << e.what() << endl; 
-//         return;
-//     }
-
-
-//     //if you got to here, its valid. 
-//     table.at(row_number).at(it - name_of_colums.begin()) = new_val;
-
-
-// }
+    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
+        try{
+            if ( !columnExisits(s) )
+                throw runtime_error("invalid column attempted to delete ");
+            }
+        catch(runtime_error &e){
+            cerr << e.what() << endl; 
+        }
+    int loc = distance( name_of_colums.begin(), it); 
+    cout<<"ente"<<endl;
+    name_of_colums.erase(it);
+    num_of_cols = name_of_colums.size();
+    cout<<table.size()<<endl;
+    for(int i = 0 ; i < table.size()-1;++i){
+        // cout<<i<<"\t";
+        table.at(i).erase(table.at(i).begin()+loc);
+    }
+    // cout<<"sicess"<<endl;
+}
