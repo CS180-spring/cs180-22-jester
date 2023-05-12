@@ -39,8 +39,7 @@ void Schema::print_all_data(){
         for(j = 0 ; j < table.at(i).size()-1; ++j){
             cout << table.at(i).at(j) <<", ";
         }
-        cout << name_of_colums.at(j) <<endl;
-
+        cout << table.at(i).at(j) <<endl;
     }
 }
 
