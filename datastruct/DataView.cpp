@@ -1,7 +1,10 @@
 #include "DataView.h"
 #include <string>
-// #include <iostream>
-// using namespace std;
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 void DataView::filter(string c_name, string compareWith, bool invert)
 {
@@ -11,7 +14,7 @@ void DataView::filter(string c_name, string compareWith, bool invert)
     bool found = false;
     int firstCol;
     cout<<"sd: "<<name_of_colums.size()<<endl;
-    for(int i = 0; i < name_of_colums.size(); i++)
+    for(unsigned int i = 0; i < name_of_colums.size(); i++)
     {
             cout<<"|"<<name_of_colums.at(i)<<"|"<<endl;
         if(c_name.compare(name_of_colums.at(i)) == 0)
@@ -112,7 +115,67 @@ void DataView::filter(string c_name, string compareWith, bool invert)
         
     }
 }
+//int orderByGlobal;
+
+bool columnSortDescending(const std::vector<std::string>& row1, const std::vector<std::string>& row2, int columnIndex) {
+    return row1[columnIndex] < row2[columnIndex];
+}
+
+bool columnSortAscending(const std::vector<std::string>& row1, const std::vector<std::string>& row2, int columnIndex) {
+    return row1[columnIndex] > row2[columnIndex];
+}
 
 
 
+// std::sort(vec.begin(), vec.end(),[](const std::vector<string>& a, const std::vector<String>& b) {
+//   return a[orderByGlobal] < b[orderByGlobal];
+// });
+
+
+// string s is the column to be sorted.
+//bool b if true - descending, if false, ascending. 
+void DataView::orderBy(string s, bool b){
+    int orderByGlobal=0;
+    //check if the column name that was specified is in the table. 
+
+        try{
+            if ( std::find(name_of_colums.begin(), name_of_colums.end(), s) == name_of_colums.end() )
+                throw runtime_error("invalid column attempted to delete ");
+            }catch(runtime_error &e){
+            cerr << e.what() << endl; 
+        }
+
+        //
+        auto it = find(name_of_colums.begin(), name_of_colums.end(), s);
+
+        orderByGlobal = it - name_of_colums.begin();
+
+        cout<< "going to sort col num" <<orderByGlobal;
+
+        //sort(table.begin(), table.end(), sortcol);
+        cout<<"soooorting \n ";
+
+        if(b){
+            std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
+                 return columnSortDescending(row1, row2, orderByGlobal);
+         });
+
+        }else{
+                std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
+                 return columnSortAscending(row1, row2, orderByGlobal);
+         });
+        }
+
+            
+    // std::sort(table.begin(),table.end(),cmp);
+
+}
+
+
+
+
+
+
+
+//sort(v.begin(), v.end() , cmp);
 

@@ -8,7 +8,7 @@
 class DataView : public Schema {
 
     public: 
-    DataView(int num_col, vector<string> names, vector<vector<string>> t) : Schema(num_col, names, t) {
+    DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {
         // this->table = t->g_all_data();
         // cout<<"made view"<<endl;
     }
@@ -33,6 +33,8 @@ class DataView : public Schema {
     void filter(string, string, bool);
     void range(string, string, string, bool);
     
+    bool cmp(int, int);
+    void orderBy(string, bool);
 
 
 };

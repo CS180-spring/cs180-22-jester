@@ -1,5 +1,7 @@
 #include "table.h"
 
+
+using namespace std;
     
 void Table::add_row(vector<string>& newRow)
 {

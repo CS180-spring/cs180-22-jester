@@ -33,7 +33,7 @@ class Schema{
         this->num_of_cols = num_of_cols;
     }
 
-    Schema(int num_of_cols, vector<string> &columnNames, vector<vector<string>> t ){
+    Schema(int num_of_cols, vector<string> &columnNames, vector<vector<string> > t ){
         // cout<<"test 1"<<endl;
         name_of_colums = columnNames;
         // cout<<"test 2"<<endl;
