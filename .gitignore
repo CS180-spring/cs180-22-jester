@@ -3,3 +3,9 @@ datastruct/database.h.gch
 .vscode/settings.json
 datastruct/table.h.gch
 datastruct/a.exe
+DataView.o
+database.o
+main_tmp.o
+myprog.exe
+schema.o
+table.o
