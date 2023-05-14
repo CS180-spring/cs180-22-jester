@@ -95,9 +95,130 @@ void Database::createTableFromCSVFile(string fileName, string tableName)
     {
         std::cerr << e.what() << '\n';
     }
-    
-    
+}//end of create table from csfFile
+
+DataView* Database::createView(const vector<string>& tableNames)
+{
+    // Step 1: check if all tables exists
+    if(tablesExist(tableNames) == false)
+    {
+        cout<<"not all values are recognized as existing tables;";
+        return nullptr;
+    }
+    // Step 2: create vecotor of the string names (make sure no dublicate column Names)
+    vector<string> compiledColumns;
+    vector<vector<string>> compiledTable;
+
+    for(string table : tableNames)
+    {
+        Table* temp = getTable(table);
+        vector<string> currentTableColumns = temp->g_name_of_cols();
+        for( string col : currentTableColumns)
+        {
+            int countOccurence = count(compiledColumns.begin(), compiledColumns.end(), col);
+            if( countOccurence )
+            {
+                string holder = col+"("+to_string(countOccurence+1)+")";
+                compiledColumns.push_back(holder);
+            }
+            else 
+            {
+                compiledColumns.push_back(col);
+            }
+
+        }//end of loop that goes through each column
+    }//end of loop that goes throguh each table;
 
 
+
+    // generate the compiledTable (will be very ineffecient)
+    // int predictNumRows = 1;
+    // for(string name : tableNames)
+    // {
+    //     predictNumRows *= getTable(name)->g_num_of_rows();
+    // }
+    // compiledTable.reserve(predictNumRows);
+    // for(int i = 0; i < predictNumRows; i++)
+    // {
+    //     compiledTable.at(i).reserve(compiledColumns.size());
+    // }
+
+    compiledTable = compileTable(compiledTable, tableNames);
+    // for(string ss : compiledTable.at(0))
+    //     cout<<ss<<"\t";
+    // cout<<endl<<endl;
+    return new DataView(compiledColumns.size(), compiledColumns, compiledTable);
+}//end of createView (from multiles)
+
+vector<vector<string>> Database::compileTable(vector<vector<string>> exisiting, vector<string> tableNames)
+{
+
+    if(exisiting.size() <= 0)
+    {
+        exisiting.push_back({});//NEEDED in the event that we dont have a table to start off with
+    }
+    if(tableNames.size() <= 0)
+        return exisiting;
+    else
+    {
+        vector<vector<string>> compiledTable;
+        Table* cur = getTable(tableNames.at(0));
+        vector<vector<string>> curTable = cur->g_all_data();
+        int predictNumRows = exisiting.size() * curTable.size();
+
+        // cout<<"s: "<< exisiting.size() << "|" <<curTable.size()<<endl;
+        compiledTable.reserve(predictNumRows);
+
+        for(int i = 0; i < predictNumRows; i++)//initialize empty vecotrs that we are expecting
+        {
+            compiledTable.push_back({});
+        }
+
+            // cout<<"test"<<endl;
+        int counter = 0;
+        for(int i = 0; i < exisiting.size(); i++)
+        {
+            for(int j = 0; j < curTable.size(); j++)
+            {
+                // cout<<"test2"<<endl;
+                compiledTable.at(counter).reserve(exisiting.at(i).size() + curTable.at(j).size());
+                // cout<<"test3"<<endl;
+                compiledTable.at(counter).insert(compiledTable.at(counter).begin(), curTable.at(j).begin(), curTable.at(j).end());
+                compiledTable.at(counter).insert(compiledTable.at(counter).begin(), exisiting.at(i).begin(), exisiting.at(i).end());
+                counter++;
+            }
+        }//done combining the table
+
+
+        // cout<<"size of compiled: "<<compiledTable.size()<<endl;
+        // for(vector<string> v : compiledTable)
+        // {
+        //     cout<<v.size()<<'\t'<<endl;
+        // }
+        // string ssss;
+        // cin>>ssss;
+        vector<string> newList = tableNames;
+        newList.erase(newList.begin()+0);
+        return compileTable(compiledTable, newList);
+    }
 }
         
+
+/**
+ * Param: list of table names
+ * Output: will output true if all the values
+ *      int the list of table names are valid
+ *      table names, othewise it will return 
+ *      false if even on value is not
+ * */       
+bool Database::tablesExist(const vector<string>& listOfTables)
+{
+    for(string s : listOfTables)
+    {
+        if(db_map[s]==nullptr)
+        {
+            return false;
+        }
+    }
+    return true;
+}

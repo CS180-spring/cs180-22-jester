@@ -14,7 +14,10 @@ class Schema{
 
     public: 
     Schema(){
-      num_of_cols = 0;
+        table = {}; 
+        name_of_colums = {}; 
+        num_of_cols = 0;
+        num_of_rows = 0;
     }
 
     Schema(int num_of_cols){;
