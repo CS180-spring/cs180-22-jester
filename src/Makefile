@@ -1,7 +1,7 @@
 # all: test.o server.o server.h main_tmp.o schema.o table.o DataView.o database.o
 all: test.o server.o main_tmp.o schema.o table.o DataView.o database.o
-	g++ --std=c++11 server.o test.o -o server
-	g++ --std=c++11 clientTest.cc -o client
+	g++ --std=c++11 server.o test.o -o runServer
+	g++ --std=c++11 ./server/clientTest.cc -o client
 	g++ -std=c++0x main_tmp.o schema.o table.o DataView.o database.o -o myprog.exe
 
 # myprog.exe : main_tmp.o schema.o table.o DataView.o database.o
@@ -23,14 +23,14 @@ table.o : ./datastruct/table.cpp ./datastruct/table.h
 	g++ -std=c++0x -Wall -c ./datastruct/table.cpp
 
 # DataView.o : DataView.cpp DataView.h
-DataView.o : ./datastruct/DataView.cpp DataView.h
+DataView.o : ./datastruct/DataView.cpp ./datastruct/DataView.h
 #	g++ -std=c++0x -Wall -c DataView.cpp
 	g++ -std=c++0x -Wall -c ./datastruct/DataView.cpp
 
 # database.o : database.cpp database.h
 database.o : ./datastruct/database.cpp ./datastruct/database.h
 #	g++ -std=c++0x -Wall -c database.cpp
-	g++ -std=c++0x -Wall -c ./datasruct/database.cpp
+	g++ -std=c++0x -Wall -c ./datastruct/database.cpp
 
 # server.o: server.cc server.h
 server.o: ./server/server.cc ./server/server.h
@@ -52,5 +52,5 @@ test.o: ./server/test.cc ./server/server.h
 #	rm *.o a.out
 
 clean :
-	rm *.o myprog.exe server client
+	rm *.o myprog.exe runServer client
 
