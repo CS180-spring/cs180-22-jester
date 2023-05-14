@@ -90,12 +90,14 @@ void Database::createTableFromCSVFile(string fileName, string tableName)
                 getTable(tableName)->add_row(csv_row);
             }//end of while
         }
+
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    
+
+    //getTable(tableName)->outputTableToDisk(tableName);    //uncomment this to output the input as soon as it comes in. 
     
 
 

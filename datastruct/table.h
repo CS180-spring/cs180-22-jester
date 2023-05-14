@@ -41,6 +41,7 @@ class Table: public Schema {
     void modify_table_value(int, string, string);
 
     //createView in order to Query
+    void outputTableToDisk(string);
     
 
     private:

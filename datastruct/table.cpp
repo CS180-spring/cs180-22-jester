@@ -50,9 +50,29 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
 
 }
 
-void Table::outputTableToDisk(){
-  //ofstream myfile;
-  //myfile.open ("example.txt");
-  //myfile << "Writing this to a file.\n";
-  //myfile.close();
+void Table::outputTableToDisk(string s){
+  ofstream myfile;
+  string outputFile = "example_" + (s) + ".txt";
+  myfile.open(outputFile);
+
+    unsigned int i = 0;
+    unsigned int j = 0;
+
+    for(j = 0 ; j < name_of_colums.size()-1; ++j){
+        myfile << name_of_colums.at(j) <<", ";
+    }
+    myfile << name_of_colums.at(j) <<endl;
+
+     i = 0;
+     j = 0;
+
+    for(i = 0; i < table.size(); ++i){
+        for(j = 0 ; j < table.at(i).size()-1; ++j){
+            myfile << table.at(i).at(j) <<", ";
+        }
+        myfile << name_of_colums.at(j) <<endl;
+
+    }
+
+  myfile.close();
 }
