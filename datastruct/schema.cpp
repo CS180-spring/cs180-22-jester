@@ -43,6 +43,26 @@ void Schema::print_all_data(){
 
     }
 }
+
+int Schema::columnExisits(string column)
+{
+    int i = 0;
+    if(column.at(0)=='.')//remove dot for column's name
+    {
+        column = column.substr(1, column.size());
+    }
+    for(int i = 0; i < name_of_colums.size(); i++)
+    {
+        // cout<<"|"<<name_of_colums.at(i)<<"|"<<"=="<<"|"<<column<<"|"<<endl;
+        if(column.compare(name_of_colums.at(i)) == 0)
+        {
+            // cout<<"sdfs"<<endl;
+            return i;
+        }
+    }
+    return -1;
+
+}
     
 // void Table::add_row(vector<string>& newRow)
 // {

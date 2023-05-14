@@ -41,8 +41,9 @@ int main()
     // cout<<"sdfs";
     DataView* dv = db->createView(db->getTable("people"));
     // cout<<"sdfs";
-    dv->filter("Sex", "Female", true);
-    dv->filter("First Name", "Eddie", false);
+    // dv->filter(".Sex", "Female", true);
+    dv->filter(".First Name", "Eddie", true);
+    // dv->filter(".First Namdfe", "Eddie", false);
     dv->print_all_data();
     // cout<<"sdfs";
 
