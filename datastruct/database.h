@@ -46,16 +46,23 @@ class Database
         // READ
         Table* getTable(string);//will return table;
         vector<vector<string> > printRAW(string);//will return csv a single table *
-
         // UPDATE
         DataView* createView(Table * t) 
         {
             DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
             return temp; 
         }
+        DataView* createView(const vector<string>&);
+        vector<vector<string>> compileTable(vector<vector<string>>, vector<string> tableNames);
         // DELETE
         void deleteTable(string);//will delete table from database *
+
+        bool tablesExist(const vector<string>&);
+
         
 };//end of Database obejct
+
+
+
 
 #endif

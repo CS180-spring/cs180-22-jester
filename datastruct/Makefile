@@ -1,3 +1,4 @@
+
 myprog.exe : main_tmp.o schema.o table.o DataView.o database.o
 	g++ -std=c++0x main_tmp.o schema.o table.o DataView.o database.o -o myprog.exe
 
@@ -18,3 +19,4 @@ database.o : database.cpp database.h
 
 clean :
 	rm *.o myprog.exe
+

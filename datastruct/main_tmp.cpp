@@ -30,7 +30,8 @@ int main()
     // db->getTable("Teammate")->print_all_data();
 
     // cout<<"test test test"<<endl;
-    db->createTableFromCSVFile("preMadeData/people.csv", "people");
+    db->createTableFromCSVFile("preMadeData/people_small.csv", "people");
+    db->createTableFromCSVFile("preMadeData/organization_small.csv", "orgs");
     // db->getTable("people")->delete_row(998);
     // db->getTable("people")->delete_row(1);
     // cout<<"sdfs";
@@ -39,11 +40,22 @@ int main()
     // Table* temp = db->getTable("people");
     // db->createView(temp->g_num_of_cols(), temp->g_name_of_cols(), temp->g_all_data());
     // cout<<"sdfs";
-    DataView* dv = db->createView(db->getTable("people"));
+    DataView* dv = db->createView({"people", "orgs"});
+    // DataView* dv = db->createView(db->getTable("people"));
     // cout<<"sdfs";
-    dv->filter("Sex", "Female", true);
-    dv->filter("First Name", "Eddie", false);
+    // dv->filter(".Sex", "Female", true);
+    // dv->filter(".First Name", "Eddie", true);
+    // dv->filter(".First Namdfe", "Eddie", false);
+    // dv->range(".Index", "1", "10", false);
+    // dv->print_all_data();
+    dv->delete_column(".Index");
+    dv->delete_column(".User Id");
+    dv->delete_column(".Date of birth");
+    dv->delete_column(".Website");
+    dv->delete_column(".Description");
+    dv->delete_column(".Name");
     dv->print_all_data();
+    // dv->range();
     // cout<<"sdfs";
 
     // db->create
