@@ -30,8 +30,8 @@ int main()
     // db->getTable("Teammate")->print_all_data();
 
     // cout<<"test test test"<<endl;
-    db->createTableFromCSVFile("preMadeData/people_small.csv", "people");
-    db->createTableFromCSVFile("preMadeData/organization_small.csv", "orgs");
+    db->createTableFromCSVFile("./datastruct/preMadeData/people_small.csv", "people");
+    db->createTableFromCSVFile("./datastruct/preMadeData/organization_small.csv", "orgs");
     // db->getTable("people")->delete_row(998);
     // db->getTable("people")->delete_row(1);
     // cout<<"sdfs";
