@@ -11,7 +11,7 @@
 class DataView : public Schema {
 
     public: 
-    DataView(int num_col, vector<string> names, vector<vector<string>> t) : Schema(num_col, names, t) {}
+    DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {
     DataView() : Schema() {};
 
     DataView(vector<vector<string>> table, vector<string> name_of_colums, int num_of_rows, int num_of_cols):Schema(){
@@ -20,7 +20,6 @@ class DataView : public Schema {
     this->name_of_colums = name_of_colums;
     this->num_of_rows = num_of_rows;
     this->num_of_cols = num_of_cols;
-
     }
 
     void filter(string, string, bool);
@@ -32,6 +31,8 @@ class DataView : public Schema {
         void filterByColumnEquality(int, int, bool);
         void filterByValue(int, string, bool);
     
+    bool cmp(int, int);
+    void orderBy(string, bool);
 
 
 };

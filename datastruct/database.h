@@ -45,7 +45,7 @@ class Database
 
         // READ
         Table* getTable(string);//will return table;
-
+        vector<vector<string> > printRAW(string);//will return csv a single table *
         // UPDATE
         DataView* createView(Table * t) 
         {

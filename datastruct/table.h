@@ -9,6 +9,7 @@
 #include <algorithm> //find in vec function
 #include "schema.h"
 #include "DataView.h"
+#include <fstream>
 
 using namespace std;
 
@@ -37,12 +38,13 @@ class Table: public Schema {
     void modify_table_value(int, string, string);
 
     //createView in order to Query
+
+    void outputTableToDisk(string);
     DataView* createView(){
         DataView* temp = new DataView( this->table,this->name_of_colums, this->num_of_rows, this->num_of_cols);
 
         return temp; 
     }
-
     private:
     string name_of_table;
 

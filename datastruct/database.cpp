@@ -90,11 +90,13 @@ void Database::createTableFromCSVFile(string fileName, string tableName)
                 getTable(tableName)->add_row(csv_row);
             }//end of while
         }
+
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
+    //getTable(tableName)->outputTableToDisk(tableName);    //uncomment this to output the input as soon as it comes in. 
 }//end of create table from csfFile
 
 DataView* Database::createView(const vector<string>& tableNames)
@@ -188,8 +190,6 @@ vector<vector<string>> Database::compileTable(vector<vector<string>> exisiting, 
                 counter++;
             }
         }//done combining the table
-
-
         // cout<<"size of compiled: "<<compiledTable.size()<<endl;
         // for(vector<string> v : compiledTable)
         // {

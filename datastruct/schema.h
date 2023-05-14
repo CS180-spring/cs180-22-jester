@@ -36,7 +36,7 @@ class Schema{
         this->num_of_cols = num_of_cols;
     }
 
-    Schema(int num_of_cols, vector<string> &columnNames, vector<vector<string>> t ){
+    Schema(int num_of_cols, vector<string> &columnNames, vector<vector<string> > t ){
         // cout<<"test 1"<<endl;
         name_of_colums = columnNames;
         // cout<<"test 2"<<endl;
@@ -50,7 +50,7 @@ class Schema{
     // CREATE
     void add_row(vector<string>&);//DONE 
 
-
+    bool does_this_col_name_exist(string);
     // READ
     // void print_table_raw();
     void print_col_names();//DONE 
@@ -66,6 +66,8 @@ class Schema{
     int g_num_of_cols(); //DONE
     vector<string> g_name_of_cols();//DONE
     vector<vector<string> > g_all_data();//DONE
+    void updateNumOfRowsAndCols();
+
 
 
     protected:
