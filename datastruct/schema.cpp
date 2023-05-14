@@ -16,9 +16,20 @@ int Schema::g_num_of_rows(){
     return table.size();
 }
 
-void Schema::updateNumOfRowsAndCols(){
+void Schema::updateNumOfRowsAndCols(){//checks if the inputted column name is in the table. return true if exists
     num_of_cols=table.at(0).size();
     num_of_rows=table.size();
+}
+
+bool Schema::does_this_col_name_exist(string s){
+
+    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
+
+    if(it == name_of_colums.end() /* valid column name*/){
+        return false;
+    }
+    return true;
+
 }
 
 

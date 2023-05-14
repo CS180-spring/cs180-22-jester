@@ -47,7 +47,7 @@ class Schema{
     // CREATE
     void add_row(vector<string>&);//DONE 
 
-
+    bool does_this_col_name_exist(string);
     // READ
     // void print_table_raw();
     void print_col_names();//DONE 
