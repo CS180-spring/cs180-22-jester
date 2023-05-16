@@ -4,7 +4,7 @@ using namespace std;
 
 class JesterAPI{
     public: 
-        void init(); 
+        
         void close(); 
         void interface(); 
         void buildDB(string name);
@@ -15,6 +15,8 @@ class JesterAPI{
         void addRow(string dbName, string tableName, vector<string> theRowItself); // ? 
         void deleteRow(string dbName, string tableName, int index);
         void deleteTable(string dbName, string tableName);  
+        void printTable(string dbName, string tableName); 
     private: 
+        void init(); 
         // is there anything that's going to be here? 
 }
