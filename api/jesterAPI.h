@@ -1,11 +1,13 @@
 #include <string> 
 #include <vector> 
+#include "../client.h"
+
 using namespace std; 
 
-class JesterAPI{
+class jesterAPI{
     public: 
-        
-        void close(); 
+        void init(); //move both of these to private later 
+        void close();  //this too
         void interface(); 
         void buildDB(string name);
         void deleteDB(string dbName);  
@@ -17,6 +19,7 @@ class JesterAPI{
         void deleteTable(string dbName, string tableName);  
         void printTable(string dbName, string tableName); 
     private: 
-        void init(); 
+        
+        Client* client; 
         // is there anything that's going to be here? 
-}
+}; 
