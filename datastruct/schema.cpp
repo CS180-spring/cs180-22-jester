@@ -119,7 +119,7 @@ void Schema::delete_row(int j){
         }else{
         table.erase(table.begin()+i-1);
         updateNumOfRowsAndCols();
-
+        //shouldn't this go here /\ instead of below?
 
 
         }

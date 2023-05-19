@@ -20,11 +20,13 @@ void Table::add_row(vector<string>& newRow)
         else
         {
             table.push_back(newRow);
+            outputTableToDisk();
         }
     }
     catch(const exception& e)
     {
         cerr << e.what() << '\n';
+        return;
     }
 
 }
@@ -49,12 +51,12 @@ void Table::modify_table_value(int row_number_in, string column_name, string new
 
     //if you got to here, its valid. 
     table.at(row_number).at(it - name_of_colums.begin()) = new_val;
-
+    outputTableToDisk();
 }
 
-void Table::outputTableToDisk(string s){
+void Table::outputTableToDisk(){
   ofstream myfile;
-  string outputFile = "example_" + (s) + ".txt";
+  string outputFile = "test_" + g_table_name() + ".txt";
   myfile.open(outputFile);
 
     unsigned int i = 0;
