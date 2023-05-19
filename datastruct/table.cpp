@@ -56,7 +56,7 @@ void Table::modify_table_value(int row_number_in, string column_name, string new
 
 void Table::outputTableToDisk(){
   ofstream myfile;
-  string outputFile = "test_" + g_table_name() + ".txt";
+  string outputFile = "./outputDisk/test_" + g_table_name() + ".txt";
   myfile.open(outputFile);
 
     unsigned int i = 0;
