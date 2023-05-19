@@ -12,3 +12,9 @@ table.o
 datastruct/test.exe
 datastruct/test.exe
 datastruct/testclear.exe
+a.out
+server.o
+.gitignore
+test.o
+src/client
+src/runServer
