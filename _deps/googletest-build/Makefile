@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/Desktop/cs180-22-jester-1/CMakeFiles /Users/nuharahman/Desktop/cs180-22-jester-1//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/Desktop/cs180-22-jester-1/CMakeFiles /Users/nuharahman/Desktop/cs180-22-jester-1/_deps/googletest-build//CMakeFiles/progress.marks
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nuharahman/Desktop/cs180-22-jester-1/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,144 +158,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named tabletest
-
-# Build rule for target.
-tabletest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tabletest
-.PHONY : tabletest
-
-# fast build rule for target.
-tabletest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/build
-.PHONY : tabletest/fast
-
-#=============================================================================
-# Target rules for targets named dbtest
-
-# Build rule for target.
-dbtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dbtest
-.PHONY : dbtest
-
-# fast build rule for target.
-dbtest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/build
-.PHONY : dbtest/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
-
-#=============================================================================
-# Target rules for targets named gtest_main
-
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
-
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
-
-tests/db_test.o: tests/db_test.cc.o
-.PHONY : tests/db_test.o
-
-# target to build an object file
-tests/db_test.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.o
-.PHONY : tests/db_test.cc.o
-
-tests/db_test.i: tests/db_test.cc.i
-.PHONY : tests/db_test.i
-
-# target to preprocess a source file
-tests/db_test.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.i
-.PHONY : tests/db_test.cc.i
-
-tests/db_test.s: tests/db_test.cc.s
-.PHONY : tests/db_test.s
-
-# target to generate assembly for a file
-tests/db_test.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dbtest.dir/build.make CMakeFiles/dbtest.dir/tests/db_test.cc.s
-.PHONY : tests/db_test.cc.s
-
-tests/table_test.o: tests/table_test.cc.o
-.PHONY : tests/table_test.o
-
-# target to build an object file
-tests/table_test.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.o
-.PHONY : tests/table_test.cc.o
-
-tests/table_test.i: tests/table_test.cc.i
-.PHONY : tests/table_test.i
-
-# target to preprocess a source file
-tests/table_test.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.i
-.PHONY : tests/table_test.cc.i
-
-tests/table_test.s: tests/table_test.cc.s
-.PHONY : tests/table_test.s
-
-# target to generate assembly for a file
-tests/table_test.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tabletest.dir/build.make CMakeFiles/tabletest.dir/tests/table_test.cc.s
-.PHONY : tests/table_test.cc.s
 
 # Help Target
 help:
@@ -310,18 +184,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... dbtest"
-	@echo "... gmock"
-	@echo "... gmock_main"
-	@echo "... gtest"
-	@echo "... gtest_main"
-	@echo "... tabletest"
-	@echo "... tests/db_test.o"
-	@echo "... tests/db_test.i"
-	@echo "... tests/db_test.s"
-	@echo "... tests/table_test.o"
-	@echo "... tests/table_test.i"
-	@echo "... tests/table_test.s"
 .PHONY : help
 
 
@@ -333,6 +195,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/nuharahman/Desktop/cs180-22-jester-1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
