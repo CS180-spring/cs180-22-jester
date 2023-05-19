@@ -27,7 +27,7 @@ void DataView::filterByColumnEquality(int columnOne, int columnTwo, bool invert)
 }
 void DataView::filterByValue(int columnOne, string compareWith, bool invert)
 {
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         if( (table.at(i).at(columnOne) == compareWith) ^ !invert)//xor
