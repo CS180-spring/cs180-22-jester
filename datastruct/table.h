@@ -47,6 +47,8 @@ class Table: public Schema {
 
         return temp; 
     }
+
+    void delete_row(int) override;
     private:
     string name_of_table;
 

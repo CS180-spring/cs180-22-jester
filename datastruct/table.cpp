@@ -80,3 +80,8 @@ void Table::outputTableToDisk(){
 
   myfile.close();
 }
+
+void Table::delete_row(int i){
+    Schema::delete_row(i);
+    outputTableToDisk();
+}

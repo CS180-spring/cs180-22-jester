@@ -58,7 +58,7 @@ class Schema{
     int columnExisits(string);//Done
 
     // DELETE
-    void delete_row(int);//DONE
+    virtual void delete_row(int);//DONE
     void delete_column(string);  
 
     // HELPERS
