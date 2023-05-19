@@ -104,13 +104,13 @@ void Client::close_connection()
     write(CreateSocket, quit, sizeof(quit));
 }
 
-// std::string Client::recieved_to_string(char * message) 
-// {
-//     char * temp = message;
-//     std::string ret = "";
-//     for (auto it = temp; it != '\0'; ++it) {
-//         ret += *it;
-//     }
+std::string Client::recieved_to_string(char * message) 
+{
+    char * temp = message;
+    std::string ret = "";
+    for (auto it = temp; it != '\0'; ++it) {
+        ret += *it;
+    }
 
-//     return ret;
-// }
+    return ret;
+}
