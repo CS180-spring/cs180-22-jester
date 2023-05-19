@@ -12,7 +12,7 @@ using namespace std;
 
 void DataView::filterByColumnEquality(int columnOne, int columnTwo, bool invert)
 {
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         if( (table.at(i).at(columnOne) == table.at(i).at(columnTwo)) ^ !invert)//xor
@@ -79,7 +79,7 @@ void DataView::rangeString(string c_name, string lower, string upper, bool inver
     {
         swap(l, u);
     }
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         transform(l.begin(), l.end(), l.begin(), ::toupper);
@@ -127,7 +127,7 @@ void DataView::rangeNumerical(string c_name, double lower, double upper, bool in
     {
         swap(lower, upper);
     }
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         double temp1;
