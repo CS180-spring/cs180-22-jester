@@ -12,3 +12,8 @@ table.o
 datastruct/test.exe
 datastruct/test.exe
 datastruct/testclear.exe
+a.out
+client
+runServer
+server.o
+test.o
