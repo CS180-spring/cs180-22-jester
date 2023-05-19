@@ -1,19 +1,24 @@
 #include "jesterAPI.h"
 #include <string> 
+
 #include <vector> 
+#include <iostream> 
 
 using namespace std; 
-jesterAPI::init(){ 
-//add server stuffs here 
-    //call interface here? 
+void jesterAPI::init(){ 
+    client->setup_client(); 
+    client->connect_to_server();  
 }
-jesterAPI::close(){
+void jesterAPI::close(){
     //server stuffs here 
     // owen haaaalp 
+    client->close_connection(); 
+
+
 }
 
 //no error handling for these bois 
-jesterAPI::interface(){
+void jesterAPI::interface(){
     bool quit = false; 
     int option = -1; 
     string db = ""; 
@@ -65,7 +70,7 @@ jesterAPI::interface(){
             cout << "Please enter the name of the table that you would like to add to:" << endl; 
             cin >> tableName; 
             //wouldn't we have to know the values of the table? maybe we grab the column names and order in addRow. for now empty string vector 
-            addRow(string dbName, string tableName, vector<string> theRowItself); 
+            addRow(db, tableName, emptyRow); 
  
         } else if (option == 6){
             cout << "Please enter the name of your database:" << endl; 
@@ -75,19 +80,19 @@ jesterAPI::interface(){
             printTable(db, tableName); 
 
         } else if (option == 7){
-            cout << "Please enter the name of your database:" << enedl; 
+            cout << "Please enter the name of your database:" << endl; 
             cin >> db; 
             cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
-            cin >> table; 
+            cin >> tableName; 
             cout << "Please enter the number of the index that you would like to delete:" << endl; 
             int index = 0; 
             cin >> index; 
             deleteRow(db, tableName, index); 
         } else if (option == 8){
-            cout << "Please enter the name of your database:" << enedl; 
+            cout << "Please enter the name of your database:" << endl; 
             cin >> db; 
             cout << "Please enter the name of the table that you would like to modify a cell in:" << endl; 
-            cin >> table; 
+            cin >> tableName; 
             cout << "Please enter the row index that you would like to modify:" << endl; 
             int rowIndex = 0; 
             cin >> rowIndex; 
@@ -106,4 +111,38 @@ jesterAPI::interface(){
     cout << "closing the server..." << endl; 
     close(); 
     cout << "all done. Bye! :+)" << endl; 
+}
+
+
+void jesterAPI::deleteDB(string dbName){
+
+    return; 
+}
+void jesterAPI::modifyCell(string dbName, string tableName, int rowIndex, string colName, string newValue){
+
+return;
+}
+void jesterAPI::buildTable(string dbName, string tableName, int columns, vector<string> fields)
+{
+    return;
+}
+void jesterAPI::createQuery(string dbName, string query)
+{
+    return;
+}
+void jesterAPI::addRow(string dbName, string tableName, vector<string> theRowItself){
+return;
+} // ? 
+void jesterAPI::deleteRow(string dbName, string tableName, int index){
+return;
+}
+void jesterAPI::deleteTable(string dbName, string tableName){
+return;
+}  
+void jesterAPI::printTable(string dbName, string tableName){
+return;
+}
+
+void jesterAPI::buildDB(string name){
+    return; 
 }
