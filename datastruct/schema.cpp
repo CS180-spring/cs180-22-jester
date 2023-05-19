@@ -35,15 +35,15 @@ bool Schema::does_this_col_name_exist(string s){
 
 
 void Schema::print_col_names(){
-    for(int i = 0; i < name_of_colums.size(); ++i){
+    for(unsigned int i = 0; i < name_of_colums.size(); ++i){
         cout << name_of_colums.at(i)<<"\t";
     }
 }
 
 void Schema::print_all_data(){
     // cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
-    int i = 0;
-    int j = 0;
+    unsigned int i = 0;
+    unsigned int j = 0;
     for(j = 0 ; j < name_of_colums.size()-1; ++j){
         cout << name_of_colums.at(j) <<", ";
     }
