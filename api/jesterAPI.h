@@ -9,7 +9,8 @@ class jesterAPI{
         void init(); //move both of these to private later 
         void close();  //this too
         void interface(); 
-        void buildDB(string name);
+        void buildDB(char*);
+        
         void deleteDB(string dbName);  
         void modifyCell(string dbName, string tableName, int rowIndex, string colName, string newValue); 
         void buildTable(string dbName, string tableName, int columns, vector<string> fields);

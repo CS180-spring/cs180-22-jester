@@ -4,9 +4,10 @@ using namespace std;
 
 int main(){
 
-    jesterAPI* api;
-    api->init();  
-    api->close(); 
+    jesterAPI api;
+    api.init(); 
+    api.interface();
+    api.close(); 
 
     return 0; 
 

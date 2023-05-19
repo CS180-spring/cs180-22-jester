@@ -12,6 +12,11 @@ main_tmp.o : ./datastruct/main_tmp.cpp ./datastruct/schema.h ./datastruct/table.
 #	 g++ -std=c++0x -Wall -c main_tmp.cpp
 	g++ -std=c++0x -Wall -c ./datastruct/main_tmp.cpp
 
+# main : main.cpp jesterAPI.h
+main.o : ./api/jesterAPI.h
+#	 g++ -std=c++0x -Wall -c main_tmp.cpp
+	g++ -std=c++0x -Wall -c ./api/main.cpp
+
 # schema.o : schema.cpp schema.h
 schema.o : ./datastruct/schema.cpp ./datastruct/schema.h
 #	g++ -std=c++0x -Wall -c schema.cpp

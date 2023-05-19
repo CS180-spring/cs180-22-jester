@@ -1,6 +1,6 @@
 #include "jesterAPI.h"
 #include <string> 
-
+#include <cstring>
 #include <vector> 
 #include <iostream> 
 
@@ -21,20 +21,30 @@ void jesterAPI::close(){
 void jesterAPI::interface(){
     bool quit = false; 
     int option = -1; 
-    string db = ""; 
+    string db;
+    const int BUFFER_SIZE = 1024;
+    char buffer[BUFFER_SIZE];
+    char * response;
+    
+
     vector<string>emptyRow; 
     string tableName = ""; 
-    cout << "Welcome to Jester's document store! See our list of options: " << endl; 
+    cout << "Welcome to Jester's document store!" << endl; 
+    cout<<"Name your database: ";
+    std::cin.getline(buffer, BUFFER_SIZE);
+    cout<<"this should print before calling  db"<<endl;
+    buildDB(buffer);
+
     while (!quit){
-        cout << "1. Create your new database" << endl << "2. Delete your database" << endl << "3. Create a table" << "4. Delete a table" << endl; 
+        cout << /**"1. Create your new database" << endl << **/"2. Delete your database" << endl << "3. Create a table" << "4. Delete a table" << endl; 
         cout << "5. Add a row to your table" << endl << "6. View your table" << endl << "7. Delete a row to the table" << endl << 
         "8. Modify a cell in your table" << endl << "10. Quit" << endl;
         cout << "Please type a number for your option: " << endl; 
         cin >> option; 
         if (option == 1){
             cout << "Please enter the name of your database: " << endl; 
-            cin >> db; 
-            buildDB(db); 
+            // cin >> db; 
+            // buildDB(db); 
         } else if (option == 2){
             cout << "Please enter the name of the database that you would like to delete: " << endl; 
             cin >> db; 
@@ -143,6 +153,22 @@ void jesterAPI::printTable(string dbName, string tableName){
 return;
 }
 
-void jesterAPI::buildDB(string name){
+void jesterAPI::buildDB(char * name)
+{
+
+    cout<<"Running Build DB 0"<<endl;
+
+    char* start = "BUILD DB ";  
+    char* char_array;
+    char_array =  malloc(strlen(start)+strlen(name)+1); 
+    strcpy(full_text, start ); 
+    strcat(full_text, name);
+
+    // cout<<"Running Build DB 2"<<endl;
+    // strcpy(char_array, msg.c_str());
+    // cout<<"Running Build DB 3"<<endl;
+    // client->send_message(char_array, msg.size());
+    client->send_message(name, sizeof(name)+1);
+    cout<<"Running Build DB 4"<<endl;
     return; 
 }
