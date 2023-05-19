@@ -6,12 +6,12 @@
 
 #include "schema.h"
 #include <vector>
-#include "table.h"
+// #include "table.h"
 
 class DataView : public Schema {
 
     public: 
-    DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {
+    DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {}
     DataView() : Schema() {};
 
     DataView(vector<vector<string>> table, vector<string> name_of_colums, int num_of_rows, int num_of_cols):Schema(){
