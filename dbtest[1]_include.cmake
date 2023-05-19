@@ -1,5 +1,0 @@
-if(EXISTS "/Users/nuharahman/Desktop/cs180-22-jester-1/dbtest[1]_tests.cmake")
-  include("/Users/nuharahman/Desktop/cs180-22-jester-1/dbtest[1]_tests.cmake")
-else()
-  add_test(dbtest_NOT_BUILT dbtest_NOT_BUILT)
-endif()
