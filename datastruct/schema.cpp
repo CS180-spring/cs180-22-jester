@@ -62,13 +62,13 @@ void Schema::print_all_data(){
 
 int Schema::columnExisits(string column)
 {
-    int i = 0;
+    unsigned int i = 0;
     if(column.at(0)=='.')//remove dot for column's name
     {
         column = column.substr(1, column.size());
         // cout<<"||"<<column<<endl;
     }
-    for(int i = 0; i < name_of_colums.size(); i++)
+    for(i = 0; i < name_of_colums.size(); i++)
     {
         if(column.compare(name_of_colums.at(i)) == 0)
         {
