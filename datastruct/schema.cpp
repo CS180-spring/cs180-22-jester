@@ -108,12 +108,20 @@ int Schema::columnExisits(string column)
 // }
 
 
-void Schema::delete_row(int i){
+void Schema::delete_row(int j){
     //deleting row is zero-indexed. 
+
+    unsigned int i = unsigned(j);
 
     try{
         if(i > table[0].size() || i < 0){
             throw runtime_error("invalid row attempted to delete ");
+        }else{
+        table.erase(table.begin()+i-1);
+        updateNumOfRowsAndCols();
+
+
+
         }
     }
     catch(runtime_error &e){
@@ -147,7 +155,7 @@ void Schema::delete_column(string s){
     name_of_colums.erase(it);
     num_of_cols = name_of_colums.size();
     // cout<<table.size()<<endl;
-    for(int i = 0 ; i < table.size();++i){
+    for(unsigned int i = 0 ; i < table.size();++i){
         // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }
