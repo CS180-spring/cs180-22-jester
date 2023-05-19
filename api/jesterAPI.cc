@@ -32,7 +32,7 @@ void jesterAPI::interface(){
     cout << "Welcome to Jester's document store!" << endl; 
     cout<<"Name your database: ";
     std::cin.getline(buffer, BUFFER_SIZE);
-    cout<<"this should print before calling  db"<<endl;
+    // cout<<"this should print before calling  db"<<endl;
     buildDB(buffer);
 
     while (!quit){
@@ -156,19 +156,22 @@ return;
 void jesterAPI::buildDB(char * name)
 {
 
-    cout<<"Running Build DB 0"<<endl;
+    // cout<<"Running Build DB 0"<<endl;
 
     char* start = "BUILD DB ";  
+    // string s = "sdf";
+    // string s(name);
+    // cout<< s <<endl;
     char* char_array;
-    char_array =  malloc(strlen(start)+strlen(name)+1); 
-    strcpy(full_text, start ); 
-    strcat(full_text, name);
+    // char_array = (char*)malloc( sizeof(char) * (strlen(start) + strlen(name) + 1)); 
+    // strcpy(char_array, start ); 
+    // strcat(char_array, name);
 
-    // cout<<"Running Build DB 2"<<endl;
+
     // strcpy(char_array, msg.c_str());
     // cout<<"Running Build DB 3"<<endl;
     // client->send_message(char_array, msg.size());
     client->send_message(name, sizeof(name)+1);
-    cout<<"Running Build DB 4"<<endl;
+    // cout<<"Running Build DB 4"<<endl;
     return; 
 }
