@@ -85,3 +85,13 @@ void Table::delete_row(int i){
     Schema::delete_row(i);
     outputTableToDisk();
 }
+
+void Table::delete_column(string s){
+    Schema::delete_column(s);
+    outputTableToDisk();
+}
+
+// void Table::add_row(vector<string>& v ){
+//     Schema::add_row(v);
+//     outputTableToDisk();
+// }

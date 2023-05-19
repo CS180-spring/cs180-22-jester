@@ -116,16 +116,12 @@ void Schema::delete_row(int j){
     try{
         if(i > table[0].size() || i < 0){
             throw runtime_error("invalid row attempted to delete ");
-        }else{
-        table.erase(table.begin()+i-1);
-        updateNumOfRowsAndCols();
-        //shouldn't this go here /\ instead of below?
-
-
         }
+
     }
     catch(runtime_error &e){
         cerr << e.what() << endl; 
+        return;
     }
 
     table.erase(table.begin()+i-1);
