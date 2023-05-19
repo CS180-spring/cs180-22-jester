@@ -4,8 +4,11 @@ using namespace std;
 
 
 
-void Database::createTableWithCols(string tableName, int colNums, vector<string> &columnNames)
+void Database::createTableWithCols(string tableName, int colNums_in, vector<string> &columnNames)
 {
+
+    unsigned int colNums=unsigned(colNums_in);
+
     try
     {
         if(colNums != columnNames.size())
@@ -178,9 +181,9 @@ vector<vector<string>> Database::compileTable(vector<vector<string>> exisiting, 
 
             // cout<<"test"<<endl;
         int counter = 0;
-        for(int i = 0; i < exisiting.size(); i++)
+        for(unsigned int i = 0; i < exisiting.size(); i++)
         {
-            for(int j = 0; j < curTable.size(); j++)
+            for(unsigned int j = 0; j < curTable.size(); j++)
             {
                 // cout<<"test2"<<endl;
                 compiledTable.at(counter).reserve(exisiting.at(i).size() + curTable.at(j).size());

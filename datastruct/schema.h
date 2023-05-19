@@ -48,6 +48,7 @@ class Schema{
 
     // CRUD
     // CREATE
+    //virtual void add_row(vector<string>&);//DONE 
     void add_row(vector<string>&);//DONE 
 
     bool does_this_col_name_exist(string);
@@ -58,8 +59,8 @@ class Schema{
     int columnExisits(string);//Done
 
     // DELETE
-    void delete_row(int);//DONE
-    void delete_column(string);  
+    virtual void delete_row(int);//DONE
+    virtual void delete_column(string);  
 
     // HELPERS
     int g_num_of_rows();//DONE
@@ -73,8 +74,8 @@ class Schema{
     protected:
     vector<vector<string> > table; 
     vector<string> name_of_colums; 
-    int num_of_rows;
-    int num_of_cols;
+    unsigned int num_of_rows;
+    unsigned int num_of_cols;
 
 }; 
 

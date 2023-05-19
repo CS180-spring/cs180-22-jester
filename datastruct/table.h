@@ -18,15 +18,17 @@ class Table: public Schema {
     public: 
     Table() : Schema(0) {
       name_of_table = "no_name";
+      outputTableToDisk();
     }
 
     Table(string table_name, int num_of_cols) : Schema( num_of_cols ) {
         name_of_table = table_name;
-        
+        outputTableToDisk();
     }
 
     Table(string table_name, int num_of_cols, vector<string> &columnNames) : Schema(num_of_cols, columnNames) {
         name_of_table = table_name;
+        outputTableToDisk();
     }
 
     // CRUD
@@ -39,12 +41,18 @@ class Table: public Schema {
 
     //createView in order to Query
 
-    void outputTableToDisk(string);
+    void outputTableToDisk();
     DataView* createView(){
         DataView* temp = new DataView( this->table,this->name_of_colums, this->num_of_rows, this->num_of_cols);
 
         return temp; 
     }
+
+    void delete_row(int) override;
+
+    void delete_column(string) override;
+    //void add_row(vector<string>&) override;
+
     private:
     string name_of_table;
 

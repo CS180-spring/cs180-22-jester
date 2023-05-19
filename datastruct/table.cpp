@@ -11,7 +11,7 @@ void Table::add_row(vector<string>& newRow)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
             temp += ("\n\t");
-            for(int i = 0; i < newRow.size(); i++)
+            for(unsigned int i = 0; i < newRow.size(); i++)
             {
                 temp += (newRow.at(i) + ", ");
             }
@@ -20,17 +20,21 @@ void Table::add_row(vector<string>& newRow)
         else
         {
             table.push_back(newRow);
+            outputTableToDisk();
         }
     }
     catch(const exception& e)
     {
         cerr << e.what() << '\n';
+        return;
     }
 
 }
 
-void Table::modify_table_value(int row_number, string column_name, string new_val){
+void Table::modify_table_value(int row_number_in, string column_name, string new_val){
     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
+
+    unsigned int row_number = unsigned(row_number_in);
 
     try{
        
@@ -47,12 +51,12 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
 
     //if you got to here, its valid. 
     table.at(row_number).at(it - name_of_colums.begin()) = new_val;
-
+    outputTableToDisk();
 }
 
-void Table::outputTableToDisk(string s){
+void Table::outputTableToDisk(){
   ofstream myfile;
-  string outputFile = "example_" + (s) + ".txt";
+  string outputFile = "./outputDisk/test_" + g_table_name() + ".txt";
   myfile.open(outputFile);
 
     unsigned int i = 0;
@@ -76,3 +80,18 @@ void Table::outputTableToDisk(string s){
 
   myfile.close();
 }
+
+void Table::delete_row(int i){
+    Schema::delete_row(i);
+    outputTableToDisk();
+}
+
+void Table::delete_column(string s){
+    Schema::delete_column(s);
+    outputTableToDisk();
+}
+
+// void Table::add_row(vector<string>& v ){
+//     Schema::add_row(v);
+//     outputTableToDisk();
+// }

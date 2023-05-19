@@ -26,13 +26,13 @@ class DataView : public Schema {
     void rangeNumerical(string, double, double, bool);
     void rangeString(string, string, string, bool);
     void range(string, string, string, bool);
-
+    void orderBy(string, bool);
     private:
         void filterByColumnEquality(int, int, bool);
         void filterByValue(int, string, bool);
     
     bool cmp(int, int);
-    void orderBy(string, bool);
+    
 
 
 };

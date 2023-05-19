@@ -35,15 +35,15 @@ bool Schema::does_this_col_name_exist(string s){
 
 
 void Schema::print_col_names(){
-    for(int i = 0; i < name_of_colums.size(); ++i){
+    for(unsigned int i = 0; i < name_of_colums.size(); ++i){
         cout << name_of_colums.at(i)<<"\t";
     }
 }
 
 void Schema::print_all_data(){
     // cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
-    int i = 0;
-    int j = 0;
+    unsigned int i = 0;
+    unsigned int j = 0;
     for(j = 0 ; j < name_of_colums.size()-1; ++j){
         cout << name_of_colums.at(j) <<", ";
     }
@@ -62,13 +62,13 @@ void Schema::print_all_data(){
 
 int Schema::columnExisits(string column)
 {
-    int i = 0;
+    unsigned int i = 0;
     if(column.at(0)=='.')//remove dot for column's name
     {
         column = column.substr(1, column.size());
         // cout<<"||"<<column<<endl;
     }
-    for(int i = 0; i < name_of_colums.size(); i++)
+    for(i = 0; i < name_of_colums.size(); i++)
     {
         if(column.compare(name_of_colums.at(i)) == 0)
         {
@@ -108,16 +108,20 @@ int Schema::columnExisits(string column)
 // }
 
 
-void Schema::delete_row(int i){
+void Schema::delete_row(int j){
     //deleting row is zero-indexed. 
+
+    unsigned int i = unsigned(j);
 
     try{
         if(i > table[0].size() || i < 0){
             throw runtime_error("invalid row attempted to delete ");
         }
+
     }
     catch(runtime_error &e){
         cerr << e.what() << endl; 
+        return;
     }
 
     table.erase(table.begin()+i-1);
@@ -147,7 +151,7 @@ void Schema::delete_column(string s){
     name_of_colums.erase(it);
     num_of_cols = name_of_colums.size();
     // cout<<table.size()<<endl;
-    for(int i = 0 ; i < table.size();++i){
+    for(unsigned int i = 0 ; i < table.size();++i){
         // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }
