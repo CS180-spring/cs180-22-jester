@@ -11,7 +11,7 @@ void Table::add_row(vector<string>& newRow)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
             temp += ("\n\t");
-            for(int i = 0; i < newRow.size(); i++)
+            for(unsigned int i = 0; i < newRow.size(); i++)
             {
                 temp += (newRow.at(i) + ", ");
             }
@@ -29,8 +29,10 @@ void Table::add_row(vector<string>& newRow)
 
 }
 
-void Table::modify_table_value(int row_number, string column_name, string new_val){
+void Table::modify_table_value(int row_number_in, string column_name, string new_val){
     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
+
+    unsigned int row_number = unsigned(row_number_in);
 
     try{
        
