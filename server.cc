@@ -34,6 +34,14 @@ int accept(int sockfd, sockaddr *addr, socklen_t *addrlen);
 
 */
 
+Server::~Server() {
+    for (int fd : connectionfd) {
+        close_connection(fd);
+    }
+
+    close_server();
+}
+
 int Server::setup_server() {
     /*
     Setups a socket and begins listening to it, until close(sockfd) is called
@@ -132,4 +140,64 @@ void Server::close_server() {
     */
 
    close(sockfd);
+}
+
+
+std::vector<std::string> Server::word_tokenize(const char * inp, const char delim = ' ') {
+    /*
+    Seperates a char* (i.e. a string) inp and returns a vector of it's words 
+    */
+    std::vector<std::string> words = {};
+
+    std::string w = "";
+    char c;
+    for (auto it = inp; *it != '\0'; it++) {
+        c = *it;
+        if (c != delim) { // Build a word, one char at a time
+            w += c;
+        }
+        else {  // Ignore and reset on whitespaces
+            words.push_back(w);
+            w = "";
+        }
+    }
+
+    // Push final word
+    words.push_back(w);
+
+    return words;
+}
+
+std::string Server::join_words(std::vector<std::string> m) {
+    std::string s = "";
+    for (size_t i = 0; i < m.size()-1; i++) {
+        s += m.at(i);
+        s += " ";
+    }
+    s += m.at(m.size()-1);
+
+    return s;
+}
+
+// void Server::execute(std::vector<std::string> m) {
+void Server::execute(char * message) {
+    std::vector<std::string> m = word_tokenize(message, ' ');
+
+    if (m.at(0) == "BUILD") {
+        if (m.at(1) == "DB" and m.size() == 3) {
+            std::string name = m.at(2);
+            cout << "Building database with name: " << name << endl;
+            return;
+        }
+        if (m.at(1) == "TABLE" and m.at(3) == "WITH" and m.size() == 6) {
+            std::string name = m.at(2);
+            int num_cols = stoi(m.at(4));
+            std::string field_names = m.at(5);
+            // grab individual field names by Server.word_tokenize(field_names, ',')
+
+            cout << "Building table with name: " << name << " and " << num_cols << "columns that have the names: " << field_names; 
+            return;
+        }
+    }
+    // else if (m.at(0) == something_else) ...
 }
