@@ -2,7 +2,8 @@
 #include <string> 
 #include <cstring>
 #include <vector> 
-#include <iostream> 
+#include <iostream>
+#include <sstream> 
 
 using namespace std; 
 void jesterAPI::init(){ 
@@ -156,16 +157,19 @@ return;
 void jesterAPI::buildDB(char * name)
 {
 
+    // ostringstream oss;
+    // string temp = name;
+    // oss << "BUILD DB " << name; 
     // cout<<"Running Build DB 0"<<endl;
 
-    char* start = "BUILD DB ";  
+    // char* start = "BUILD DB "; 
     // string s = "sdf";
     // string s(name);
     // cout<< s <<endl;
-    char* char_array;
-    // char_array = (char*)malloc( sizeof(char) * (strlen(start) + strlen(name) + 1)); 
+    // char* char_array;
+    // char_array = (char*)malloc( 1024 ); 
     // strcpy(char_array, start ); 
-    // strcat(char_array, name);
+    // strcat(start, name);
 
 
     // strcpy(char_array, msg.c_str());
@@ -174,4 +178,45 @@ void jesterAPI::buildDB(char * name)
     client->send_message(name, sizeof(name)+1);
     // cout<<"Running Build DB 4"<<endl;
     return; 
+}
+
+void jesterAPI::sendInstruction()
+{
+    bool quit = false; 
+    int option = -1; 
+
+    const int BUFFER_SIZE = 1024;
+    char buffer[BUFFER_SIZE];
+    char * response;
+    
+
+    vector<string>emptyRow; 
+    string tableName = ""; 
+    cout << "Welcome to Jester's document store!" << endl;
+    // cout<<"this should print before calling  db"<<endl;
+    // buildDB(buffer);
+    while (!quit)
+    {
+        cout<<"1. Enter Instruction"<<endl;
+        cout<<"5. Exit"<<endl;
+        cin >> option;
+
+        switch(option)
+        {
+            case 1: 
+                cout<<"Enter Database Instruction: "<<endl;
+                cin.ignore(); 
+                cin.getline(buffer, BUFFER_SIZE);
+                client->send_message(buffer, sizeof(buffer));
+               break;
+            case 5:
+                cout << "closing the server..." << endl; 
+                close(); 
+                quit = true;
+                cout << "all done. Bye! :+)" << endl; 
+                break;
+            default:
+                cout<<"Not a valid option"<<endl;
+        }
+    }
 }

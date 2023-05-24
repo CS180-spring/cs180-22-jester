@@ -6,7 +6,8 @@ int main(){
 
     jesterAPI api;
     api.init(); 
-    api.interface();
+    // api.interface();
+    api.sendInstruction();
     api.close(); 
 
     return 0; 

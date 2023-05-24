@@ -1,6 +1,8 @@
 #include <netinet/in.h> // For sockaddr_in
 #include <vector>
 #include <string>
+#include "./datastruct/database.h"
+// #include "./datastruct/table.h"
 
 const int PORT = 8080;
 const int BUFFER_LEN = 1024;
@@ -10,12 +12,18 @@ class Server {
         sockaddr_in sockaddr;
         std::vector<int> connectionfd;
         std::vector<sockaddr_in> connection_addr;   // Not sure if we'll need this? Dont think so
+        Database* db; 
 
     public:
+
+
         int setup_server();
         int accept_connection();
         std::size_t read_from(int, char*);
         void send_to(int, std::string);
         void close_connection(int);
         void close_server();
+        
+        Database* getDB() {return db; }
+        void initDB(string s) {db = new Database(s);}
 };

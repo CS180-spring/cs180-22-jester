@@ -1,5 +1,9 @@
 #include<iostream>
+#include <vector>
+#include <boost/algorithm/string.hpp>
 #include "./server.h"
+#include "./datastruct/database.h"
+
 using namespace std;
 
 
@@ -25,6 +29,54 @@ int main() {
     while (string(buffer).find("QUIT") == string::npos) {
         cout << "The message was: " << string(buffer) << endl;
 
+
+        //can be made into seperate function
+        string temp = string(buffer);
+        string createDB = "BUILD DB";
+        if(temp.find(createDB)!= string::npos)
+        {
+            temp.erase(temp.find(createDB), createDB.size());
+            cout<<"create db called: "<<temp<<endl;
+            myServer.initDB(temp);
+        }
+        // BUILD TABLE <tableName> WITH <columns> <fields*>
+        string createTable = "BUILD TABLE ";
+        if(temp.find(createTable)!= string::npos)
+        {
+            string WITH = " WITH ";
+            if(temp.find(WITH)!= string::npos)
+            {
+                cout<<"create table called correctly"<<endl;
+                string tableName;
+                vector<string> colNames;
+                tableName = temp.substr(0, temp.find(WITH));
+                temp.erase(0, temp.find(WITH) + WITH.size());
+                
+                // cout<<tableName;
+                cout<<"."<<endl;
+
+                while(temp.find(',') != string::npos)
+                {
+                    string t = temp.substr(0, temp.find(','));
+                    boost::trim(t);
+                    colNames.push_back(t);
+                    cout<<t;
+                    temp.erase(0, temp.find(',')+1);
+                }
+                boost::trim(temp);
+                colNames.push_back(temp);
+                cout<<temp;
+
+
+                myServer.getDB()->createTable(tableName, colNames.size(), colNames);
+                vector<string> dummyRow = {"one","two","three"};
+                myServer.getDB()->getTable(tableName)->add_row(dummyRow);
+
+                myServer.getDB()->getTable(tableName)->print_all_data();
+
+            }
+
+        }
         response = "This is a response\n";
         myServer.send_to(connection, response.c_str());
         

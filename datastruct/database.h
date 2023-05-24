@@ -21,7 +21,7 @@ class Database
         map<string, Table*> db_map;
 
     public:
-        Database(string db_name) : db_name(db_name) {}
+        Database(string db_name) : db_name(db_name) {cout<<"Made DB"<<endl;}
         ~Database()
         {
             for(map<string, Table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)

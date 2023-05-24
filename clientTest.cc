@@ -35,7 +35,7 @@ int main()
         response = c.read_from_server();
         // c.recieved_to_string(response);
         // std::cout << "Got the val\n";
-        // std::cout << "Recieved from server: " << c.recieved_to_string(response) << std::endl;
+        std::cout << "Recieved from server: " << c.recieved_to_string(response) << std::endl;
 
         std::cout << "Please enter more messges or type Q to exit: ";
         std::cin.getline(buffer, BUFFER_SIZE);
