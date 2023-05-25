@@ -11,34 +11,24 @@ void jesterAPI::init(){
     client->connect_to_server();  
 }
 void jesterAPI::close(){
-    //server stuffs here 
-    // owen haaaalp 
+    //add something for delete db here too? or ask the user if they want to delete their database or not. 
     client->close_connection(); 
-
-
 }
 
-//no error handling for these bois 
 void jesterAPI::interface(){
     bool quit = false; 
     int option = -1; 
     string db;
     bool dbMade = false;
     char * response;
-    
+    // add send instruction to interface 
 
-    vector<string>emptyRow; 
-    string tableName = ""; 
     cout << "Welcome to Jester's document store!" << endl; 
-    // cout<<"Name your database: ";
-    // std::cin.getline(buffer, BUFFER_SIZE);
-    // cout<<"this should print before calling  db"<<endl;
     buildDB();
-
     while (!quit){
-        cout <<"2. Delete your database" << endl << "3. Create a table" << endl << "4. Delete a table" << endl; 
-        cout << "5. Add a row to your table" << endl << "6. View your table" << endl << "7. Delete a row to the table" << endl << 
-        "8. Delete a column from the table"<<endl<<"9. Create Query"<<endl<<"10. Modify a cell in your table" << endl << "20. Quit" << endl;
+        cout << "1. Create a table" << endl << "2. Delete a table" << endl; 
+        cout << "3. Add a row to your table" << endl << "4. View your table" << endl << "5. Delete a row from your table" << endl << 
+        "6. Delete a column from your table" << endl << "7. Create your own instruction to execute" << endl <<"8. Modify a cell in your table" << endl << "20. Quit" << endl;
         cout << "Please type a number for your option: " << endl; 
         // cin.ignore();
         cin >> option; 
@@ -46,40 +36,34 @@ void jesterAPI::interface(){
         switch(option)
         {
             case 1:
-                // buildDB();
-                break;
-            case 2:
-                deleteDB();
-                break;
-            case 3:
                 buildTable();
                 break;
-            case 4:
+            case 2:
                 deleteTable();
                 break;
-            case 5:
+            case 3:
                 addRow();
                 break;
-            case 6:
+            case 4:
                 printTable();
                 break;
-            case 7:
+            case 5:
                 deleteRow();
                 break;
-            case 8:
+            case 6:
                 deleteCol();
                 break;
-            case 9:
-                createQuery();
+            case 7:
+                sendInstruction(); 
                 break;
-            case 10: 
+            case 8: 
                 modifyCell();
                 break;
             case 20:
                 quit = true; 
                 break; 
             default:
-                cout<<"Invalid Input"<<endl;
+                cout<<"Invalid input! Please try again." << endl;
         }
     }
     cout << "closing the server..." << endl; 
@@ -89,13 +73,12 @@ void jesterAPI::interface(){
 
 void jesterAPI::buildDB()
 {
-    
-    const int BUFFER_SIZE = 1024;
-    char buffer[BUFFER_SIZE];
-    string input;
+
+    char buffer[this.BUFFER_SIZE];
     cout << "Please enter the name of your database: " << endl; 
     std::cin.getline(buffer, BUFFER_SIZE);
-    char instruction[BUFFER_SIZE] = {'B','U','I','L','D',' ','D','B',' '};
+    this.db_name = buffer; 
+    char instruction[this.BUFFER_SIZE] = "BUILD DB ";
     strcat(instruction, buffer);
     printf("%s\n", instruction);
     client->send_message(instruction, sizeof(instruction)+1);
@@ -103,7 +86,8 @@ void jesterAPI::buildDB()
 }
 
 
-void jesterAPI::deleteDB(){
+void jesterAPI::deleteDB()
+{
     // cout << "Please enter the name of the database that you would like to delete: " << endl; 
     // cin >> db; 
  
@@ -129,14 +113,18 @@ void jesterAPI::buildTable()
             // buildTable(db, tableName, col, fields);
     return;
 }
-void jesterAPI::deleteTable(){
-    // cout << "Enter the name of the database that you would like to delete a table from: " << endl; 
-    //         cin >> db; 
-    //         cout << "Enter the name of the table that you would like to delete: " << endl; 
-    //         cin >> tableName; 
-    //         cout << "got it! deleting your table now .... " << endl; 
-    //         deleteTable(db, tableName); 
-return;
+void jesterAPI::deleteTable()
+{
+    char[this.BUFFER_SIZE] instruction = "DELETE TABLE "; 
+    char[this.BUFFER_SIZE] table_name; 
+    cout << "Enter the name of the table that you would like to delete: " << endl; 
+    std::cin.getline(table_name, this.BUFFER_SIZE);  
+    strcat(instruction, table_name);
+    strcat(instruction, " FROM "); 
+    strcat(instruction, this.db_name); 
+    cout << "got it! deleting your table now .... " << endl; 
+    client->send_message(instruction, sizeof(instruction)+1);
+    return;
 }  
 void jesterAPI::addRow(){
 // cout << "Please enter the name of your database: " << endl; 
@@ -202,7 +190,7 @@ void jesterAPI::sendInstruction()
     char buffer[BUFFER_SIZE];
     char * response;
     
-
+// add sample queries for menu 
     vector<string>emptyRow; 
     string tableName = ""; 
     cout << "Welcome to Jester's document store!" << endl;
