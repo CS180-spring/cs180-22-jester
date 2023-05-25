@@ -73,12 +73,13 @@ void jesterAPI::interface(){
 
 void jesterAPI::buildDB()
 {
-
-    char buffer[this.BUFFER_SIZE];
+    
+    const int BUFFER_SIZE = 1024;
+    char buffer[BUFFER_SIZE];
     cout << "Please enter the name of your database: " << endl; 
     std::cin.getline(buffer, BUFFER_SIZE);
-    this.db_name = buffer; 
-    char instruction[this.BUFFER_SIZE] = "BUILD DB ";
+    // char db_name[BUFFER_SIZE]  = buffer; 
+    char instruction[BUFFER_SIZE] = "BUILD DB ";
     strcat(instruction, buffer);
     printf("%s\n", instruction);
     client->send_message(instruction, sizeof(instruction)+1);
@@ -88,86 +89,133 @@ void jesterAPI::buildDB()
 
 void jesterAPI::deleteDB()
 {
-    // cout << "Please enter the name of the database that you would like to delete: " << endl; 
-    // cin >> db; 
- 
-    // return; 
+    int input = 0;
+    cout << "Are you sure?????" << endl; 
+    cout << "1. Yes" << endl; 
+    cout << "Literaly anything else for no" << endl; 
+    cin>>input;
+    if(input == 1)
+    {
+        cout<<"Deleting Database"<<endl;
+        client->send_message("DELETE DB", 12);
+    }else
+    {
+        cout<<"Delete abordted"<<endl;
+    }
 }
 void jesterAPI::buildTable()
 {
-    // // vector<string>fields; 
-    // //         int col = 0; 
-    // //         cout << "Please enter the name of the database that you would like to add the table to: " << endl; 
-    // //         cin >> db; 
-    // //         cout << "Please enter the name of the table: " << endl; 
-    // //         cin >> tableName; 
-    // //         cout << "How many columns would you like in your table?" << endl; 
-    // //         cin >> col; 
-    // //         string curr = ""; 
-    // //         for (unsigned int i = 0; i < col; i++){
-    // //             cout << "Enter the name of column " << (i + 1) << ":" << endl;   //idk if the i+1 thing works lol 
-    // //             cin >> curr; 
-    // //             fields.push_back(curr); 
-    // //         }
-    // //         cout << "got it! making your table now ..... >:)" << endl; 
-    //         // buildTable(db, tableName, col, fields);
+    // vector<string>fields; 
+    int col = 0; 
+    
+    const int BUFFER_SIZE = 1024;
+    char instr[BUFFER_SIZE] = "BUILD TABLE ";
+    char instruction[BUFFER_SIZE] = " WITH ";
+    char comma[2] = ",";
+    char table[BUFFER_SIZE];
+    char colName[BUFFER_SIZE];
+    cout << "Please enter the name of the table: " << endl;
+    cin.ignore(); 
+    std::cin.getline(table, BUFFER_SIZE);
+    strcat(instr, table);
+    strcat(instr, instruction);
+    cout << "How many columns would you like in your table?" << endl; 
+    cin >> col; 
+    // string curr = ""; 
+    if(col < 1)
+    {
+        cout<<"No such table can be created"<<endl;
+        return;
+    }
+    cin.ignore();
+    for (unsigned int i = 0; i < col-1; i++){
+        cout << "Enter the name of column " << (i + 1) << ":" << endl;   //idk if the i+1 thing works lol 
+        std::cin.getline(colName, BUFFER_SIZE);
+        strcat(instr, colName);
+        strcat(instr, comma);
+    }
+    cout << "Enter the name of column " << (col) << ":" << endl;   //idk if the i+1 thing works lol 
+    std::cin.getline(colName, BUFFER_SIZE);
+    strcat(instr, colName);
+
+    
+    cout << "got it! making your table now ..... >:)" << endl; 
+            
+        client->send_message(instr, sizeof(instr)+1);
     // return;
 }
 void jesterAPI::deleteTable()
 {
-    char[this.BUFFER_SIZE] instruction = "DELETE TABLE "; 
-    char[this.BUFFER_SIZE] table_name; 
-    cout << "Enter the name of the table that you would like to delete: " << endl; 
-    std::cin.getline(table_name, this.BUFFER_SIZE);  
-    strcat(instruction, table_name);
-    cout << "got it! deleting your table now .... " << endl; 
-    client->send_message(instruction, sizeof(instruction)+1);
+// vector<string>fields; 
+    int col = 0; 
+    
+    const int BUFFER_SIZE = 1024;
+    char instr[BUFFER_SIZE] = "DELETE TABLE ";
+    char table[BUFFER_SIZE];
+    cout << "Please enter the name of the table: " << endl;
+    cin.ignore(); 
+    std::cin.getline(table, BUFFER_SIZE);
+    strcat(instr, table);
+    client->send_message(instr, sizeof(instr)+1);
     return;
 }  
-void jesterAPI::addRow()
-{
-    int option; 
-    char[this.BUFFER_SIZE] instruction = "ADD ROW TO "; 
-    char[this.BUFFER_SIZE] table_name; 
-    cout << "Please enter the name of the table that you would like to add to: " << endl; 
-    // TODO add ways to see column names for convinience 
-    std::cin.getline(table_name, this.BUFFER_SIZE);
-    strcat(instruction, table_name);
-    strcat(instruction, instruction_p2); 
-    cout << "Would you like to enter values for your row? 1 for yes, 2 for no, 3 to quit." << endl; 
-    cin >> option; 
-    switch(option)
-    {
-        case 1: 
-
-        case 2: 
-
-        case 3: 
-            cout << "exiting add row...." << endl; 
-            return; 
-            break; 
-        else: 
-            "Invalid input. Please try again." << endl; 
-            break; 
-    }
-
-} // ? 
 void jesterAPI::printTable()
 {
-    cout << "Please enter the name of the table that you would like to view:" << endl; 
-    cin >> tableName; 
-    printTable(db, tableName); 
+    const int BUFFER_SIZE = 1024;
+    char instr[BUFFER_SIZE] = "VIEW TABLE ";
+    char table[BUFFER_SIZE];
+    cout << "Please enter the name of the table: " << endl;
+    cin.ignore(); 
+    std::cin.getline(table, BUFFER_SIZE);
+    strcat(instr, table);
+    client->send_message(instr, sizeof(instr)+1);
     return;
+    // cout << "Please enter the name of the table that you would like to view:" << endl; 
+    // cin >> tableName; 
+    // printTable(db, tableName); 
+    // return;
 }
+void jesterAPI::addRow()
+{
+    // int option; 
+    //  const int BUFFER_SIZE = 1024;
+    // char instr1[BUFFER_SIZE]  = "ADD ROW TO "; 
+    // char instr2[BUFFER_SIZE] = "GET COLUMNS FROM "; 
+    // char table_name[BUFFER_SIZE]; 
+    // cout << "Please enter the name of the table that you would like to add to: " << endl; 
+    // // TODO add ways to see column names for convinience 
+    // std::cin.getline(table_name, this.BUFFER_SIZE);
+    // strcat(instr2, table_name);
+    // client->send_message(instr2, sizeof(instr2)+1);
+    // strcat(instruction, table_name);
+    // strcat(instruction, instruction_p2); 
+    // cout << "Would you like to enter values for your row? 1 for yes, 2 for no, 3 to quit." << endl; 
+    // cin >> option; 
+    // switch(option)
+    // {
+    //     case 1: 
+
+    //     case 2: 
+
+    //     case 3: 
+    //         cout << "exiting add row...." << endl; 
+    //         return; 
+    //         break; 
+    //     else: 
+    //         "Invalid input. Please try again." << endl; 
+    //         break; 
+    // }
+
+} 
 void jesterAPI::deleteRow() {
-    cout << "Please enter the name of your database:" << endl; 
-    cin >> db; 
-    cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
-    cin >> tableName; 
-    cout << "Please enter the number of the index that you would like to delete:" << endl; 
-    int index = 0; 
-    cin >> index; 
-    deleteRow(db, tableName, index); 
+    // cout << "Please enter the name of your database:" << endl; 
+    // cin >> db; 
+    // cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
+    // cin >> tableName; 
+    // cout << "Please enter the number of the index that you would like to delete:" << endl; 
+    // int index = 0; 
+    // cin >> index; 
+    // deleteRow(db, tableName, index); 
 return;
 }
 void jesterAPI::deleteCol()

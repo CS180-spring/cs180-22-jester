@@ -5,6 +5,8 @@
 #include <iostream> // For cout
 #include <unistd.h> // For read
 #include <errno.h>  // For error diagnosis (errno)
+
+#include "./datastruct/database.h"
 using namespace std;
 
 
@@ -184,20 +186,36 @@ void Server::execute(char * message) {
     std::vector<std::string> m = word_tokenize(message, ' ');
 
     if (m.at(0) == "BUILD") {
-        if (m.at(1) == "DB" and m.size() == 3) {
+        if (m.at(1) == "DB" && m.size() == 3) {
             std::string name = m.at(2);
+            initDB(name);
             cout << "Building database with name: " << name << endl;
             return;
         }
-        if (m.at(1) == "TABLE" and m.at(3) == "WITH" and m.size() == 6) {
+        if (m.at(1) == "TABLE" && m.at(3) == "WITH" && m.size() == 5) {
             std::string name = m.at(2);
-            int num_cols = stoi(m.at(4));
-            std::string field_names = m.at(5);
+            // int num_cols = stoi(m.at(4));
+            std::string field_names = m.at(4);
             // grab individual field names by Server.word_tokenize(field_names, ',')
-
-            cout << "Building table with name: " << name << " and " << num_cols << "columns that have the names: " << field_names; 
+            // cout << "Building table with name: " << name << " and " << "columns that have the names: " << field_names; 
+            std::vector<std::string> columns = word_tokenize(field_names.c_str(), ',');
+            getDB()->createTable(name, columns.size(), columns);
+            // getDB()->getTable(name)->print_all_data();
             return;
         }
     }
-    // else if (m.at(0) == something_else) ...
+    else if (m.at(0) == "GET")
+    {
+        if (m.at(1) == "COLUMNS")
+        {
+            
+        }
+    }
+    else if (m.at(0) == "VIEW")
+    {
+        if (m.at(1) == "TABLE")
+        {
+            getDB()->getTable(m.at(2))->print_all_data();
+        }
+    }
 }
