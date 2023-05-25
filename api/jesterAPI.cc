@@ -163,14 +163,14 @@ void jesterAPI::printTable()
     return;
 }
 void jesterAPI::deleteRow() {
-    // cout << "Please enter the name of your database:" << endl; 
-    //         cin >> db; 
-    //         cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
-    //         cin >> tableName; 
-    //         cout << "Please enter the number of the index that you would like to delete:" << endl; 
-    //         int index = 0; 
-    //         cin >> index; 
-    //         deleteRow(db, tableName, index); 
+    cout << "Please enter the name of your database:" << endl; 
+    cin >> db; 
+    cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
+    cin >> tableName; 
+    cout << "Please enter the number of the index that you would like to delete:" << endl; 
+    int index = 0; 
+    cin >> index; 
+    deleteRow(db, tableName, index); 
 return;
 }
 void jesterAPI::deleteCol()
