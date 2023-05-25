@@ -133,6 +133,7 @@ void jesterAPI::addRow()
     char[this.BUFFER_SIZE] table_name; 
     char[this.BUFFER_SIZE] instruction_p2 = " FROM "; 
     cout << "Please enter the name of the table that you would like to add to: " << endl; 
+    // TODO add ways to see column names for convinience 
     std::cin.getline(table_name, this.BUFFER_SIZE);
     strcat(instruction, table_name);
     strcat(instruction, instruction_p2); 
