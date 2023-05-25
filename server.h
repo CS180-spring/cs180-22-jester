@@ -14,6 +14,8 @@ class Server {
         std::vector<sockaddr_in> connection_addr;   // Not sure if we'll need this? Dont think so
         Database* db; 
 
+        bool tableExists(string);
+
     public:
 
 

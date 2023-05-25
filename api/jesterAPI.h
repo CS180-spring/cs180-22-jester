@@ -1,5 +1,6 @@
 #include <string> 
 #include <vector> 
+#include <boost/lexical_cast.hpp>
 #include "../client.h"
 
 using namespace std; 

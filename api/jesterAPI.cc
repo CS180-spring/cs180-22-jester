@@ -178,43 +178,68 @@ void jesterAPI::printTable()
 void jesterAPI::addRow()
 {
     // int option; 
-    //  const int BUFFER_SIZE = 1024;
-    // char instr1[BUFFER_SIZE]  = "ADD ROW TO "; 
-    // char instr2[BUFFER_SIZE] = "GET COLUMNS FROM "; 
-    // char table_name[BUFFER_SIZE]; 
-    // cout << "Please enter the name of the table that you would like to add to: " << endl; 
+     const int BUFFER_SIZE = 1024;
+    char instr1[BUFFER_SIZE]  = "FROM "; 
+    char instr2[BUFFER_SIZE] = "GET "; 
+    char instr3[BUFFER_SIZE] = " COLUMNS"; 
+    char instr4[BUFFER_SIZE] = " ADD "; 
+    char table_name[BUFFER_SIZE]; 
+    char newRow[BUFFER_SIZE]; 
+    cout << "Please enter the name of the table that you would like to add to: " << endl; 
     // // TODO add ways to see column names for convinience 
-    // std::cin.getline(table_name, this.BUFFER_SIZE);
-    // strcat(instr2, table_name);
-    // client->send_message(instr2, sizeof(instr2)+1);
+    cin.ignore();
+    std::cin.getline(table_name, BUFFER_SIZE);
+    strcat(instr2, table_name);
+    strcat(instr2, instr3);
+    client->send_message(instr2, sizeof(instr2)+1);
     // strcat(instruction, table_name);
     // strcat(instruction, instruction_p2); 
-    // cout << "Would you like to enter values for your row? 1 for yes, 2 for no, 3 to quit." << endl; 
-    // cin >> option; 
-    // switch(option)
-    // {
-    //     case 1: 
-
-    //     case 2: 
-
-    //     case 3: 
-    //         cout << "exiting add row...." << endl; 
-    //         return; 
-    //         break; 
-    //     else: 
-    //         "Invalid input. Please try again." << endl; 
-    //         break; 
-    // }
+    cout << "1. Add new row" << endl; 
+    cout << "5. exit" << endl; 
+    int option;
+    cin >> option; 
+    switch(option)
+    {
+        case 1: 
+            cout<<"Add Row as values seperated only by commas"<<endl;
+            cin.ignore();
+            std::cin.getline(newRow, BUFFER_SIZE);
+            strcat(instr1, table_name);
+            strcat(instr1, instr4);
+            strcat(instr1, newRow);
+            client->send_message(instr1, sizeof(instr1)+1);
+            break;
+        default:
+            cout<<"No row added"<<endl;
+    }
 
 } 
 void jesterAPI::deleteRow() {
-    // cout << "Please enter the name of your database:" << endl; 
-    // cin >> db; 
-    // cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
-    // cin >> tableName; 
-    // cout << "Please enter the number of the index that you would like to delete:" << endl; 
-    // int index = 0; 
-    // cin >> index; 
+    const int BUFFER_SIZE = 1024;
+    char instr1[BUFFER_SIZE]  = "DELETE "; 
+    char instr2[BUFFER_SIZE]  = " FROM "; 
+    char table_name[BUFFER_SIZE]; 
+    cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
+    cin.ignore();
+    std::cin.getline(table_name, BUFFER_SIZE);
+    cout << "Please enter the index that you would like to delete:" << endl; 
+    int index = 0; 
+    cin >> index; 
+    std::string indexStr = boost::lexical_cast<string>(index);
+    char const* indexAsArray = indexStr.c_str();
+
+    strcat(instr1, indexAsArray);
+    strcat(instr1, instr2);
+    strcat(instr1, table_name);
+
+    
+    client->send_message(instr1, sizeof(instr1)+1);
+    // strcat(instr1, space);
+    // strcat(instr1, space);
+
+
+
+
     // deleteRow(db, tableName, index); 
 return;
 }

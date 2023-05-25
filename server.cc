@@ -206,16 +206,50 @@ void Server::execute(char * message) {
     }
     else if (m.at(0) == "GET")
     {
-        if (m.at(1) == "COLUMNS")
+        if (m.at(2) == "COLUMNS")
         {
-            
+            cout<<"Columns of table '"<<m.at(1)<<"': "<<endl;
+            if(!tableExists(m.at(1)))
+            {
+                return;
+            }
+
+            getDB()->getTable(m.at(1))->print_col_names();
         }
     }
     else if (m.at(0) == "VIEW")
     {
         if (m.at(1) == "TABLE")
         {
+            if(!tableExists(m.at(2)))
+            {
+                return;
+            }
             getDB()->getTable(m.at(2))->print_all_data();
         }
     }
+    else if (m.at(0) == "FROM")
+    {
+        if (m.at(2) == "ADD")
+        {
+            std::string row = m.at(3);
+            std::vector<std::string> newRow = word_tokenize(row.c_str(), ',');
+            if(!tableExists(m.at(1)))
+            {
+                return;
+            }
+            getDB()->getTable(m.at(1))->add_row(newRow);
+        }
+    }
 }
+
+bool Server::tableExists(string tableName)
+{
+    if(getDB()->getTable(tableName) == nullptr)
+    {
+        // cout<<"ERROR: Table was not found"<<endl;
+        cout<<"\033[1;31mERROR: \033[0m Table was not found"<<endl;
+        return false;
+    }
+    return true;
+}//end of check
