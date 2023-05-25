@@ -120,8 +120,6 @@ void jesterAPI::deleteTable()
     cout << "Enter the name of the table that you would like to delete: " << endl; 
     std::cin.getline(table_name, this.BUFFER_SIZE);  
     strcat(instruction, table_name);
-    strcat(instruction, " FROM "); 
-    strcat(instruction, this.db_name); 
     cout << "got it! deleting your table now .... " << endl; 
     client->send_message(instruction, sizeof(instruction)+1);
     return;
@@ -131,12 +129,10 @@ void jesterAPI::addRow()
     int option; 
     char[this.BUFFER_SIZE] instruction = "ADD ROW TO "; 
     char[this.BUFFER_SIZE] table_name; 
-    char[this.BUFFER_SIZE] instruction_p2 = " FROM "; 
     cout << "Please enter the name of the table that you would like to add to: " << endl; 
     std::cin.getline(table_name, this.BUFFER_SIZE);
     strcat(instruction, table_name);
     strcat(instruction, instruction_p2); 
-    strcat(instruction, this.db_name);  
     cout << "Would you like to enter values for your row? 1 for yes, 2 for no, 3 to quit." << endl; 
     cin >> option; 
     switch(option)
