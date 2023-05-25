@@ -5,7 +5,7 @@
 // #include "./datastruct/table.h"
 
 const int PORT = 8080;
-const int BUFFER_LEN = 1024;
+const int BUFFER_LEN = 1024*16;
 class Server {
     private:
         int sockfd;

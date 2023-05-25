@@ -27,7 +27,7 @@ int main() {
 
     // Send/recieve loop
     while (string(buffer).find("QUIT") == string::npos) {
-        cout << "The message was: " << string(buffer) << endl;
+        cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;
         
         myServer.execute(buffer);
 

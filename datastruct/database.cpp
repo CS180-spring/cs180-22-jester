@@ -28,13 +28,14 @@ void Database::createTableWithCols(string tableName, int colNums, vector<string>
 
 void Database::createTable(string tb_name, int colNums, vector<string> s)
 {
-    cout<<"TABLE BY THE NAME "<<tb_name<<" JUST MADE"<<endl;
     Table* t = new Table(tb_name, colNums, s);
     db_map.insert({tb_name, t});
+    cout<<"\033[4;32mTable '"<<tb_name<<"' Created \033[0m"<<endl;
 }//will create new datatable (end of createTable)
 
 Table* Database::getTable(string tb_name)
 {
+
     return db_map[tb_name];
     // return nullptr;
 }//end of getTable
@@ -221,4 +222,11 @@ bool Database::tablesExist(const vector<string>& listOfTables)
         }
     }
     return true;
+}
+
+void Database::deleteTable(string tableName)
+{
+    delete getTable(tableName);
+    db_map.erase(tableName);
+    cout << "\033[4;31mTable: " << tableName <<" deleted\033[0m"<<endl;
 }

@@ -189,7 +189,6 @@ void Server::execute(char * message) {
         if (m.at(1) == "DB" && m.size() == 3) {
             std::string name = m.at(2);
             initDB(name);
-            cout << "Building database with name: " << name << endl;
             return;
         }
         if (m.at(1) == "TABLE" && m.at(3) == "WITH" && m.size() == 5) {
@@ -208,13 +207,26 @@ void Server::execute(char * message) {
     {
         if (m.at(2) == "COLUMNS")
         {
-            cout<<"Columns of table '"<<m.at(1)<<"': "<<endl;
             if(!tableExists(m.at(1)))
             {
                 return;
             }
-
+            // cout<<"Columns of table '"<<m.at(1)<<"': ";
+            cout<<"\033[36mColumns of Table "<<m.at(1)<<": \033[0m";
             getDB()->getTable(m.at(1))->print_col_names();
+            cout<<endl;
+        }
+    }
+    else if (m.at(0) == "DELETE")
+    {
+        if (m.at(1) == "TABLE")
+        {
+            if(!tableExists(m.at(2)))
+            {
+                return;
+            }
+
+            getDB()->deleteTable(m.at(2));
         }
     }
     else if (m.at(0) == "VIEW")

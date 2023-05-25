@@ -21,9 +21,10 @@ class Database
         map<string, Table*> db_map;
 
     public:
-        Database(string db_name) : db_name(db_name) {cout<<"Made DB"<<endl;}
+        Database(string db_name) : db_name(db_name) {cout << "\033[4;32mDatabase Built: " << db_name <<"\033[0m"<<endl;}
         ~Database()
         {
+            
             for(map<string, Table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)
             {
                 delete (itr->second);
