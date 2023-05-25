@@ -28,9 +28,24 @@ int main() {
     // Send/recieve loop
     while (string(buffer).find("QUIT") == string::npos) {
         cout << "The message was: " << string(buffer) << endl;
+        
+        myServer.execute(buffer);
 
+        /* HELPER FUNCTIONS PROOF OF CONCEPT
+        // Tokenize word
+        vector<string> message = myServer.word_tokenize(buffer, ' ');
+        cout << "Tokenized word: " << endl;
+        for (string w : message) {
+            cout << w << endl;
+        }
+
+        // Rejoin word
+        string mes = myServer.join_words(message);
+        cout << "Rejoined message: " << mes << endl;
+        /*
 
         //can be made into seperate function
+        /*
         string temp = string(buffer);
         string createDB = "BUILD DB";
         if(temp.find(createDB)!= string::npos)
@@ -75,8 +90,10 @@ int main() {
                 myServer.getDB()->getTable(tableName)->print_all_data();
 
             }
+            
 
         }
+        */
         response = "This is a response\n";
         myServer.send_to(connection, response.c_str());
         
