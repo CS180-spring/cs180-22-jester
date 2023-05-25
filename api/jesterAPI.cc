@@ -95,23 +95,23 @@ void jesterAPI::deleteDB()
 }
 void jesterAPI::buildTable()
 {
-    // vector<string>fields; 
-    //         int col = 0; 
-    //         cout << "Please enter the name of the database that you would like to add the table to: " << endl; 
-    //         cin >> db; 
-    //         cout << "Please enter the name of the table: " << endl; 
-    //         cin >> tableName; 
-    //         cout << "How many columns would you like in your table?" << endl; 
-    //         cin >> col; 
-    //         string curr = ""; 
-    //         for (unsigned int i = 0; i < col; i++){
-    //             cout << "Enter the name of column " << (i + 1) << ":" << endl;   //idk if the i+1 thing works lol 
-    //             cin >> curr; 
-    //             fields.push_back(curr); 
-    //         }
-    //         cout << "got it! making your table now ..... >:)" << endl; 
-            // buildTable(db, tableName, col, fields);
-    return;
+    // // vector<string>fields; 
+    // //         int col = 0; 
+    // //         cout << "Please enter the name of the database that you would like to add the table to: " << endl; 
+    // //         cin >> db; 
+    // //         cout << "Please enter the name of the table: " << endl; 
+    // //         cin >> tableName; 
+    // //         cout << "How many columns would you like in your table?" << endl; 
+    // //         cin >> col; 
+    // //         string curr = ""; 
+    // //         for (unsigned int i = 0; i < col; i++){
+    // //             cout << "Enter the name of column " << (i + 1) << ":" << endl;   //idk if the i+1 thing works lol 
+    // //             cin >> curr; 
+    // //             fields.push_back(curr); 
+    // //         }
+    // //         cout << "got it! making your table now ..... >:)" << endl; 
+    //         // buildTable(db, tableName, col, fields);
+    // return;
 }
 void jesterAPI::deleteTable()
 {
