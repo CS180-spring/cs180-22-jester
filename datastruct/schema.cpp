@@ -44,20 +44,23 @@ void Schema::print_all_data(){
     // cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
     int i = 0;
     int j = 0;
+    // cout<<"\033[1;34mTable Name: "<<table
+
     for(j = 0 ; j < name_of_colums.size()-1; ++j){
-        cout << name_of_colums.at(j) <<", ";
+        cout <<"\033[1;34m"<<name_of_colums.at(j) <<", ";
     }
-    cout << name_of_colums.at(j) <<endl;
+    cout << name_of_colums.at(j) <<"\033[0,]"<<endl;
 
      i = 0;
      j = 0;
-
+    cout<<"\033[33m";
     for(i = 0; i < table.size(); ++i){
         for(j = 0 ; j < table.at(i).size()-1; ++j){
             cout << table.at(i).at(j) <<", ";
         }
         cout << table.at(i).at(j) <<endl;
     }
+    cout<<"\033[0m";
 }
 
 int Schema::columnExisits(string column)

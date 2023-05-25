@@ -20,7 +20,6 @@ class Client {
         
         // Current size for recieved message is 1024 but could be changed
         char recievedMessage [BUFFER_LEN];
-        
         const char * quit = "QUIT";
         int messageSize = 0; //n from the reference for read()
         sockaddr_in ipOfServer;

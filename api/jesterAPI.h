@@ -1,5 +1,7 @@
 #include <string> 
+#include <sstream>
 #include <vector> 
+#include <stack>
 #include <boost/lexical_cast.hpp>
 #include "../client.h"
 

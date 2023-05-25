@@ -218,22 +218,54 @@ void jesterAPI::deleteRow() {
     const int BUFFER_SIZE = 1024;
     char instr1[BUFFER_SIZE]  = "DELETE "; 
     char instr2[BUFFER_SIZE]  = " FROM "; 
+    char digit[BUFFER_SIZE]; 
     char table_name[BUFFER_SIZE]; 
     cout << "Please enter the name of the table that you would like to delete the row from:" << endl; 
     cin.ignore();
     std::cin.getline(table_name, BUFFER_SIZE);
     cout << "Please enter the index that you would like to delete:" << endl; 
     int index = 0; 
-    cin >> index; 
-    std::string indexStr = boost::lexical_cast<string>(index);
-    char const* indexAsArray = indexStr.c_str();
+    string inputDigit;
+    sstream s;
+    s >> inputDigit;
+    // cin >> index; 
 
-    strcat(instr1, indexAsArray);
-    strcat(instr1, instr2);
-    strcat(instr1, table_name);
+    s << index;
+
+    digit = inputDigit;
+
+    // stack<char> digits;
+    // int rem;
+    // while(index > 0)
+    // {
+    //     rem = index%10;
+    //     digits.push(char(rem));
+    //     index /= 10;
+    // }
+    // int max_stack_size = digits.size();
+    // char digits_of_index[max_stack_size];
+    // int i = 0;
+    // while(!digits.empty())
+    // {
+    //     digits_of_index[i] = digits.top();
+    //     digits.pop();
+    //     i++;
+    // }
+    // for(i = 0; i < max_stack_size; i++)
+    // {
+    //     cout << digits_of_index[i] << "--";
+    // }
+    // std::string indexStr = boost::lexical_cast<string>(index);
+    // int sz = indexStr.size();
+    // char indexAsArray[sz];
+    // indexAsArray = indexStr.c_str();
+
+    // strcat(instr1, digits_of_index);
+    // strcat(instr1, instr2);
+    // strcat(instr1, table_name);
 
     
-    client->send_message(instr1, sizeof(instr1)+1);
+    // client->send_message(instr1, sizeof(instr1)+1);
     // strcat(instr1, space);
     // strcat(instr1, space);
 
