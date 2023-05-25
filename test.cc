@@ -25,6 +25,13 @@ int main() {
     size_t messageSize = myServer.read_from(connection, buffer);
     string response;    // Declare response string
 
+    //----------------------TESTING----------------------------------
+
+    myServer.write_file("testRecv.csv");
+
+    //----------------------TESTING----------------------------------
+
+
     // Send/recieve loop
     while (string(buffer).find("QUIT") == string::npos) {
         cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;

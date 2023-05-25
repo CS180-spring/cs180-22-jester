@@ -5,6 +5,7 @@
 #include <iostream> // For cout
 #include <unistd.h> // For read
 #include <errno.h>  // For error diagnosis (errno)
+#include <strings.h> // For file transfer
 
 #include "./datastruct/database.h"
 using namespace std;
@@ -265,3 +266,26 @@ bool Server::tableExists(string tableName)
     }
     return true;
 }//end of check
+
+// Testing function to observe file transfer
+void Server::write_file(char * fileName)
+{
+  int n;
+  FILE *fp;
+  char *filename = fileName;
+  char buffer[BUFFER_LEN];
+ 
+  fp = fopen(filename, "w");
+  while (1) 
+  {
+    n = recv(sockfd, buffer, BUFFER_LEN, 0);
+    if (n <= 0)
+    {
+      break;
+      return;
+    }
+    fprintf(fp, "%s", buffer);
+    bzero(buffer, BUFFER_LEN);
+  }
+  return;
+}
