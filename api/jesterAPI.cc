@@ -126,22 +126,41 @@ void jesterAPI::deleteTable()
     client->send_message(instruction, sizeof(instruction)+1);
     return;
 }  
-void jesterAPI::addRow(){
-// cout << "Please enter the name of your database: " << endl; 
-//             cin >> db; 
-//             cout << "Please enter the name of the table that you would like to add to:" << endl; 
-//             cin >> tableName; 
-//             //wouldn't we have to know the values of the table? maybe we grab the column names and order in addRow. for now empty string vector 
-//             addRow(db, tableName, emptyRow); 
-return;
+void jesterAPI::addRow()
+{
+    int option; 
+    char[this.BUFFER_SIZE] instruction = "ADD ROW TO "; 
+    char[this.BUFFER_SIZE] table_name; 
+    char[this.BUFFER_SIZE] instruction_p2 = " FROM "; 
+    cout << "Please enter the name of the table that you would like to add to: " << endl; 
+    std::cin.getline(table_name, this.BUFFER_SIZE);
+    strcat(instruction, table_name);
+    strcat(instruction, instruction_p2); 
+    strcat(instruction, this.db_name);  
+    cout << "Would you like to enter values for your row? 1 for yes, 2 for no, 3 to quit." << endl; 
+    cin >> option; 
+    switch(option)
+    {
+        case 1: 
+
+        case 2: 
+
+        case 3: 
+            cout << "exiting add row...." << endl; 
+            return; 
+            break; 
+        else: 
+            "Invalid input. Please try again." << endl; 
+            break; 
+    }
+
 } // ? 
-void jesterAPI::printTable(){
-    // cout << "Please enter the name of your database:" << endl; 
-    //         cin >> db; 
-    //         cout << "Please enter the name of the table that you would like to view:" << endl; 
-    //         cin >> tableName; 
-    //         printTable(db, tableName); 
-return;
+void jesterAPI::printTable()
+{
+    cout << "Please enter the name of the table that you would like to view:" << endl; 
+    cin >> tableName; 
+    printTable(db, tableName); 
+    return;
 }
 void jesterAPI::deleteRow() {
     // cout << "Please enter the name of your database:" << endl; 
