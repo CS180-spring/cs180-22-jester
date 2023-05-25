@@ -248,7 +248,7 @@ bool Server::tableExists(string tableName)
     if(getDB()->getTable(tableName) == nullptr)
     {
         // cout<<"ERROR: Table was not found"<<endl;
-        cout<<"\033[1;31mERROR: \033[0m Table was not found"<<endl;
+        cout<<"\033[1;31mERROR:\033[0m Table was not found"<<endl;
         return false;
     }
     return true;
