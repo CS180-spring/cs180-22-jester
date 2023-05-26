@@ -219,15 +219,49 @@ void Server::execute(char * message) {
     }
     else if (m.at(0) == "DELETE")
     {
-        if (m.at(1) == "TABLE")
+        if (m.at(1) == "TABLE")//DELETE TABLE _______
         {
             if(!tableExists(m.at(2)))
             {
                 return;
             }
-
             getDB()->deleteTable(m.at(2));
         }
+        else if (m.at(1) == "ROW")//DELETE ROW ____ FROM _____
+        {
+            if(!tableExists(m.at(4)))
+            {
+                return;
+            }
+
+            int index;
+            try
+            {
+                index = stoi(m.at(2));
+                getDB()->getTable(m.at(4))->delete_row(index);
+            }
+            catch(std::invalid_argument& e){
+                // if no conversion could be performed 
+                cout<<"\033[1;31mERROR:\033[0m Index was not an integer"<<endl;
+                // break;
+            }
+            catch(std::out_of_range& e){
+            // if the converted value would fall out of the range of the result type 
+            // or if the underlying function (std::strtol or std::strtoull) sets errno 
+            // to ERANGE.
+            
+                cout<<"\033[1;31mERROR:\033[0m The index is too large"<<endl;
+                // break;
+            }
+            
+        }
+        else if (m.at(1) == "COLUMN") //DELETE COLUMN __2__ FROM __4__
+        {
+            
+                // index = stoi(m.at(2));
+                getDB()->getTable(m.at(4))->delete_column(m.at(2));
+        }
+
     }
     else if (m.at(0) == "VIEW")
     {
