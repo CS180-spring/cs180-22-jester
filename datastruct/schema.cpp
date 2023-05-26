@@ -81,31 +81,31 @@ int Schema::columnExisits(string column)
 
 }
     
-// void Table::add_row(vector<string>& newRow)
-// {
-//     try
-//     {
-//         if(newRow.size() != num_of_cols)
-//         {
-//             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
-//             temp += ("\n\t");
-//             for(int i = 0; i < newRow.size(); i++)
-//             {
-//                 temp += (newRow.at(i) + ", ");
-//             }
-//             throw invalid_argument(temp);
-//         }//end of if to make sure size of new column matches
-//         else
-//         {
-//             table.push_back(newRow);
-//         }
-//     }
-//     catch(const exception& e)
-//     {
-//         cerr << e.what() << '\n';
-//     }
+void Schema::add_row(vector<string>& newRow)
+{
+    try
+    {
+        if(newRow.size() != num_of_cols)
+        {
+            string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
+            temp += ("\n\t");
+            for(int i = 0; i < newRow.size(); i++)
+            {
+                temp += (newRow.at(i) + ", ");
+            }
+            throw invalid_argument(temp);
+        }//end of if to make sure size of new column matches
+        else
+        {
+            table.push_back(newRow);
+        }
+    }
+    catch(const exception& e)
+    {
+        cerr << e.what() << '\n';
+    }
 
-// }
+}
 
 
 void Schema::delete_row(int j){

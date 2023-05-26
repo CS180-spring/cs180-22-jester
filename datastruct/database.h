@@ -59,7 +59,6 @@ class Database
 
         bool tablesExist(const vector<string>&);
 
-        
 };//end of Database obejct
 
 
