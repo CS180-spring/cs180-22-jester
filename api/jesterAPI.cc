@@ -236,7 +236,24 @@ void jesterAPI::deleteRow() {
 }
 void jesterAPI::deleteCol()
 {
-return;
+    const int BUFFER_SIZE = 1024;
+    char instr1[BUFFER_SIZE]  = "DELETE COLUMN "; 
+    char instr2[BUFFER_SIZE]  = " FROM "; 
+    char digit[BUFFER_SIZE]; 
+    char table_name[BUFFER_SIZE]; 
+    char col_name[BUFFER_SIZE]; 
+    cout << "Please enter the name of the table that you would like to delete the column from:" << endl; 
+    cin.ignore();
+    std::cin.getline(table_name, BUFFER_SIZE);
+    cout << "Please enter the column name that you would like to delete:" << endl; 
+    std::cin.getline(col_name, BUFFER_SIZE);
+
+    strcat(instr1, col_name);
+    strcat(instr1, instr2);
+    strcat(instr1, table_name);
+
+    client->send_message(instr1, sizeof(instr1)+1);
+    return;
 }
 void jesterAPI::modifyCell(){
     // usage: FROM <tableName> UPDATE <rowIndex> <colName> TO <newValue>

@@ -286,7 +286,33 @@ void Server::execute(char * message) {
             }
             getDB()->getTable(m.at(1))->add_row(newRow);
         }
+        else if (m.at(2) == "UPDATE") //FROM ___1___ UPDATE __Row(3)__ ___COL(4)___ TO __New Val(6)__
+        {
+            if(!tableExists(m.at(1)))
+            {
+                return;
+            }
+            int index;
+            try
+            {
+                index = stoi(m.at(3));
+                getDB()->getTable(m.at(1))->modify_table_value(index, m.at(4), m.at(6) );
+            }
+            catch(std::invalid_argument& e){
+                // if no conversion could be performed 
+                cout<<"\033[1;31mERROR:\033[0m Index was not an integer"<<endl;
+            }
+            catch(std::out_of_range& e){
+            // if the converted value would fall out of the range of the result type 
+            // or if the underlying function (std::strtol or std::strtoull) sets errno 
+            // to ERANGE.
+            
+                cout<<"\033[1;31mERROR:\033[0m The index is too large"<<endl;
+            }
+        }
     }
+
+  
 }
 
 bool Server::tableExists(string tableName)
