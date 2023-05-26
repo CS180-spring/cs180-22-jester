@@ -239,22 +239,36 @@ void jesterAPI::deleteCol()
 return;
 }
 void jesterAPI::modifyCell(){
-    //  cout << "Please enter the name of your database:" << endl; 
-    //         cin >> db; 
-    //         cout << "Please enter the name of the table that you would like to modify a cell in:" << endl; 
-    //         cin >> tableName; 
-    //         cout << "Please enter the row index that you would like to modify:" << endl; 
-    //         int rowIndex = 0; 
-    //         cin >> rowIndex; 
-    //         cout << "Please enter the name of the column name of the cell that you would like to modify:" << endl; 
-    //         string col = ""; 
-    //         cin >> col; 
-    //         cout << "What would you like the new value of this cell to be?" << endl; 
-    //         string cell = ""; 
-    //         cin >> cell; 
-    //         modifyCell(db, tableName, rowIndex, col, cell); 
-
-return;
+    // usage: FROM <tableName> UPDATE <rowIndex> <colName> TO <newValue>
+    const int BUFFER_SIZE = 1024;
+    char instruction[BUFFER_SIZE] = "FROM ";
+    char tableName[BUFFER_SIZE];  
+    char rowidx[BUFFER_SIZE]; 
+    char colName[BUFFER_SIZE]; 
+    char newVal[BUFFER_SIZE]; 
+    char space[2] = " "; 
+    char instructionp2[BUFFER_SIZE] = " UPDATE "; 
+    char instructionp3[BUFFER_SIZE] = " TO "; 
+    cout << "Enter the name of the table that you would like to modify: " << endl; 
+    cin.ignore(); 
+    std::cin.getline(tableName, BUFFER_SIZE);
+    strcat(instruction, instructionp2); 
+    cout << "Enter the row index that you would like to modify: " << endl; 
+    std::cin.getline(rowidx, BUFFER_SIZE);
+    cout << "Enter the name of the column that you would like to modify: " << endl; 
+    std::cin.getline(colName, BUFFER_SIZE);
+    cout << "Enter the new value of this cell: " << endl; 
+    std::cin.getline(newVal, BUFFER_SIZE); 
+    strcat(instruction, tableName);
+    strcat(instruction, instructionp2);
+    strcat(instruction, rowidx); 
+    strcat(instruction, space);
+    strcat(instruction, colName); 
+    strcat(instruction, instructionp3);
+    strcat(instruction, newVal); 
+    cout << "Updating your cell value now ... " << endl; 
+    client->send_message(instruction, sizeof(instruction)+1);     
+    return;
 }
 void jesterAPI::createQuery()
 {
