@@ -288,8 +288,38 @@ void jesterAPI::modifyCell(){
     return;
 }
 void jesterAPI::createQuery()
-{
-    // return;
+{  
+    const int BUFFER_SIZE = 1024; 
+    int option; 
+    char instruction[BUFFER_SIZE] = "CREATE QUERY "; 
+    char space[2] = " "; 
+    char filterby[BUFFER_SIZE] = "FILTER BY "; 
+    char range[BUFFER_SIZE] = "RANGE "; 
+    char to[BUFFER_SIZE] = " TO "; 
+    char orderby[BUFFER_SIZE] = "ORDER BY "; 
+    char tableNames[BUFFER_SIZE]; 
+    cout << "Enter the names of the tables that you would like to combine seperated by commas and no spaces: " << endl; 
+    cin.ignore(); 
+    cin::getline(tableNames, BUFFER_SIZE);
+    strcat(instruction, tableNames); 
+    strcat(instruction, space); 
+    cout << "would you like to compare a column? (with this option, you can check for (in)equalities within a column to another column or a specific value.)" << endl
+    << "1. yes\n" << "2. no\n" << " enter any other number to exit createQuery" << endl;   
+    cin >> option;
+    switch(option)
+    {
+        case 1: 
+            char[BUFFER_SIZE] col1; 
+            cout << "Enter the first column name that you would like to compare (begin this with a period. example usage: .colname): " << endl; 
+            cin::getline(col1, BUFFER_SIZE);
+            strcat(); 
+        case 2: 
+            break; 
+        default: 
+            return; 
+    } 
+
+    return;
 }
 
 void jesterAPI::sendInstruction()
