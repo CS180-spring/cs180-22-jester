@@ -103,7 +103,13 @@ void Schema::add_row(vector<string>& newRow)
     catch(const exception& e)
     {
         cerr << e.what() << '\n';
+        return; 
     }
+
+    
+
+
+
 
 }
 
