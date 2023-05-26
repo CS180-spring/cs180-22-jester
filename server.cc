@@ -286,7 +286,13 @@ void Server::execute(char * message) {
             }
             getDB()->getTable(m.at(1))->add_row(newRow);
         }
+        else if (m.at(2) == "UPDATE") //FROM ___1___ UPDATE __Row(3)__ ___COL(4)___ TO __New Val(6)__
+        {
+
+        }
     }
+
+  
 }
 
 bool Server::tableExists(string tableName)
