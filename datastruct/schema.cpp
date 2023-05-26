@@ -61,6 +61,8 @@ void Schema::print_all_data(){
         cout << table.at(i).at(j) <<endl;
     }
     cout<<"\033[0m";
+    
+            cout << "\033[4;32mTable Printed\033[0m"<<endl;
 }
 
 int Schema::columnExisits(string column)
@@ -121,10 +123,13 @@ void Schema::delete_row(int i){
     }
     catch(runtime_error &e){
         cerr << e.what() << endl; 
+        return;
     }
 
     table.erase(table.begin()+i-1);
     updateNumOfRowsAndCols();
+
+    cout << "\033[4;32mRow Deleted'\033[0m"<<endl;
 
 }
 
@@ -154,6 +159,9 @@ void Schema::delete_column(string s){
         // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }
+
+    
+    cout << "\033[4;32mColumn Deleted'\033[0m"<<endl;
     // cout<<"sicess"<<endl;
 }
 

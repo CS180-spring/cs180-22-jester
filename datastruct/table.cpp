@@ -20,6 +20,7 @@ void Table::add_row(vector<string>& newRow)
         else
         {
             table.push_back(newRow);
+            cout << "\033[4;32mRow Added\033[0m"<<endl;
         }
     }
     catch(const exception& e)
@@ -35,7 +36,7 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
     try{
        
         //check for invalud row or col name
-    if(row_number > table.size() /*valis row num*/ ||row_number < 0 || columnExisits(column_name) < 0 /* valid column name*/){
+    if(row_number-1 > table.size() /*valis row num*/ ||row_number-1 < 0 || columnExisits(column_name) < 0 /* valid column name*/){
             throw runtime_error("invalid modification");
         }
     }
@@ -46,7 +47,9 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
 
 
     //if you got to here, its valid. 
-    table.at(row_number).at(columnExisits(column_name)) = new_val;
+    
+    cout << "\033[4;32mModify Cell\033[0m"<<endl;
+    table.at(row_number-1).at(columnExisits(column_name)) = new_val;
 
 }
 
