@@ -184,12 +184,9 @@ void DataView::orderBy(string s, bool b){
     int orderByGlobal=0;
     //check if the column name that was specified is in the table. 
 
-        try{
-            if ( std::find(name_of_colums.begin(), name_of_colums.end(), s) == name_of_colums.end() )
-                throw runtime_error("column attempted to sort was not found");
-            }catch(runtime_error &e){
-            cerr << e.what() << endl; 
-        }
+       if(!(Schema::does_this_col_name_exist(s))){
+        return;
+       }
 
         //
         auto it = find(name_of_colums.begin(), name_of_colums.end(), s);

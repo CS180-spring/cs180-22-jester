@@ -3,13 +3,9 @@
 
 using namespace std;
     
-void Table::add_row(vector<string>& newRow)
-{
-    Schema::add_row(newRow);
-
+void Table::add_row(vector<string>& v ){
+    Schema::add_row(v);
     outputTableToDisk();
-
-
 }
 
 void Table::modify_table_value(int row_number_in, string column_name, string new_val){
@@ -20,7 +16,7 @@ void Table::modify_table_value(int row_number_in, string column_name, string new
     try{
        
         //check for invalud row or col name
-    if(row_number > table.size() /*valis row num*/ ||row_number < 0 ||it == name_of_colums.end() /* valid column name*/){
+    if(row_number > table.size() /*valis row num*/ ||row_number < 0 ||!(Schema::does_this_col_name_exist(column_name)) /* valid column name*/){
             throw runtime_error("invalid modification");
         }
     }
@@ -37,7 +33,7 @@ void Table::modify_table_value(int row_number_in, string column_name, string new
 
 void Table::outputTableToDisk(){
   ofstream myfile;
-  string outputFile = "./outputDisk/test_" + g_table_name() + ".txt";
+  string outputFile = "./outputDisk/test_" + g_table_name() + ".csv";
   myfile.open(outputFile);
 
     unsigned int i = 0;
@@ -75,8 +71,3 @@ void Table::delete_column(string s){
 Table::~Table() {
     
 }
-
-// void Table::add_row(vector<string>& v ){
-//     Schema::add_row(v);
-//     outputTableToDisk();
-// }

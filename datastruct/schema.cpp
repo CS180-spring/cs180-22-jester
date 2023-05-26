@@ -25,9 +25,19 @@ bool Schema::does_this_col_name_exist(string s){
 
     vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
 
+    try{
+       
+        //check for invalud row or col name
     if(it == name_of_colums.end() /* valid column name*/){
+            throw runtime_error("column name does not exist");
+            
+        }
+    }
+    catch(runtime_error &e){
+        cerr << e.what() << endl; 
         return false;
     }
+
     return true;
 
 }
@@ -89,7 +99,7 @@ void Schema::add_row(vector<string>& newRow)
         {
             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
             temp += ("\n\t");
-            for(int i = 0; i < newRow.size(); i++)
+            for(unsigned int i = 0; i < newRow.size(); i++)
             {
                 temp += (newRow.at(i) + ", ");
             }
@@ -106,7 +116,7 @@ void Schema::add_row(vector<string>& newRow)
         return; 
     }
 
-    
+
 
 
 
