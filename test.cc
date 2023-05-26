@@ -22,91 +22,107 @@ int main() {
     // Setup server, accept connection from client, and read first message 
     myServer.setup_server();
     int connection = myServer.accept_connection();
+
+    //----------------------TESTING----------------------------------
+
     size_t messageSize = myServer.read_from(connection, buffer);
-    string response;    // Declare response string
+    if(!strcmp(buffer, "file"))
+    {   
+        cout << "In here\n";
+        myServer.write_file("testRecv.csv", buffer, 0);
 
     //----------------------TESTING----------------------------------
+    }
+    else
+    {
+        size_t messageSize = myServer.read_from(connection, buffer);
+        string response;    // Declare response string
 
-    myServer.write_file("testRecv.csv");
-
-    //----------------------TESTING----------------------------------
-
-
-    // Send/recieve loop
-    while (string(buffer).find("QUIT") == string::npos) {
-        cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;
-        
-        myServer.execute(buffer);
-
-        /* HELPER FUNCTIONS PROOF OF CONCEPT
-        // Tokenize word
-        vector<string> message = myServer.word_tokenize(buffer, ' ');
-        cout << "Tokenized word: " << endl;
-        for (string w : message) {
-            cout << w << endl;
-        }
-
-        // Rejoin word
-        string mes = myServer.join_words(message);
-        cout << "Rejoined message: " << mes << endl;
-        /*
-
-        //can be made into seperate function
-        /*
-        string temp = string(buffer);
-        string createDB = "BUILD DB";
-        if(temp.find(createDB)!= string::npos)
+        // Send/recieve loop
+        while (string(buffer).find("QUIT") == string::npos) 
         {
-            temp.erase(temp.find(createDB), createDB.size());
-            cout<<"create db called: "<<temp<<endl;
-            myServer.initDB(temp);
-        }
-        // BUILD TABLE <tableName> WITH <columns> <fields*>
-        string createTable = "BUILD TABLE ";
-        if(temp.find(createTable)!= string::npos)
-        {
-            string WITH = " WITH ";
-            if(temp.find(WITH)!= string::npos)
-            {
-                cout<<"create table called correctly"<<endl;
-                string tableName;
-                vector<string> colNames;
-                tableName = temp.substr(0, temp.find(WITH));
-                temp.erase(0, temp.find(WITH) + WITH.size());
-                
-                // cout<<tableName;
-                cout<<"."<<endl;
-
-                while(temp.find(',') != string::npos)
-                {
-                    string t = temp.substr(0, temp.find(','));
-                    boost::trim(t);
-                    colNames.push_back(t);
-                    cout<<t;
-                    temp.erase(0, temp.find(',')+1);
-                }
-                boost::trim(temp);
-                colNames.push_back(temp);
-                cout<<temp;
-
-
-                myServer.getDB()->createTable(tableName, colNames.size(), colNames);
-                vector<string> dummyRow = {"one","two","three"};
-                myServer.getDB()->getTable(tableName)->add_row(dummyRow);
-
-                myServer.getDB()->getTable(tableName)->print_all_data();
-
-            }
+            cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;
             
 
+
+            myServer.execute(buffer);
+
+            /* HELPER FUNCTIONS PROOF OF CONCEPT
+            // Tokenize word
+            vector<string> message = myServer.word_tokenize(buffer, ' ');
+            cout << "Tokenized word: " << endl;
+            for (string w : message) {
+                cout << w << endl;
+            }
+
+            // Rejoin word
+            string mes = myServer.join_words(message);
+            cout << "Rejoined message: " << mes << endl;
+            /*
+
+            //can be made into seperate function
+            /*
+            string temp = string(buffer);
+            string createDB = "BUILD DB";
+            if(temp.find(createDB)!= string::npos)
+            {
+                temp.erase(temp.find(createDB), createDB.size());
+                cout<<"create db called: "<<temp<<endl;
+                myServer.initDB(temp);
+            }
+            // BUILD TABLE <tableName> WITH <columns> <fields*>
+            string createTable = "BUILD TABLE ";
+            if(temp.find(createTable)!= string::npos)
+            {
+                string WITH = " WITH ";
+                if(temp.find(WITH)!= string::npos)
+                {
+                    cout<<"create table called correctly"<<endl;
+                    string tableName;
+                    vector<string> colNames;
+                    tableName = temp.substr(0, temp.find(WITH));
+                    temp.erase(0, temp.find(WITH) + WITH.size());
+                    
+                    // cout<<tableName;
+                    cout<<"."<<endl;
+
+                    while(temp.find(',') != string::npos)
+                    {
+                        string t = temp.substr(0, temp.find(','));
+                        boost::trim(t);
+                        colNames.push_back(t);
+                        cout<<t;
+                        temp.erase(0, temp.find(',')+1);
+                    }
+                    boost::trim(temp);
+                    colNames.push_back(temp);
+                    cout<<temp;
+
+
+                    myServer.getDB()->createTable(tableName, colNames.size(), colNames);
+                    vector<string> dummyRow = {"one","two","three"};
+                    myServer.getDB()->getTable(tableName)->add_row(dummyRow);
+
+                    myServer.getDB()->getTable(tableName)->print_all_data();
+
+                }
+                
+
+            }
+            */
+            response = "This is a response\n";
+            myServer.send_to(connection, response.c_str());
+            
+            messageSize = myServer.read_from(connection, buffer);
+            // std::cout << buffer << std::endl;
         }
-        */
-        response = "This is a response\n";
-        myServer.send_to(connection, response.c_str());
-        
-        messageSize = myServer.read_from(connection, buffer);
-        // std::cout << buffer << std::endl;
     }
+
+
+   
+
+
+    
 
     // Clean up
     myServer.close_connection(connection);

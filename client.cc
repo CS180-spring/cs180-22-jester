@@ -116,6 +116,7 @@ std::string Client::recieved_to_string(char * message)
 }
 
 // Testing the send file function
+// Sending seems to be working fine since we're able to print all the parts for each line
 
 void Client::send_file(FILE *fp)
 {
@@ -129,6 +130,8 @@ void Client::send_file(FILE *fp)
       perror("[-]Error in sending file.");
       exit(1);
     }
+
+    std::cout << "The part that we're sending: " << data << "\n";
     bzero(data, BUFFER_LEN);
   }
 }

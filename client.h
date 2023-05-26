@@ -12,7 +12,7 @@
 #include <string>
 
 const int PORT = 8080;
-const int BUFFER_LEN = 1024;
+const int BUFFER_LEN = 1024 * 16;
 class Client {
     private:
         int CreateSocket = 0;
