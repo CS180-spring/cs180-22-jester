@@ -46,7 +46,7 @@ void Table::modify_table_value(int row_number, string column_name, string new_va
 
 
     //if you got to here, its valid. 
-    table.at(row_number).at(it - name_of_colums.begin()) = new_val;
+    table.at(row_number).at(columnExisits(column_name)) = new_val;
 
 }
 
