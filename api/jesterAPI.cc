@@ -269,7 +269,7 @@ void jesterAPI::modifyCell(){
     cout << "Enter the name of the table that you would like to modify: " << endl; 
     cin.ignore(); 
     std::cin.getline(tableName, BUFFER_SIZE);
-    strcat(instruction, instructionp2); 
+    // strcat(instruction, instructionp2); 
     cout << "Enter the row index that you would like to modify: " << endl; 
     std::cin.getline(rowidx, BUFFER_SIZE);
     cout << "Enter the name of the column that you would like to modify: " << endl; 

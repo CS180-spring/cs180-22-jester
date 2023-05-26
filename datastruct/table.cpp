@@ -30,12 +30,12 @@ void Table::add_row(vector<string>& newRow)
 }
 
 void Table::modify_table_value(int row_number, string column_name, string new_val){
-    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
+    // vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
 
     try{
        
         //check for invalud row or col name
-    if(row_number > table.size() /*valis row num*/ ||row_number < 0 ||it == name_of_colums.end() /* valid column name*/){
+    if(row_number > table.size() /*valis row num*/ ||row_number < 0 || columnExisits(column_name) < 0 /* valid column name*/){
             throw runtime_error("invalid modification");
         }
     }
