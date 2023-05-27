@@ -3,6 +3,25 @@
 
 using namespace std;
     
+
+Table::Table() : Schema(0)
+{
+    
+    name_of_table = "no_name";
+}//end of 0 arg table constructor
+Table::Table(string table_name, int num_of_cols) : Schema( num_of_cols ) 
+{
+    name_of_table = table_name; 
+}// end of 2 arg table constructor
+Table::Table(string table_name, int num_of_cols, vector<string> &columnNames) : Schema(num_of_cols, columnNames) 
+{
+        name_of_table = table_name;
+}//end of 3 arg table constructor
+
+
+string Table::g_table_name() {return name_of_table; }
+
+
 void Table::add_row(vector<string>& newRow)
 {
     try
@@ -10,11 +29,6 @@ void Table::add_row(vector<string>& newRow)
         if(newRow.size() != num_of_cols)
         {
             string temp = "\033[1;31mSize of new row "+to_string(newRow.size())+" does not match existing (Expected: " + to_string(num_of_cols) + ", Got: "+to_string(newRow.size())+") \033[0m";
-            // temp += ("\n\t");
-            // for(int i = 0; i < newRow.size(); i++)
-            // {
-            //     temp += (newRow.at(i) + ", ");
-            // }
             throw invalid_argument(temp);
         }//end of if to make sure size of new column matches
         else
@@ -28,7 +42,7 @@ void Table::add_row(vector<string>& newRow)
         cerr << e.what() << '\n';
     }
 
-}
+}//end of add_row class
 
 void Table::modify_table_value(int row_number, string column_name, string new_val){
     // vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), column_name);
@@ -79,3 +93,9 @@ void Table::outputTableToDisk(string s){
 
   myfile.close();
 }
+
+DataView* Table::createView()
+{
+    DataView* temp = new DataView( this->table,this->name_of_colums, this->num_of_rows, this->num_of_cols);
+    return temp; 
+}//end of create DataCiew
