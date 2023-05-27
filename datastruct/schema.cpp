@@ -13,7 +13,7 @@ Schema::Schema(int num_of_cols)
     this->num_of_cols = num_of_cols;
 
     cout << "enter the labels for the table" ; 
-    for(unsigned int i = 0; i < num_of_cols;++i){
+    for( int i = 0; i < num_of_cols;++i){
         string s; 
         cin >> s;
         name_of_colums.push_back(s);  
@@ -151,10 +151,17 @@ int Schema::columnExisits(string column)
 
 void Schema::delete_row(int i){
     //deleting row is zero-indexed. 
+    
 
     try{
-        if(i > table[0].size() || i < 0){
-            throw runtime_error("invalid row attempted to delete ");
+        unsigned int index = 0;
+        if(i < 1)
+        {
+            throw runtime_error("invalid row attempted to delete (Indexing Starts at 1) ");
+        }
+        index = i;
+        if(index > table[0].size()){
+            throw runtime_error("invalid row attempted to delete (Index Cannot be larger than number of rows)");
         }
     }
     catch(runtime_error &e){
