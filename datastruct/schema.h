@@ -43,10 +43,10 @@ class Schema{
 
 
     protected:
-    vector<vector<string> > table; 
-    vector<string> name_of_colums; 
-    unsigned int num_of_rows;
-    unsigned int num_of_cols;
+        vector<vector<string> > table; 
+        vector<string> name_of_colums; 
+        unsigned int num_of_rows;
+        unsigned int num_of_cols;
 
 };
 

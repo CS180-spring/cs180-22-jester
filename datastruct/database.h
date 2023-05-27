@@ -37,7 +37,7 @@ class Database
         Table* getTable(string);//will return table;
         vector<vector<string> > printRAW(string);//will return csv a single table *
         // UPDATE
-        DataView* createView(Schema *); 
+        DataView* createView(Table *); 
         DataView* createView(const vector<string>&);
         vector<vector<string>> compileTable(vector<vector<string>>, vector<string> tableNames);
         // DELETE

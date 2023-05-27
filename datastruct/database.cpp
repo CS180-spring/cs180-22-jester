@@ -241,8 +241,8 @@ void Database::deleteTable(string tableName)
     cout << "\033[4;31mTable: " << tableName <<" deleted\033[0m"<<endl;
 }
 
-DataView* Database::createView(Schema * t) 
+DataView* Database::createView(Table * t) 
 {
     DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
     return temp; 
-}
+}//end of createView
