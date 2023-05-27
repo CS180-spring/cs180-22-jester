@@ -10,9 +10,19 @@
 #include <algorithm>
 using namespace std;
 
+
+DataView::DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {}//3 arg constructro
+DataView::DataView() : Schema() {};//0 arg constructor
+DataView::DataView(vector<vector<string>> table, vector<string> name_of_colums, int num_of_rows, int num_of_cols):Schema(){//5 arg constructor
+    this->table = table;
+    this->name_of_colums = name_of_colums;
+    this->num_of_rows = num_of_rows;
+    this->num_of_cols = num_of_cols;
+}
+
 void DataView::filterByColumnEquality(int columnOne, int columnTwo, bool invert)
 {
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         if( (table.at(i).at(columnOne) == table.at(i).at(columnTwo)) ^ !invert)//xor
@@ -27,7 +37,7 @@ void DataView::filterByColumnEquality(int columnOne, int columnTwo, bool invert)
 }
 void DataView::filterByValue(int columnOne, string compareWith, bool invert)
 {
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         if( (table.at(i).at(columnOne) == compareWith) ^ !invert)//xor
@@ -79,7 +89,7 @@ void DataView::rangeString(string c_name, string lower, string upper, bool inver
     {
         swap(l, u);
     }
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         transform(l.begin(), l.end(), l.begin(), ::toupper);
@@ -127,7 +137,7 @@ void DataView::rangeNumerical(string c_name, double lower, double upper, bool in
     {
         swap(lower, upper);
     }
-    int i = 0;
+    unsigned int i = 0;
     while(i < table.size())
     {
         double temp1;
