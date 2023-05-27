@@ -71,9 +71,11 @@ bool Schema::does_this_col_name_exist(string s){
 
 
 void Schema::print_col_names(){
-    for(unsigned int i = 0; i < name_of_colums.size(); ++i){
-        cout << name_of_colums.at(i)<<"\t";
+    unsigned int j = 0;
+    for(j = 0 ; j < name_of_colums.size()-1; ++j){
+        cout <<"\033[1;34m"<<name_of_colums.at(j) <<", ";
     }
+    cout << name_of_colums.at(j) <<"\033[0,]"<<endl;
 }
 
 void Schema::print_all_data(){
@@ -82,11 +84,7 @@ void Schema::print_all_data(){
     unsigned int j = 0;
     // cout<<"\033[1;34mTable Name: "<<table
 
-    for(j = 0 ; j < name_of_colums.size()-1; ++j){
-        cout <<"\033[1;34m"<<name_of_colums.at(j) <<", ";
-    }
-    cout << name_of_colums.at(j) <<"\033[0,]"<<endl;
-
+    print_col_names();
      i = 0;
      j = 0;
     cout<<"\033[33m";
@@ -122,33 +120,6 @@ int Schema::columnExisits(string column)
 
 }
     
-// void Table::add_row(vector<string>& newRow)
-// {
-//     try
-//     {
-//         if(newRow.size() != num_of_cols)
-//         {
-//             string temp = "Size of new row "+to_string(newRow.size())+" does not match existing (" + to_string(num_of_cols) + ", "+to_string(newRow.size())+") ";
-//             temp += ("\n\t");
-//             for(int i = 0; i < newRow.size(); i++)
-//             {
-//                 temp += (newRow.at(i) + ", ");
-//             }
-//             throw invalid_argument(temp);
-//         }//end of if to make sure size of new column matches
-//         else
-//         {
-//             table.push_back(newRow);
-//         }
-//     }
-//     catch(const exception& e)
-//     {
-//         cerr << e.what() << '\n';
-//     }
-
-// }
-
-
 void Schema::delete_row(int i){
     //deleting row is zero-indexed. 
     
@@ -193,13 +164,9 @@ void Schema::delete_column(string s){
             cerr << e.what() << endl; 
             return;
         }
-    
-    // cout<<s<<" ente: "<<loc<<endl;
     name_of_colums.erase(it);
     num_of_cols = name_of_colums.size();
-    // cout<<table.size()<<endl;
     for(unsigned int i = 0 ; i < table.size();++i){
-        // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }
 

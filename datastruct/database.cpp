@@ -246,3 +246,4 @@ DataView* Database::createView(Table * t)
     DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
     return temp; 
 }//end of createView
+
