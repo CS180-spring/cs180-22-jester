@@ -3,8 +3,18 @@
 using namespace std;
 
 
+Database::Database(string db_name) : db_name(db_name) {cout << "\033[4;32mDatabase Built: " << db_name <<"\033[0m"<<endl;}
+Database::~Database()
+{
+    
+    for(map<string, Table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)
+    {
+        delete (itr->second);
+    }
+    db_map.clear();
+}
 
-void Database::createTableWithCols(string tableName, int colNums, vector<string> &columnNames)
+void Database::createTableWithCols(string tableName, unsigned int colNums, vector<string> &columnNames)
 {
     try
     {
@@ -179,9 +189,9 @@ vector<vector<string>> Database::compileTable(vector<vector<string>> exisiting, 
 
             // cout<<"test"<<endl;
         int counter = 0;
-        for(int i = 0; i < exisiting.size(); i++)
+        for(unsigned int i = 0; i < exisiting.size(); i++)
         {
-            for(int j = 0; j < curTable.size(); j++)
+            for(unsigned int j = 0; j < curTable.size(); j++)
             {
                 // cout<<"test2"<<endl;
                 compiledTable.at(counter).reserve(exisiting.at(i).size() + curTable.at(j).size());
@@ -229,4 +239,10 @@ void Database::deleteTable(string tableName)
     delete getTable(tableName);
     db_map.erase(tableName);
     cout << "\033[4;31mTable: " << tableName <<" deleted\033[0m"<<endl;
+}
+
+DataView* Database::createView(Schema * t) 
+{
+    DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
+    return temp; 
 }
