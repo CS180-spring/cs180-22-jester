@@ -26,11 +26,13 @@ int main() {
     //----------------------TESTING----------------------------------
 
     size_t messageSize = myServer.read_from(connection, buffer);
-    if(!strcmp(buffer, "file"))
+    if(strcmp(buffer, "file"))
     {   
-        cout << "In here\n";
-        myServer.write_file("testRecv.csv", buffer, 0);
-
+        while(myServer.read_from(connection, buffer) != 0)
+        {
+            cout << "In here\n";
+            myServer.write_file("testRecv.csv", buffer, 0);
+        }
     //----------------------TESTING----------------------------------
     }
     else
@@ -42,9 +44,6 @@ int main() {
         while (string(buffer).find("QUIT") == string::npos) 
         {
             cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;
-            
-
-
             myServer.execute(buffer);
 
             /* HELPER FUNCTIONS PROOF OF CONCEPT

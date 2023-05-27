@@ -269,7 +269,7 @@ bool Server::tableExists(string tableName)
 
 // Testing function to observe file transfer
 // Input name changed from buffer to buf
-int Server::write_file(char * fileName, char buf[], size_t msgSize)
+void Server::write_file(char * fileName, char buf[], size_t msgSize)
 {
   cout << "Entered the function \n";
   int n;
@@ -277,29 +277,29 @@ int Server::write_file(char * fileName, char buf[], size_t msgSize)
   char *filename = fileName;
   char buffer[BUFFER_LEN];
  
-  fp = fopen(filename, "w");
-  while (1) 
-  {
+  fp = fopen(filename, "a+");
+//   while (1) 
+//   {
     //   cout << "In the loop \n";
-    cout << "Current n value: " << n << endl;
+    // cout << "Current n value: " << n << endl;
 
 
-    n = recv(sockfd, buffer, BUFFER_LEN, 0);
+    // n = recv(sockfd, buffer, BUFFER_LEN, 0);
     // n = read_from(sockfd, buffer);
 
-    cout << "The current buffer: " << buffer;
-    if (n <= 0)
-    {
-      cout << "broke away:( \n";
-      break;
-      return 0;
-    }
+    cout << "The current buffer: " << buf;
+    // if (n <= 0)
+    // {
+    //   cout << "broke away:( \n";
+    //   break;
+    //   return 0;
+    // }
     
-    fprintf(fp, "%s", buffer);
+    fprintf(fp, "%s", buf);
     bzero(buffer, msgSize);
-  }
+//   }
 //   fprintf(fp, "%s", buffer);
 //   bzero(buffer, msgSize);
   fclose(fp);
-  return 0;
+//   return 0;
 }

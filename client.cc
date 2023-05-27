@@ -1,6 +1,7 @@
 // Reference link: https://www.thecrazyprogrammer.com/2017/06/socket-programming.html
 
 #include "client.h"
+#include <iostream>
 
 
 int Client::getBufferLen(char * buffer) 

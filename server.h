@@ -37,5 +37,5 @@ class Server {
         void initDB(string s) {db = new Database(s);}
 
         // Testing
-        int write_file(char *, char [], size_t);
+        void write_file(char *, char [], size_t);
 };
