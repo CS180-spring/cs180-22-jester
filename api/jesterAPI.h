@@ -24,6 +24,12 @@ class jesterAPI{
         void deleteCol();
         void deleteTable();  
         void printTable(); 
+
+        void makeFilter(char (&instruc)[1024]);
+        void makeRange(char (&instruc)[1024]);
+        void makeOrder(char (&instruc)[1024]);
+        void continuationMenu(char (&instruc)[1024]);
+        void keepColumns(char (&instruc)[1024]);
     private: 
         Client* client; 
         const int BUFFER_SIZE = 1024;

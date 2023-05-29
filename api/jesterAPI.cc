@@ -27,8 +27,9 @@ void jesterAPI::interface(){
     buildDB();
     while (!quit){
         cout << "1. Create a table" << endl << "2. Delete a table" << endl; 
-        cout << "3. Add a row to your table" << endl << "4. View your table" << endl << "5. Delete a row from your table" << endl << 
-        "6. Delete a column from your table" << endl << "7. Create your own instruction to execute" << endl <<"8. Modify a cell in your table" << endl << "20. Quit" << endl;
+        cout << "3. Add a row to your table" << endl << "4. View your table" << endl << "5. Delete a row from your table" << endl; 
+        cout << "6. Delete a column from your table" << endl << "7. Create your own instruction to execute" << endl;
+        cout << "8. Modify a cell in your table" << endl<<"9. Create Query" << endl << "10. Upload CSV" << endl << "20. Quit" << endl;
         cout << "Please type a number for your option: " << endl; 
         // cin.ignore();
         cin >> option; 
@@ -58,6 +59,12 @@ void jesterAPI::interface(){
                 break;
             case 8: 
                 modifyCell();
+                break;
+            case 9: 
+                createQuery();
+                break;
+            case 10: 
+                // modifyCell();
                 break;
             case 20:
                 quit = true; 
@@ -289,8 +296,207 @@ void jesterAPI::modifyCell(){
 }
 void jesterAPI::createQuery()
 {
-    // return;
+    // BUILD QUERY table1,table2,...
+    // FILTER BY ____ (==/!=) ____
+    // RANGE (IN/OUT)  ___ TO ____ 
+    // ORDER BY (DESC/ASC) <colname>
+    const int BUFFER_SIZE = 1024;
+    char instruction[BUFFER_SIZE] = "BUILD QUERY ";
+    // char andInstruct[BUFFER_SIZE] = " AND";
+    char order[BUFFER_SIZE] = " :ORDER BY ";
+    char columns[BUFFER_SIZE] = " COLUMNS ";
+    char input[BUFFER_SIZE];
+    // choose tables to combine
+    cout << "Enter Tables to query from(commas no space): " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input, BUFFER_SIZE);
+    strcat(instruction, input);
+    input[0]='\0';
+    // input.Clean();
+    // choose filters
+    bool cont = true;
+    while(cont)
+    {
+        cout << "Create Query: " << endl; 
+        cout << "1. Filter" << endl; 
+        cout << "2. Range" << endl; 
+        cout << "3. Continue" << endl; 
+        cout << "Else Quit" << endl; 
+        int option;
+        cin >> option; 
+        switch(option)
+        {
+            case 1: 
+            // choose filters
+                makeFilter(instruction);
+                break;
+            case 2: 
+            // choose ranges
+                makeRange(instruction);
+                break;
+            case 3: 
+                continuationMenu(instruction);
+                client->send_message(instruction, sizeof(instruction)+1);
+                cont = false;
+                break;
+            default:
+                cont = false;
+        }
+
+    }
 }
+
+void jesterAPI::makeFilter(char (&instruc)[1024])
+{
+    const int BUFFER_SIZE = 1024;
+    char filter[BUFFER_SIZE] = " :FILTER BY ";
+    char eq[BUFFER_SIZE] = " == ";
+    char notEq[BUFFER_SIZE] = " != ";
+    char input1[BUFFER_SIZE];
+    char input2[BUFFER_SIZE];
+    char input3[BUFFER_SIZE];
+
+    cout << "Enter Column " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input1, BUFFER_SIZE);
+    int option = 0;
+    while(option != 1 && option != 2)
+    {
+        cout << "1. Equal"<<endl;
+        cout << "2. Not Equals"<<endl;
+        strcpy(input2, "");
+        // cin.ignore();
+        cin>>option;
+        if(option == 1)
+            strcat(input2, " == ");
+        else if(option == 2)
+            strcat(input2, " != ");
+    }
+     cout << "Enter Next Value (add '.' to the start if it its to a column) " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input3, BUFFER_SIZE);
+    strcat(instruc, filter);
+    strcat(instruc, input1);
+    strcat(instruc, input2);
+    strcat(instruc, input3);
+
+}
+
+void jesterAPI::makeRange(char (&instruc)[1024])
+{
+    const int BUFFER_SIZE = 1024;
+
+    char range[BUFFER_SIZE] = " :RANGE ";
+    char to[BUFFER_SIZE] = " TO ";
+
+    char input1[BUFFER_SIZE];
+    char input2[BUFFER_SIZE];
+    char input3[BUFFER_SIZE];
+    char input4[BUFFER_SIZE];
+
+    cout << "Enter Column " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input1, BUFFER_SIZE);
+    int option = 0;
+    while(option != 1 && option != 2)
+    {
+        cout << "1. IN"<<endl;
+        cout << "2. Not IN"<<endl;
+        strcpy(input2, "");
+        // cin.ignore();
+        cin>>option;
+        if(option == 1)
+            strcat(input2, " WITHIN ");
+        else if(option == 2)
+            strcat(input2, " OUTSIDE ");
+    }
+    cout << "Enter Lower Bound " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input3, BUFFER_SIZE);
+    cout << "Enter Upper Bound " << endl; 
+    cin.ignore(); 
+    std::cin.getline(input4, BUFFER_SIZE);
+    strcat(instruc, range);
+    strcat(instruc, input1);
+    strcat(instruc, input2);
+    strcat(instruc, input3);
+    strcat(instruc, to);
+    strcat(instruc, input4);
+
+}
+
+void jesterAPI::continuationMenu(char (&instruc)[1024])
+{
+    makeOrder(instruc);
+    keepColumns(instruc);
+}
+
+void jesterAPI::makeOrder(char (&instruc)[1024])
+{
+    const int BUFFER_SIZE = 1024;
+    char order[BUFFER_SIZE] = " :ORDER BY ";
+    char input1[BUFFER_SIZE];
+    char input2[BUFFER_SIZE];
+
+    cout << "Order By " << endl; 
+    // cin.ignore(); 
+    // std::cin.getline(input1, BUFFER_SIZE);
+    int option = 0;
+    while(option != 1 && option != 2)
+    {
+        cout << "1. Ascending"<<endl;
+        cout << "2. Decending"<<endl;
+        cout << "Else Do not reorder"<<endl;
+        strcpy(input2, "");
+        // cin.ignore();
+        cin>>option;
+        if(option == 1 || option == 2)
+        {
+            if(option == 1)
+                strcat(input2, " ASCENDING");
+            else
+                strcat(input2, " DECENDING");
+
+            cout << "Enter Column " << endl; 
+            cin.ignore(); 
+            std::cin.getline(input1, BUFFER_SIZE);
+            strcat(instruc, order);
+            strcat(instruc, input1);
+            strcat(instruc, input2);
+        }
+    }
+}
+
+void jesterAPI::keepColumns(char (&instruc)[1024])
+{
+    const int BUFFER_SIZE = 1024;
+    char keepColumns[BUFFER_SIZE] = " :SHOW COLUMNS ";
+    char input1[BUFFER_SIZE];
+    char input2[BUFFER_SIZE];
+
+    cout << "Show Specific Columns: " << endl; 
+    // cin.ignore(); 
+    // std::cin.getline(input1, BUFFER_SIZE);
+    int option = 0;
+    while(option != 1 && option != 2)
+    {
+        cout << "1. Yes"<<endl;
+        cout << "Else No"<<endl;
+        strcpy(input2, "");
+        // cin.ignore();
+        cin>>option;
+        if(option == 1)
+        {
+            cout << "Enter Columns(only comma seperation) " << endl; 
+            cin.ignore(); 
+            std::cin.getline(input1, BUFFER_SIZE);
+            strcat(instruc, keepColumns);
+            strcat(instruc, input1);
+        }
+    }
+
+}
+
 
 void jesterAPI::sendInstruction()
 {

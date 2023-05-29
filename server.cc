@@ -202,6 +202,10 @@ void Server::execute(char * message) {
             // getDB()->getTable(name)->print_all_data();
             return;
         }
+        if (m.at(1) == "QUERY") {
+            // while
+            return;
+        }
     }
     else if (m.at(0) == "GET")
     {
