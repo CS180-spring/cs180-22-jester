@@ -202,7 +202,51 @@ void Server::execute(char * message) {
             // getDB()->getTable(name)->print_all_data();
             return;
         }
-        if (m.at(1) == "QUERY") {
+        if (m.at(1) == "QUERY") 
+        {
+            std::vector<std::string> tables = word_tokenize(m.at(2).c_str(), ',');
+            DataView* dv = getDB()->createView(tables);
+            
+            // int numFilters = std::count(m.begin(), m.end(), ":FILTER");
+            // int numRange = std::count(m.begin(), m.end(), ":RANGE");
+            // int orderBy = std::count(m.begin(), m.end(), ":ORDER");
+            // int showCols = std::count(m.begin(), m.end(), ":SHOW");
+            int it = 0;
+            //find filters 
+            for(int i = 0; i < m.size(); i++)
+            {
+                bool invert = true;
+                if(m.at(i) == ":FILTER")
+                {
+                    if(m.at(i+3) == "==")
+                        invert = false;
+                    dv->filter(m.at(i+2), m.at(i+4), invert);
+                    i++;
+                }
+                else if(m.at(i) == ":RANGE")
+                {
+                    bool invert = true;
+                    if(m.at(i+2) == "WITHIN")
+                        invert = false;
+                    dv->range(m.at(i+1), m.at(i+3), m.at(i+5), invert);
+                    i++;
+                }
+                else if(m.at(i) == ":ORDER")
+                {
+                    bool invert = true;
+                    if(m.at(i+3) == "ASCENDING")
+                        invert = false;
+                    dv->orderBy(m.at(i+2), invert);
+                    i++;
+                }
+                else if(m.at(i) == ":SHOW")
+                {
+                    // bool invert = true;
+                    // dv->keepColumns(m.at(i+2), invert);
+                    i++;
+                }
+
+            }
             // while
             return;
         }
