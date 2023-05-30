@@ -121,18 +121,21 @@ std::string Client::recieved_to_string(char * message)
 
 void Client::send_file(FILE *fp)
 {
-  int n;
-  char data[BUFFER_LEN] = {0};
- 
-  while(fgets(data, BUFFER_LEN, fp) != NULL) 
-  {
+    int n;
+    char data[BUFFER_LEN] = {0};
+
+    while(fgets(data, BUFFER_LEN, fp) != NULL) 
+    {
     if (send(CreateSocket, data, sizeof(data), 0) == -1) 
     {
-      perror("[-]Error in sending file.");
-      exit(1);
+        perror("[-]Error in sending file.");
+        exit(1);
     }
 
     std::cout << "The part that we're sending: " << data << "\n";
     bzero(data, BUFFER_LEN);
-  }
+    }
+
+    // Sending the final message to indicate that the file is empty
+    send(CreateSocket, "DONE", sizeof("DONE"), 0);
 }

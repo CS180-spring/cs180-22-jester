@@ -28,11 +28,18 @@ int main() {
     size_t messageSize = myServer.read_from(connection, buffer);
     if(strcmp(buffer, "file"))
     {   
-        while(myServer.read_from(connection, buffer) != 0)
+        // First call to get the first line from the file
+        myServer.read_from(connection, buffer);
+        
+        while(string(buffer).find("DONE") == string::npos)
         {
             cout << "In here\n";
             myServer.write_file("testRecv.csv", buffer, 0);
+
+            // Gets the next line after sending in the first one
+            myServer.read_from(connection, buffer);
         }
+        // cout << "After the loop" << (string(buffer).find("QUIT") == string::npos);
     //----------------------TESTING----------------------------------
     }
     else
