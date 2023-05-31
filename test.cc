@@ -23,8 +23,6 @@ int main() {
     myServer.setup_server();
     int connection = myServer.accept_connection();
 
-    //----------------------TESTING----------------------------------
-
     size_t messageSize = myServer.read_from(connection, buffer);
     if(strcmp(buffer, "file"))
     {   
@@ -34,13 +32,12 @@ int main() {
         while(string(buffer).find("DONE") == string::npos)
         {
             cout << "In here\n";
-            myServer.write_file("testRecv.csv", buffer, 0);
+            myServer.write_file("src/testRecv.csv", buffer, 0);
 
             // Gets the next line after sending in the first one
             myServer.read_from(connection, buffer);
         }
-        // cout << "After the loop" << (string(buffer).find("QUIT") == string::npos);
-    //----------------------TESTING----------------------------------
+
     }
     else
     {
