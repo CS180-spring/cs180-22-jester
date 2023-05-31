@@ -49,7 +49,7 @@ class Schema{
     // CRUD
     // CREATE
     //virtual void add_row(vector<string>&);//DONE 
-    void add_row(vector<string>&);//DONE 
+    virtual void add_row(vector<string>&);//DONE 
 
     bool does_this_col_name_exist(string);
     // READ

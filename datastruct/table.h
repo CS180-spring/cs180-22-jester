@@ -52,6 +52,9 @@ class Table: public Schema {
 
     void delete_column(string) override;
     //void add_row(vector<string>&) override;
+    void keepCols(vector<string>&);
+
+    ~Table();
 
     private:
     string name_of_table;

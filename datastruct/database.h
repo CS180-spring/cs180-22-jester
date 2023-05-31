@@ -53,13 +53,12 @@ class Database
             return temp; 
         }
         DataView* createView(const vector<string>&);
-        vector<vector<string>> compileTable(vector<vector<string>>, vector<string> tableNames);
+        vector<vector<string> > compileTable(vector<vector<string> >, vector<string> tableNames);
         // DELETE
         void deleteTable(string);//will delete table from database *
 
         bool tablesExist(const vector<string>&);
 
-        
 };//end of Database obejct
 
 
