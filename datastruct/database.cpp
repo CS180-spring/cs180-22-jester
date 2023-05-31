@@ -16,6 +16,9 @@ Database::~Database()
 
 void Database::createTableWithCols(string tableName, unsigned int colNums, vector<string> &columnNames)
 {
+
+    unsigned int colNums=unsigned(colNums_in);
+
     try
     {
         if(colNums != columnNames.size())

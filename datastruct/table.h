@@ -19,10 +19,12 @@ class Table: public Schema
        string name_of_table;
 
     public: 
+
     // Constructors
     Table();
     Table(string, int);
     Table(string, int, vector<string>&);
+
 
     // CRUD
     string g_table_name();
@@ -33,8 +35,22 @@ class Table: public Schema
     void modify_table_value(int, string, string);
 
     //createView in order to Query
-    void outputTableToDisk(string);
+
     DataView* createView();
+
+    void outputTableToDisk();
+
+    void delete_row(int) override;
+
+    void delete_column(string) override;
+    //void add_row(vector<string>&) override;
+    void keepCols(vector<string>&);
+
+    ~Table();
+
+    private:
+    string name_of_table;
+
 
 }; //END OF TABLE CLASS
 

@@ -174,6 +174,13 @@ bool columnSortAscending(const std::vector<std::string>& row1, const std::vector
     return row1[columnIndex] > row2[columnIndex];
 }
 
+bool columnSortAscendingInt(const std::vector<std::string>& row1, const std::vector<std::string>& row2, int columnIndex) {
+    return stoi(row1[columnIndex]) > stoi(row2[columnIndex]);
+}
+
+bool columnSortDescendingInt(const std::vector<std::string>& row1, const std::vector<std::string>& row2, int columnIndex) {
+    return stoi(row1[columnIndex]) < stoi(row2[columnIndex]);
+}
 
 
 // std::sort(vec.begin(), vec.end(),[](const std::vector<string>& a, const std::vector<String>& b) {
@@ -187,33 +194,58 @@ void DataView::orderBy(string s, bool b){
     int orderByGlobal=0;
     //check if the column name that was specified is in the table. 
 
-        try{
-            if ( std::find(name_of_colums.begin(), name_of_colums.end(), s) == name_of_colums.end() )
-                throw runtime_error("invalid column attempted to delete ");
-            }catch(runtime_error &e){
-            cerr << e.what() << endl; 
-        }
+       if(!(Schema::does_this_col_name_exist(s))){
+        return;
+       }
 
         //
         auto it = find(name_of_colums.begin(), name_of_colums.end(), s);
 
         orderByGlobal = it - name_of_colums.begin();
 
-        cout<< "going to sort col num" <<orderByGlobal;
+        cout<< "going to sort col num\n" <<orderByGlobal;
 
         //sort(table.begin(), table.end(), sortcol);
-        cout<<"soooorting \n ";
+        //props to Edgar for this method of checking to sort by number or string 
+        double l_double;
+        double u_double;
+        try
+        {
+            l_double = stod(table.at(0).at(orderByGlobal));
+            u_double = stod(table.at(table.size()-1).at(orderByGlobal));
 
-        if(b){
-            std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
-                 return columnSortDescending(row1, row2, orderByGlobal);
-         });
-
-        }else{
+            //rangeNumerical(c_name, l_double, u_double, invert);//do numerical comperison
+            if(b){
                 std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
-                 return columnSortAscending(row1, row2, orderByGlobal);
-         });
+                return columnSortDescendingInt(row1, row2, orderByGlobal);
+            });
+
+            }else{
+                    std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
+                    return columnSortAscendingInt(row1, row2, orderByGlobal);
+                });
+            }
         }
+        catch(const std::exception& e)
+        {
+            //rangeString(c_name, lower, upper, invert);//do string comparison
+            if(b){
+                std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
+                return columnSortDescending(row1, row2, orderByGlobal);
+            });
+
+            }else{
+                    std::sort(table.begin(), table.end(), [&](const std::vector<std::string>& row1, const std::vector<std::string>& row2) {
+                    return columnSortAscending(row1, row2, orderByGlobal);
+                });
+            }
+
+        }
+
+
+   
+
+ 
 
             
     // std::sort(table.begin(),table.end(),cmp);

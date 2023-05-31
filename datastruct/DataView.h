@@ -27,7 +27,6 @@ class DataView : public Schema {
         bool cmp(int, int);
         void orderBy(string, bool);
 
-
 };
 
 #endif

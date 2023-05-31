@@ -29,8 +29,14 @@ class Schema{
         // HELPERS
         int g_num_of_rows();//DONE
         int g_num_of_cols(); //DONE
+  
         vector<string> g_name_of_cols();//DONE
         vector<vector<string> > g_all_data();//DONE
+        void updateNumOfRowsAndCols();
+        virtual void add_row(vector<string>&);//DONE 
+      // DELETE
+        virtual void delete_row(int);//DONE
+        virtual void delete_column(string);  
         void updateNumOfRowsAndCols();
         bool does_this_col_name_exist(string);
 
