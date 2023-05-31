@@ -15,7 +15,8 @@ using namespace std;
 */
 
 
-int main() {
+int main() 
+{
     Server myServer;
     char buffer[BUFFER_LEN];
 
@@ -29,10 +30,14 @@ int main() {
         // First call to get the first line from the file
         myServer.read_from(connection, buffer);
         
+        char * filePath = "testRecv.csv";
+
         while(string(buffer).find("DONE") == string::npos)
         {
-            cout << "In here\n";
-            myServer.write_file("src/testRecv.csv", buffer, 0);
+            // cout << "In here\n";
+            // myServer.write_file("src/testRecv.csv", buffer, 0);
+            myServer.write_file(filePath, buffer, 0);
+
 
             // Gets the next line after sending in the first one
             myServer.read_from(connection, buffer);
@@ -41,12 +46,15 @@ int main() {
     }
     else
     {
-        size_t messageSize = myServer.read_from(connection, buffer);
+        cout << "Entered Else clause\n";
+        // size_t messageSize = myServer.read_from(connection, buffer);
         string response;    // Declare response string
 
         // Send/recieve loop
         while (string(buffer).find("QUIT") == string::npos) 
         {
+            cout << "In loop\n";
+            
             cout << "\033[35mThe message was: " << string(buffer) << "\033[0m"<<endl;
             myServer.execute(buffer);
 
@@ -120,12 +128,6 @@ int main() {
             // std::cout << buffer << std::endl;
         }
     }
-
-
-   
-
-
-    
 
     // Clean up
     myServer.close_connection(connection);

@@ -132,7 +132,7 @@ void Client::send_file(FILE *fp)
         exit(1);
     }
 
-    std::cout << "The part that we're sending: " << data << "\n";
+    // std::cout << "The part that we're sending: " << data << "\n";
     bzero(data, BUFFER_LEN);
     }
 

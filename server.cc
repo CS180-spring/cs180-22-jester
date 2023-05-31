@@ -271,35 +271,19 @@ bool Server::tableExists(string tableName)
 // Input name changed from buffer to buf
 void Server::write_file(char * fileName, char buf[], size_t msgSize)
 {
-  cout << "Entered the function \n";
+//   cout << "Entered the function \n";
   int n;
   FILE *fp;
   char *filename = fileName;
   char buffer[BUFFER_LEN];
  
+  // Appends to the file doesn't write anything new
   fp = fopen(filename, "a+");
-//   while (1) 
-//   {
-    //   cout << "In the loop \n";
-    // cout << "Current n value: " << n << endl;
 
-
-    // n = recv(sockfd, buffer, BUFFER_LEN, 0);
-    // n = read_from(sockfd, buffer);
-
-    cout << "The current buffer: " << buf;
-    // if (n <= 0)
-    // {
-    //   cout << "broke away:( \n";
-    //   break;
-    //   return 0;
-    // }
-    
-    fprintf(fp, "%s", buf);
-    bzero(buffer, msgSize);
-//   }
-//   fprintf(fp, "%s", buffer);
-//   bzero(buffer, msgSize);
+//   cout << "The current buffer: " << buf;
+  
+  
+  fprintf(fp, "%s", buf);
+  bzero(buffer, msgSize);
   fclose(fp);
-//   return 0;
 }

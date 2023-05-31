@@ -18,7 +18,7 @@ int main()
 
     // Setting up the variables for input
     
-    const int BUFFER_SIZE = 1024 * 16;
+    const int BUFFER_SIZE = 1024;
     char buffer[BUFFER_SIZE];
     char * response;
     string input = "";
@@ -30,7 +30,7 @@ int main()
     
     if(input == "file")
     {
-        cout << "In client side\n";
+        // cout << "In client side\n";
         c.send_message(buffer, 0);
         
         FILE *fp;
