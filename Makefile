@@ -1,8 +1,9 @@
 # all: test.o server.o server.h main_tmp.o schema.o table.o DataView.o database.o
+#g++ --std=c++11 server.o test.o -o runServer
 all: test.o server.o main_tmp.o schema.o table.o DataView.o database.o
-	g++ --std=c++11 server.o test.o -o runServer
-	g++ --std=c++11 ./clientTest.cc -o client
 	g++ -std=c++0x main_tmp.o schema.o table.o DataView.o database.o -o myprog.exe
+	g++ --std=c++11 schema.o table.o DataView.o database.o server.o test.o -o runServer
+	g++ --std=c++11 ./clientTest.cc -o client
 
 # myprog.exe : main_tmp.o schema.o table.o DataView.o database.o
 #	 g++ -std=c++0x main_tmp.o schema.o table.o DataView.o database.o -o myprog.exe

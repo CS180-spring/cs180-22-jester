@@ -3,8 +3,18 @@
 using namespace std;
 
 
+Database::Database(string db_name) : db_name(db_name) {cout << "\033[4;32mDatabase Built: " << db_name <<"\033[0m"<<endl;}
+Database::~Database()
+{
+    
+    for(map<string, Table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)
+    {
+        delete (itr->second);
+    }
+    db_map.clear();
+}
 
-void Database::createTableWithCols(string tableName, int colNums_in, vector<string> &columnNames)
+void Database::createTableWithCols(string tableName, unsigned int colNums, vector<string> &columnNames)
 {
 
     unsigned int colNums=unsigned(colNums_in);
@@ -29,15 +39,16 @@ void Database::createTableWithCols(string tableName, int colNums_in, vector<stri
 
 }//will create new datatable (end of createTable)
 
-void Database::createTable(string tb_name, int colNums, vector<string> & s)
+void Database::createTable(string tb_name, int colNums, vector<string> s)
 {
-
     Table* t = new Table(tb_name, colNums, s);
     db_map.insert({tb_name, t});
+    cout<<"\033[4;32mTable '"<<tb_name<<"' Created \033[0m"<<endl;
 }//will create new datatable (end of createTable)
 
 Table* Database::getTable(string tb_name)
 {
+
     return db_map[tb_name];
     // return nullptr;
 }//end of getTable
@@ -225,3 +236,17 @@ bool Database::tablesExist(const vector<string>& listOfTables)
     }
     return true;
 }
+
+void Database::deleteTable(string tableName)
+{
+    delete getTable(tableName);
+    db_map.erase(tableName);
+    cout << "\033[4;31mTable: " << tableName <<" deleted\033[0m"<<endl;
+}
+
+DataView* Database::createView(Table * t) 
+{
+    DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
+    return temp; 
+}//end of createView
+

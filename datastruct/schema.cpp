@@ -1,5 +1,41 @@
 #include "schema.h"
 
+Schema::Schema()
+{
+    table = {}; 
+    name_of_colums = {}; 
+    num_of_cols = 0;
+    num_of_rows = 0;
+} // end of 0 arg schema constructor
+
+Schema::Schema(int num_of_cols)
+{
+    this->num_of_cols = num_of_cols;
+
+    cout << "enter the labels for the table" ; 
+    for( int i = 0; i < num_of_cols;++i){
+        string s; 
+        cin >> s;
+        name_of_colums.push_back(s);  
+    }
+}//end of 1 arg schema constructor
+
+Schema::Schema(int num_of_cols, vector<string> &columnNames)
+{
+    name_of_colums = columnNames;
+    this->num_of_cols = num_of_cols;
+}
+
+Schema::Schema(int num_of_cols, vector<string> &columnNames, vector<vector<string> > t )
+{
+    // cout<<"test 1"<<endl;
+    name_of_colums = columnNames;
+    // cout<<"test 2"<<endl;
+    table = t;
+    // cout<<"test 3"<<endl;
+    num_of_cols = num_of_cols;
+}
+
 vector<string> Schema::g_name_of_cols(){
     return name_of_colums;
 }
@@ -45,29 +81,31 @@ bool Schema::does_this_col_name_exist(string s){
 
 
 void Schema::print_col_names(){
-    for(unsigned int i = 0; i < name_of_colums.size(); ++i){
-        cout << name_of_colums.at(i)<<"\t";
+    unsigned int j = 0;
+    for(j = 0 ; j < name_of_colums.size()-1; ++j){
+        cout <<"\033[1;34m"<<name_of_colums.at(j) <<", ";
     }
+    cout << name_of_colums.at(j) <<"\033[0,]"<<endl;
 }
 
 void Schema::print_all_data(){
     // cout<<"### Data for "<< this->name_of_table <<"##"<<endl;
     unsigned int i = 0;
     unsigned int j = 0;
-    for(j = 0 ; j < name_of_colums.size()-1; ++j){
-        cout << name_of_colums.at(j) <<", ";
-    }
-    cout << name_of_colums.at(j) <<endl;
 
+    print_col_names();
      i = 0;
      j = 0;
-
+    cout<<"\033[33m";
     for(i = 0; i < table.size(); ++i){
         for(j = 0 ; j < table.at(i).size()-1; ++j){
             cout << table.at(i).at(j) <<", ";
         }
         cout << table.at(i).at(j) <<endl;
     }
+    cout<<"\033[0m";
+    
+            cout << "\033[4;32mTable Printed\033[0m"<<endl;
 }
 
 int Schema::columnExisits(string column)
@@ -91,6 +129,7 @@ int Schema::columnExisits(string column)
 
 }
     
+
 void Schema::add_row(vector<string>& newRow)
 {
     try
@@ -126,12 +165,17 @@ void Schema::add_row(vector<string>& newRow)
 
 void Schema::delete_row(int j){
     //deleting row is zero-indexed. 
-
     unsigned int i = unsigned(j);
 
     try{
-        if(i > table[0].size() || i < 0){
-            throw runtime_error("invalid row attempted to delete ");
+        unsigned int index = 0;
+        if(i < 1)
+        {
+            throw runtime_error("invalid row attempted to delete (Indexing Starts at 1) ");
+        }
+        index = i;
+        if(index > table[0].size()){
+            throw runtime_error("invalid row attempted to delete (Index Cannot be larger than number of rows)");
         }
 
     }
@@ -142,6 +186,8 @@ void Schema::delete_row(int j){
 
     table.erase(table.begin()+i-1);
     updateNumOfRowsAndCols();
+
+    cout << "\033[4;32mRow Deleted'\033[0m"<<endl;
 
 }
 
@@ -162,15 +208,14 @@ void Schema::delete_column(string s){
             cerr << e.what() << endl; 
             return;
         }
-    
-    // cout<<s<<" ente: "<<loc<<endl;
     name_of_colums.erase(it);
     num_of_cols = name_of_colums.size();
-    // cout<<table.size()<<endl;
     for(unsigned int i = 0 ; i < table.size();++i){
-        // cout<<i<<"\t";
         table.at(i).erase(table.at(i).begin()+loc);
     }
+
+    
+    cout << "\033[4;32mColumn Deleted'\033[0m"<<endl;
     // cout<<"sicess"<<endl;
 }
 

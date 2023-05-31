@@ -10,6 +10,16 @@
 #include <algorithm>
 using namespace std;
 
+
+DataView::DataView(int num_col, vector<string> names, vector<vector<string> > t) : Schema(num_col, names, t) {}//3 arg constructro
+DataView::DataView() : Schema() {};//0 arg constructor
+DataView::DataView(vector<vector<string>> table, vector<string> name_of_colums, int num_of_rows, int num_of_cols):Schema(){//5 arg constructor
+    this->table = table;
+    this->name_of_colums = name_of_colums;
+    this->num_of_rows = num_of_rows;
+    this->num_of_cols = num_of_cols;
+}
+
 void DataView::filterByColumnEquality(int columnOne, int columnTwo, bool invert)
 {
     unsigned int i = 0;
