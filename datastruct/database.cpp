@@ -14,20 +14,21 @@ Database::~Database()
     db_map.clear();
 }
 
-void Database::createTableWithCols(string tableName, unsigned int colNums, vector<string> &columnNames)
+void Database::createTableWithCols(string tableName, int colNums, vector<string> &columnNames)
 {
 
-    unsigned int colNums=unsigned(colNums_in);
+    unsigned int colNums_in = unsigned(colNums);
+    // colNums = unsigned(colNums_in);
 
     try
     {
-        if(colNums != columnNames.size())
+        if(colNums_in != columnNames.size())
         {
             throw invalid_argument("number of columns does not match vector");
         }
         else
         {
-            Table* t = new Table(tableName, colNums, columnNames);
+            Table* t = new Table(tableName, colNums_in, columnNames);
             db_map.insert({tableName, t});
         }
     }

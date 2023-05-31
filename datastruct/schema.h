@@ -18,21 +18,21 @@ class Schema{
         Schema(int, vector<string> &);
         Schema(int, vector<string> &, vector<vector<string> > );
         // CREATE
-        void add_row(vector<string>&);//DONE 
+        // void add_row(vector<string>&);//DONE 
         // READ
         void print_col_names();//DONE 
         void print_all_data();//DONE
         int columnExisits(string);//Done
         // DELETE
-        void delete_row(int);//DONE
-        void delete_column(string);  
+        // void delete_row(int);//DONE
+        // void delete_column(string);  
         // HELPERS
         int g_num_of_rows();//DONE
         int g_num_of_cols(); //DONE
   
         vector<string> g_name_of_cols();//DONE
         vector<vector<string> > g_all_data();//DONE
-        void updateNumOfRowsAndCols();
+        // void updateNumOfRowsAndCols();
         virtual void add_row(vector<string>&);//DONE 
       // DELETE
         virtual void delete_row(int);//DONE

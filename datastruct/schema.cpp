@@ -154,14 +154,7 @@ void Schema::add_row(vector<string>& newRow)
         cerr << e.what() << '\n';
         return; 
     }
-
-
-
-
-
-
 }
-
 
 void Schema::delete_row(int j){
     //deleting row is zero-indexed. 

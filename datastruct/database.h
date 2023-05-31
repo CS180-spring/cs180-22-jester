@@ -25,7 +25,7 @@ class Database
         ~Database();
         // void createTableWithCols(string, int, vector<string> &);
 
-       void createTableWithCols(string, unsigned int, vector<string>&);//will create new datatable (new function added by nuha)
+       void createTableWithCols(string,  int, vector<string>&);//will create new datatable (new function added by nuha)
 
         // CRUD
         // CREATE

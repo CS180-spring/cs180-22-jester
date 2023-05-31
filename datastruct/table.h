@@ -48,10 +48,6 @@ class Table: public Schema
 
     ~Table();
 
-    private:
-    string name_of_table;
-
-
 }; //END OF TABLE CLASS
 
 #endif
