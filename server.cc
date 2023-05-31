@@ -191,16 +191,24 @@ void Server::execute(char * message) {
             initDB(name);
             return;
         }
-        if (m.at(1) == "TABLE" && m.at(3) == "WITH" && m.size() == 5) {
-            std::string name = m.at(2);
-            // int num_cols = stoi(m.at(4));
-            std::string field_names = m.at(4);
-            // grab individual field names by Server.word_tokenize(field_names, ',')
-            // cout << "Building table with name: " << name << " and " << "columns that have the names: " << field_names; 
-            std::vector<std::string> columns = word_tokenize(field_names.c_str(), ',');
-            getDB()->createTable(name, columns.size(), columns);
-            // getDB()->getTable(name)->print_all_data();
-            return;
+        if (m.at(1) == "TABLE") {
+            if(m.at(3) == "WITH")
+            {
+                
+                std::string name = m.at(2);
+                // int num_cols = stoi(m.at(4));
+                std::string field_names = m.at(4);
+                // grab individual field names by Server.word_tokenize(field_names, ',')
+                // cout << "Building table with name: " << name << " and " << "columns that have the names: " << field_names; 
+                std::vector<std::string> columns = word_tokenize(field_names.c_str(), ',');
+                getDB()->createTable(name, columns.size(), columns);
+                // getDB()->getTable(name)->print_all_data();
+                return;
+            }
+            else if(m.at(2) == "FROM" && m.at(3) == "CSV")
+            {
+                return;
+            }
         }
         if (m.at(1) == "QUERY") 
         {
