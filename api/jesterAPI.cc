@@ -340,7 +340,7 @@ void jesterAPI::createQuery()
                 cont = false;
                 break;
             default:
-                cont = false;
+                cont = fals;
         }
 
     }
