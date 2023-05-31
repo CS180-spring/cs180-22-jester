@@ -64,7 +64,7 @@ void jesterAPI::interface(){
                 createQuery();
                 break;
             case 10: 
-                // modifyCell();
+                createTableFromCSV();
                 break;
             case 20:
                 quit = true; 
@@ -422,6 +422,46 @@ void jesterAPI::makeRange(char (&instruc)[1024])
     strcat(instruc, input3);
     strcat(instruc, to);
     strcat(instruc, input4);
+
+}
+
+void jesterAPI::createTableFromCSV()
+{
+     // First call to get the first line from the file
+        const int BUFFER_SIZE = 1024;
+
+        char BuildTable[BUFFER_SIZE] = "BUILD TABLE FROM CSV ";
+
+        char input1[BUFFER_SIZE];
+        char input2[BUFFER_SIZE];
+
+        cout << "Enter table name for CSV FILE: " << endl; 
+        cin.ignore(); 
+        std::cin.getline(input1, BUFFER_SIZE);
+        strcat(BuildTable, input1);
+
+        client->send_message(BuildTable, sizeof(BuildTable)+1);
+        
+        cout << "Enter og CSV FILE path: " << endl; 
+        // cin.ignore(); 
+        // std::cin.getline(input2, BUFFER_SIZE);
+        // FILE *fp;
+        // char filename[BUFFER_SIZE];
+        // strcat(filename, input2);
+
+        // fp = fopen(filename, "r");
+        // if(fp == NULL)
+        // {
+        //     perror("[-] Error in reading the file.");
+        //     exit(1);
+        // }
+        // char start[6] = "START";
+        // client->send_message(start, 6);
+        // client->send_file(fp);
+        // printf("[+] The file was sent successfully");
+
+        
+
 
 }
 

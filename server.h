@@ -1,6 +1,9 @@
 #include <netinet/in.h> // For sockaddr_in
 #include <vector>
 #include <string>
+#include <sstream>
+#include <iostream>
+#include <cstring>
 #include "./datastruct/database.h"
 // #include "./datastruct/table.h"
 

@@ -208,6 +208,22 @@ void Server::execute(char * message) {
             }
             else if(m.at(2) == "FROM" && m.at(3) == "CSV")
             {
+                //  myServer.read_from(connection, buffer);
+        
+                char filePath[100] = "/csvFiles/";
+                strcat(filePath, m.at(4).c_str());
+                // cout<<"message "<<message<<endl;
+                
+                // while(message != "START"){}
+                // while(string(message).find("DONE") == string::npos)
+                // {
+                //     // cout << "In here\n";
+                //     // myServer.write_file("src/testRecv.csv", buffer, 0);
+                //     write_file(filePath, message, 0);
+                //     // Gets the next line after sending in the first one
+                //     read_from(sockfd, message);
+                // }
+
                 return;
             }
         }

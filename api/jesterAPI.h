@@ -3,6 +3,8 @@
 #include <vector> 
 #include <stack>
 #include <boost/lexical_cast.hpp>
+#include <netdb.h>
+#include <arpa/inet.h>
 #include "../client.h"
 
 using namespace std; 
@@ -24,6 +26,7 @@ class jesterAPI{
         void deleteCol();
         void deleteTable();  
         void printTable(); 
+        void createTableFromCSV(); 
 
         void makeFilter(char (&instruc)[1024]);
         void makeRange(char (&instruc)[1024]);

@@ -25,28 +25,28 @@ int main()
     int connection = myServer.accept_connection();
 
     size_t messageSize = myServer.read_from(connection, buffer);
-    if(strcmp(buffer, "file"))
-    {   
-        // First call to get the first line from the file
-        myServer.read_from(connection, buffer);
+    // // if(strcmp(buffer, "file"))
+    // // {   
+    // //     // First call to get the first line from the file
+    // //     myServer.read_from(connection, buffer);
         
-        char * filePath = "testRecv.csv";
+    // //     char * filePath = "testRecv.csv";
 
-        while(string(buffer).find("DONE") == string::npos)
-        {
-            // cout << "In here\n";
-            // myServer.write_file("src/testRecv.csv", buffer, 0);
-            myServer.write_file(filePath, buffer, 0);
+    // //     while(string(buffer).find("DONE") == string::npos)
+    // //     {
+    // //         // cout << "In here\n";
+    // //         // myServer.write_file("src/testRecv.csv", buffer, 0);
+    // //         myServer.write_file(filePath, buffer, 0);
 
 
-            // Gets the next line after sending in the first one
-            myServer.read_from(connection, buffer);
-        }
+    // //         // Gets the next line after sending in the first one
+    // //         myServer.read_from(connection, buffer);
+    // //     }
 
-    }
-    else
-    {
-        cout << "Entered Else clause\n";
+    // // }
+    // // else
+    // // {
+    //     cout << "Entered Else clause\n";
         // size_t messageSize = myServer.read_from(connection, buffer);
         string response;    // Declare response string
 
@@ -126,7 +126,7 @@ int main()
             
             messageSize = myServer.read_from(connection, buffer);
             // std::cout << buffer << std::endl;
-        }
+        // }
     }
 
     // Clean up
