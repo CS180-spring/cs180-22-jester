@@ -15,7 +15,6 @@ const int PORT = 8080;
 const int BUFFER_LEN = 1024;
 class Client {
     private:
-        int sockfd;
         int CreateSocket = 0;
         
         // Current size for recieved message is 1024 but could be changed
@@ -32,5 +31,8 @@ class Client {
         std::string recieved_to_string(char *);
         char* read_from_server();
         void close_connection();
+
+        // Testing
+        void send_file(FILE *);
 
 };

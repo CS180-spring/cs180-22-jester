@@ -5,6 +5,7 @@
 #include <iostream> // For cout
 #include <unistd.h> // For read
 #include <errno.h>  // For error diagnosis (errno)
+#include <strings.h> // For file transfer
 
 #include "./datastruct/database.h"
 using namespace std;
@@ -381,3 +382,24 @@ bool Server::tableExists(string tableName)
     }
     return true;
 }//end of check
+
+// Testing function to observe file transfer
+// Input name changed from buffer to buf
+void Server::write_file(char * fileName, char buf[], size_t msgSize)
+{
+//   cout << "Entered the function \n";
+  int n;
+  FILE *fp;
+  char *filename = fileName;
+  char buffer[BUFFER_LEN];
+ 
+  // Appends to the file doesn't write anything new
+  fp = fopen(filename, "a+");
+
+//   cout << "The current buffer: " << buf;
+  
+  
+  fprintf(fp, "%s", buf);
+  bzero(buffer, msgSize);
+  fclose(fp);
+}

@@ -35,4 +35,7 @@ class Server {
         
         Database* getDB() {return db; }
         void initDB(string s) {db = new Database(s);}
+
+        // Testing
+        void write_file(char *, char [], size_t);
 };
