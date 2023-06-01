@@ -50,9 +50,9 @@ void Table::modify_table_value(int row_number_in, string column_name, string new
 
 void Table::outputTableToDisk(){
   ofstream myfile;
-  string outputFile = "./outputDisk/test_" + g_table_name() + ".csv";
+  string outputFile = "./datastruct/outputDisk/" + g_table_name() + ".csv";
   myfile.open(outputFile);
-
+    // cout << "\033[4;34mModify\033[0m"<<endl;
     unsigned int i = 0;
     unsigned int j = 0;
 
