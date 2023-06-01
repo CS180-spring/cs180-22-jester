@@ -420,7 +420,7 @@ void jesterAPI::makeRange(char (&instruc)[1024])
     cin.ignore(); 
     std::cin.getline(input3, BUFFER_SIZE);
     cout << "Enter Upper Bound " << endl; 
-    cin.ignore(); 
+    // cin.ignore(); 
     std::cin.getline(input4, BUFFER_SIZE);
     strcat(instruc, range);
     strcat(instruc, input1);
