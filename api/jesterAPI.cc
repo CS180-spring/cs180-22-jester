@@ -6,6 +6,9 @@
 #include <sstream> 
 
 using namespace std; 
+
+
+
 void jesterAPI::init(){ 
     client->setup_client(); 
     client->connect_to_server();  
@@ -16,6 +19,7 @@ void jesterAPI::close(){
 }
 
 void jesterAPI::interface(){
+    
     bool quit = false; 
     int option = -1; 
     string db;
@@ -444,11 +448,15 @@ void jesterAPI::createTableFromCSV()
         
         cout << "Enter og CSV FILE path: " << endl; 
         // cin.ignore(); 
-        // std::cin.getline(input2, BUFFER_SIZE);
-        // FILE *fp;
-        // char filename[BUFFER_SIZE];
-        // strcat(filename, input2);
+        std::cin.getline(input2, BUFFER_SIZE);
 
+        
+        char filename[BUFFER_SIZE];
+        strcat(filename, input2);
+
+        // cout<<"sdafasd"<<filename<<endl;
+        // FILE *fp;
+        // // malloc();
         // fp = fopen(filename, "r");
         // if(fp == NULL)
         // {

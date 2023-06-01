@@ -208,8 +208,6 @@ void Server::execute(char * message) {
             }
             else if(m.at(2) == "FROM" && m.at(3) == "CSV")
             {
-                //  myServer.read_from(connection, buffer);
-        
                 char filePath[100] = "/csvFiles/";
                 strcat(filePath, m.at(4).c_str());
                 // cout<<"message "<<message<<endl;

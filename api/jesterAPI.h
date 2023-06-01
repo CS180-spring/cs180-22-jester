@@ -13,6 +13,7 @@ class jesterAPI{
     public: 
         void interface(); 
         void init(); //move both of these to private later 
+        // FILE *fp;
         void close();  //this too
     protected: 
         void buildDB();

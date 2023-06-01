@@ -45,7 +45,7 @@ vector<vector<string> > Schema::g_all_data(){
 }
 
 int Schema::g_num_of_cols(){
-    return table.at(0).size();
+    return name_of_colums.size();
 }
 
 int Schema::g_num_of_rows(){
@@ -53,8 +53,9 @@ int Schema::g_num_of_rows(){
 }
 
 void Schema::updateNumOfRowsAndCols(){//checks if the inputted column name is in the table. return true if exists
-    num_of_cols=table.at(0).size();
+    
     num_of_rows=table.size();
+    num_of_cols=name_of_colums.size();
 }
 
 bool Schema::does_this_col_name_exist(string s){

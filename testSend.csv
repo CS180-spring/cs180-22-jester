@@ -1,5 +1,5 @@
 Name, Age, Gender, Occupation
-John Doe, 32, Male, Engineer
-Jane Smith, 28, Female, Marketing Manager
-Bob Johnson, 45, Male, Sales Representative
-Samantha Lee, 38, Female, Software Developer
+John_Doe, 32, Male, Engineer
+Jane_Smith, 28, Female, Marketing_Manager
+Bob_Johnson, 45, Male, Sales_Representative
+Samantha_Lee, 38, Female, Software_Developer
