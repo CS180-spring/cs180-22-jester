@@ -208,8 +208,13 @@ void Server::execute(char * message) {
             }
             else if(m.at(2) == "FROM" && m.at(3) == "CSV")
             {
-                char filePath[100] = "/csvFiles/";
-                strcat(filePath, m.at(4).c_str());
+                // char filePath[100] = "/csvFiles/";
+                // strcat(filePath, m.at(4).c_str());
+
+                string path = "datastruct/outputDisk/people_small.csv";
+                // path = );
+
+                getDB()->createTableFromCSVFile(m.at(5), m.at(4) );
                 // cout<<"message "<<message<<endl;
                 
                 // while(message != "START"){}
@@ -271,6 +276,7 @@ void Server::execute(char * message) {
 
             }
             // while
+            dv->print_all_data();
             return;
         }
     }

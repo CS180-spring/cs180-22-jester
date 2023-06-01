@@ -348,6 +348,8 @@ void jesterAPI::createQuery()
         }
 
     }
+
+
 }
 
 void jesterAPI::makeFilter(char (&instruc)[1024])
@@ -444,15 +446,17 @@ void jesterAPI::createTableFromCSV()
         std::cin.getline(input1, BUFFER_SIZE);
         strcat(BuildTable, input1);
 
-        client->send_message(BuildTable, sizeof(BuildTable)+1);
         
-        cout << "Enter og CSV FILE path: " << endl; 
+        cout << "Enter CSV FILE path: " << endl; 
         // cin.ignore(); 
-        std::cin.getline(input2, BUFFER_SIZE);
-
-        
         char filename[BUFFER_SIZE];
-        strcat(filename, input2);
+        char space[2]=" ";
+        std::cin.getline(filename, BUFFER_SIZE);
+        strcat(BuildTable, space);
+        strcat(BuildTable, filename);
+        
+        client->send_message(BuildTable, sizeof(BuildTable)+1);
+
 
         // cout<<"sdafasd"<<filename<<endl;
         // FILE *fp;
@@ -490,8 +494,8 @@ void jesterAPI::makeOrder(char (&instruc)[1024])
     // cin.ignore(); 
     // std::cin.getline(input1, BUFFER_SIZE);
     int option = 0;
-    while(option != 1 && option != 2)
-    {
+    // while(option != 1 && option != 2)
+    // {
         cout << "1. Ascending"<<endl;
         cout << "2. Decending"<<endl;
         cout << "Else Do not reorder"<<endl;
@@ -512,7 +516,7 @@ void jesterAPI::makeOrder(char (&instruc)[1024])
             strcat(instruc, input1);
             strcat(instruc, input2);
         }
-    }
+    // }
 }
 
 void jesterAPI::keepColumns(char (&instruc)[1024])
@@ -526,8 +530,8 @@ void jesterAPI::keepColumns(char (&instruc)[1024])
     // cin.ignore(); 
     // std::cin.getline(input1, BUFFER_SIZE);
     int option = 0;
-    while(option != 1 && option != 2)
-    {
+    // while(option != 1 && option != 2)
+    // {
         cout << "1. Yes"<<endl;
         cout << "Else No"<<endl;
         strcpy(input2, "");
@@ -541,7 +545,7 @@ void jesterAPI::keepColumns(char (&instruc)[1024])
             strcat(instruc, keepColumns);
             strcat(instruc, input1);
         }
-    }
+    // }
 
 }
 

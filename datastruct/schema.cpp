@@ -60,12 +60,12 @@ void Schema::updateNumOfRowsAndCols(){//checks if the inputted column name is in
 
 bool Schema::does_this_col_name_exist(string s){
 
-    vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
-
+    // vector<string>::iterator it = find(name_of_colums.begin(), name_of_colums.end(), s);
+    int index = columnExisits(s);
     try{
        
         //check for invalud row or col name
-    if(it == name_of_colums.end() /* valid column name*/){
+    if(index < 0 /* valid column name*/){
             throw runtime_error("column name does not exist");
             
         }
