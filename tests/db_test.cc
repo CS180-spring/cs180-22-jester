@@ -8,6 +8,8 @@
 #include <cstdlib> 
 #include <string> 
 #include <vector>
+#include "testerr.csv"
+#include "testerr.csv"
 using namespace std; 
 
 
@@ -58,3 +60,17 @@ TEST(dbtest, getTable){ //int testing: built on the assumption that table is ful
     // does this actually check obj though? 
 }
 
+
+TEST(dbtest, csvFile){
+    Database* db = new Database("test"); 
+    string filename = "test.csv"; 
+    db->createTableFromCSVFile(filename, "testingTable");
+}
+
+TEST(dbtest, csvFileErr){
+    Database* db = new Database("test"); 
+    string filename = "testerr.csv"; 
+    EXPECT_ANY_THROW({
+        db->createTableFromCSVFile(filename, "testingTable");
+    }); 
+}

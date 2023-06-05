@@ -13,41 +13,41 @@
 
 using namespace std;
 
-class Table: public Schema {
+class Table: public Schema 
+{
+    private:
+       string name_of_table;
 
     public: 
-    Table() : Schema(0) {
-      name_of_table = "no_name";
-    }
 
-    Table(string table_name, int num_of_cols) : Schema( num_of_cols ) {
-        name_of_table = table_name;
-        
-    }
+    // Constructors
+    Table();
+    Table(string, int);
+    Table(string, int, vector<string>&);
 
-    Table(string table_name, int num_of_cols, vector<string> &columnNames) : Schema(num_of_cols, columnNames) {
-        name_of_table = table_name;
-    }
 
     // CRUD
-    string g_table_name() {return name_of_table; }
+    string g_table_name();
     // CREATE
-    void add_row(vector<string>&);//DONE 
+    void add_row(vector<string>&); 
 
     // UPDATE
     void modify_table_value(int, string, string);
 
     //createView in order to Query
 
-    void outputTableToDisk(string);
-    DataView* createView(){
-        DataView* temp = new DataView( this->table,this->name_of_colums, this->num_of_rows, this->num_of_cols);
+    DataView* createView();
 
-        return temp; 
-    }
-    private:
-    string name_of_table;
+    void outputTableToDisk();
 
-}; 
+    void delete_row(int) override;
+
+    void delete_column(string) override;
+    //void add_row(vector<string>&) override;
+    void keepCols(vector<string>&);
+
+    ~Table();
+
+}; //END OF TABLE CLASS
 
 #endif

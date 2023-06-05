@@ -1,6 +1,7 @@
 // Reference link: https://www.thecrazyprogrammer.com/2017/06/socket-programming.html
 
 #include "client.h"
+#include <iostream>
 
 
 int Client::getBufferLen(char * buffer) 
@@ -108,9 +109,34 @@ std::string Client::recieved_to_string(char * message)
 {
     char * temp = message;
     std::string ret = "";
-    for (auto it = temp; it != '\0'; ++it) {
+    for (char *  it = temp; *it != '\0'; ++it) {
         ret += *it;
     }
 
     return ret;
 }
+
+// Testing the send file function
+// Sending seems to be working fine since we're able to print all the parts for each line
+
+void Client::send_file(FILE *fp)
+{
+    int n;
+    char data[BUFFER_LEN] = {0};
+
+    while(fgets(data, BUFFER_LEN, fp) != NULL) 
+    {
+    if (send(CreateSocket, data, sizeof(data), 0) == -1) 
+    {
+        perror("[-]Error in sending file.");
+        exit(1);
+    }
+
+    // std::cout << "The part that we're sending: " << data << "\n";
+    bzero(data, BUFFER_LEN);
+    }
+
+    // Sending the final message to indicate that the file is empty
+    send(CreateSocket, "DONE", sizeof("DONE"), 0);
+}
+

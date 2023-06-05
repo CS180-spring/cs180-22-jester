@@ -3,18 +3,32 @@
 using namespace std;
 
 
+Database::Database(string db_name) : db_name(db_name) {cout << "\033[4;32mDatabase Built: " << db_name <<"\033[0m"<<endl;}
+Database::~Database()
+{
+    
+    for(map<string, Table*>::iterator itr = db_map.begin(); itr != db_map.end(); itr++)
+    {
+        delete (itr->second);
+    }
+    db_map.clear();
+}
 
 void Database::createTableWithCols(string tableName, int colNums, vector<string> &columnNames)
 {
+
+    unsigned int colNums_in = unsigned(colNums);
+    // colNums = unsigned(colNums_in);
+
     try
     {
-        if(colNums != columnNames.size())
+        if(colNums_in != columnNames.size())
         {
             throw invalid_argument("number of columns does not match vector");
         }
         else
         {
-            Table* t = new Table(tableName, colNums, columnNames);
+            Table* t = new Table(tableName, colNums_in, columnNames);
             db_map.insert({tableName, t});
         }
     }
@@ -26,15 +40,16 @@ void Database::createTableWithCols(string tableName, int colNums, vector<string>
 
 }//will create new datatable (end of createTable)
 
-void Database::createTable(string tb_name, int colNums, vector<string> & s)
+void Database::createTable(string tb_name, int colNums, vector<string> s)
 {
-
     Table* t = new Table(tb_name, colNums, s);
     db_map.insert({tb_name, t});
+    cout<<"\033[4;32mTable '"<<tb_name<<"' Created \033[0m"<<endl;
 }//will create new datatable (end of createTable)
 
 Table* Database::getTable(string tb_name)
 {
+
     return db_map[tb_name];
     // return nullptr;
 }//end of getTable
@@ -178,9 +193,9 @@ vector<vector<string>> Database::compileTable(vector<vector<string>> exisiting, 
 
             // cout<<"test"<<endl;
         int counter = 0;
-        for(int i = 0; i < exisiting.size(); i++)
+        for(unsigned int i = 0; i < exisiting.size(); i++)
         {
-            for(int j = 0; j < curTable.size(); j++)
+            for(unsigned int j = 0; j < curTable.size(); j++)
             {
                 // cout<<"test2"<<endl;
                 compiledTable.at(counter).reserve(exisiting.at(i).size() + curTable.at(j).size());
@@ -222,3 +237,17 @@ bool Database::tablesExist(const vector<string>& listOfTables)
     }
     return true;
 }
+
+void Database::deleteTable(string tableName)
+{
+    delete getTable(tableName);
+    db_map.erase(tableName);
+    cout << "\033[4;31mTable: " << tableName <<" deleted\033[0m"<<endl;
+}
+
+DataView* Database::createView(Table * t) 
+{
+    DataView* temp = new DataView(t->g_num_of_cols(), t->g_name_of_cols(), t->g_all_data());
+    return temp; 
+}//end of createView
+
